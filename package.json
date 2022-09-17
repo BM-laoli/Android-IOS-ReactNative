@@ -1,0 +1,14 @@
+{
+  "name": "RNM",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "react-native start --port=8082",
+    "build": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output ./android/app/src/main/assets/index.android.bundle --assets-dest ./android/app/src/main/res/"
+  },
+  "dependencies": {
+    "react": "18.1.0",
+    "react-native": "^0.70.1"
+  }
+}
