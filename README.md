@@ -60,3 +60,21 @@ npx react-native bundle --platform android --dev false --entry-file index.js --b
 ```shell
 react-native bundle --platform android --dev false --entry-file index.js --bundle-output ./android/app/src/main/assets/index.android.bundle --assets-dest ./android/app/src/main/res/
 ```
+
+3. assets 资源在android 中到底如何进行的呢？
+
+   通过分析原来的项目，发现都是build 的阶段 会生成一份固定的资源路径文件，这里是一份详细的流程说明 ，<https://juejin.cn/post/7113713363900694565，但是实际上打出来的包还是会在res>资源下 进行载入，文件的名称变化而已，对于常用的 build apk 包查看是否符合预期，可以尝试使用 反编译工具进行查看 🔧<https://cloud.tencent.com/developer/article/1904018>
+
+   基于此建议业务包都采取http 加载资源
+
+# Todo
+
+| 项目      | Android | IOS     |
+| :---        |    :----:   |          ---: |
+| 依照官方进行集成      | ✅ 完成       |  /  |
+| dev是否正常运行   |      ✅ 完成   |  /      |
+| build 一下是否正常运行   |    ✅ 完成     |  /      |
+| Assets 资源加载逻辑   |     ✅ 完成    |  /      |
+| native版本的包管理   |     /    |  /      |
+| 热更新的实现   |    /     |  /      |
+| WebView 的实现   |    /     |  /      |
