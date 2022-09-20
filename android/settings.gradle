@@ -6,7 +6,9 @@ pluginManagement {
     }
 }
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    // 注意这里 要去掉 请见一个 github 的issuss https://github.com/realm/realm-java/issues/7374 ，以及 7.0 下 gradle 的管理文档
+    // repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
     repositories {
         google()
         mavenCentral()
@@ -21,7 +23,10 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "myappRNN"
-include ':app'
+
+// 在新版本中 （@react-native-community/cli ）它把 link 给删除了, 会自动进行link 不需要你手动加
 
 // 添加自动link 库
 apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
+include ':app'
+

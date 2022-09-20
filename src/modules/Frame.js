@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import Imgx from "../assets/imgs/test.png";
 import bigImage from "../assets/imgs/bigImage.png";
 const imgICON = require("../assets/imgs/default.png");
+import TestNativeInfo from './TestNativeInfo'
 // 整个App 的骨架，基础包 更新要严格控制
 class Frame extends React.Component {
   render() {
@@ -17,10 +18,11 @@ class Frame extends React.Component {
             <Image
               resizeMethod="resize"
               resizeMode="contain"
-              // source={Imgx}
-              source={imgICON}
+              source={Imgx}
+              // source={imgICON}
               style={styles.img}
             />
+            <TestNativeInfo></TestNativeInfo>
           </View>
         </ScrollView>
       </View>
