@@ -1,18 +1,13 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
-import Imgx from "../assets/imgs/test.png";
-import bigImage from "../assets/imgs/bigImage.png";
-const imgICON = require("../assets/imgs/default.png");
-import TestNativeInfo from './TestNativeInfo'
+import Imgx from "./assets/img/1024_500.png";
+
 // 整个App 的骨架，基础包 更新要严格控制
 class Frame extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.hello}>Hello, World</Text>
-        <Text style={styles.hello}>应用的设置非常好</Text>
-        <Text style={styles.hello}>这是我的第一个非常不错的项目</Text>
-        <Text style={styles.hello}>Android + RN</Text>
+        <Text style={styles.hello}>BU1 </Text>
         <ScrollView style={styles.flatContainer}>
           <View style={styles.imgView}>
             <Image
@@ -22,7 +17,6 @@ class Frame extends React.Component {
               // source={imgICON}
               style={styles.img}
             />
-            <TestNativeInfo></TestNativeInfo>
           </View>
         </ScrollView>
       </View>

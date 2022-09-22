@@ -20,7 +20,8 @@ import com.facebook.soloader.SoLoader;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity  implements DefaultHardwareBackBtnHandler {
+public class Bu1Activity  extends AppCompatActivity  implements DefaultHardwareBackBtnHandler {
+
     private final int OVERLAY_PERMISSION_REQ_CODE = 1;  // 任写一个值
     private ReactRootView mReactRootView;
     private ReactInstanceManager mReactInstanceManager;
@@ -28,6 +29,12 @@ public class MainActivity extends AppCompatActivity  implements DefaultHardwareB
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // 获取数据
+        Intent intentMy = getIntent();
+        String message = intentMy.getStringExtra(RNToolsManager.EXTRA_MESSAGE);
+
+        // 调用方法 给RN 发回去
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!Settings.canDrawOverlays(this)) {
@@ -40,24 +47,27 @@ public class MainActivity extends AppCompatActivity  implements DefaultHardwareB
         SoLoader.init(this, false);
         mReactRootView = new ReactRootView(this);
 
+        RNToolPackage rntInstance =  new RNToolPackage();
         List<ReactPackage> packages = new PackageList(getApplication()).getPackages();
         // 有一些第三方可能不能自动链接，对于这些包我们可以用下面的方式手动添加进来：
-        packages.add(new RNToolPackage());
+        packages.add(rntInstance);
 
         mReactInstanceManager = ReactInstanceManager.builder()
                 .setApplication(getApplication())
                 .setCurrentActivity(this)
-                .setBundleAssetName("index.android.bundle") // 这个index.android.bundle 只会用于 release 包中 debuger 的时候 只认Bu1 和 bu1
-                .setJSMainModulePath("index")
+                .setBundleAssetName("bu1.android.bundle") // 这个index.android.bundle 只会用于 release 包中 debuger 的时候 只认Bu1 和 bu1
+                .setJSMainModulePath("Bu1")
                 .addPackages(packages)
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
                 .setInitialLifecycleState(LifecycleState.RESUMED)
                 .build();
         // 注意这里的MyReactNativeApp 必须对应"index.js"中的
         // "AppRegistry.registerComponent()"的第一个参数
-        mReactRootView.startReactApplication(mReactInstanceManager, "MyReactNativeApp", null);
+        mReactRootView.startReactApplication(mReactInstanceManager, "bu1", null);
         setContentView(mReactRootView);
 
+        if(rntInstance.rnm == null) return;
+        rntInstance.rnm.toRN(message);
     }
 
     @Override

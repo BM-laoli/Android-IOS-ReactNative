@@ -20,7 +20,8 @@ import com.facebook.soloader.SoLoader;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity  implements DefaultHardwareBackBtnHandler {
+public class Bu2Activity  extends AppCompatActivity  implements DefaultHardwareBackBtnHandler  {
+
     private final int OVERLAY_PERMISSION_REQ_CODE = 1;  // 任写一个值
     private ReactRootView mReactRootView;
     private ReactInstanceManager mReactInstanceManager;
@@ -47,15 +48,15 @@ public class MainActivity extends AppCompatActivity  implements DefaultHardwareB
         mReactInstanceManager = ReactInstanceManager.builder()
                 .setApplication(getApplication())
                 .setCurrentActivity(this)
-                .setBundleAssetName("index.android.bundle") // 这个index.android.bundle 只会用于 release 包中 debuger 的时候 只认Bu1 和 bu1
-                .setJSMainModulePath("index")
+                .setBundleAssetName("bu2.android.bundle") // 这个index.android.bundle 只会用于 release 包中 debuger 的时候 只认Bu1 和 bu1
+                .setJSMainModulePath("Bu2")
                 .addPackages(packages)
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
                 .setInitialLifecycleState(LifecycleState.RESUMED)
                 .build();
         // 注意这里的MyReactNativeApp 必须对应"index.js"中的
         // "AppRegistry.registerComponent()"的第一个参数
-        mReactRootView.startReactApplication(mReactInstanceManager, "MyReactNativeApp", null);
+        mReactRootView.startReactApplication(mReactInstanceManager, "bu2", null);
         setContentView(mReactRootView);
 
     }
