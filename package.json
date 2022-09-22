@@ -4,15 +4,16 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "react-native start --port=8082 --projectRoot ./src/modules/Main ",
-    "build:base": "react-native bundle --platform android --dev false --entry-file ./common/index.js --bundle-output ./android/app/src/main/assets/base.android.bundle --assets-dest ./android/app/src/main/res --config ./metro.base.config.js --minify false --reset-cache",
-    "build:main": "react-native bundle --platform android --dev false --entry-file ./src/modules/Main/main.js --bundle-output ./android/app/src/main/assets/main.android.bundle --assets-dest ./android/app/src/main/res/ --config ./metro.main.config.js --minify false",
-    "build:bu1": "react-native bundle --platform android --dev false --entry-file ./src/modules/Business1/main.js --bundle-output ./android/app/src/main/assets/bu1.android.bundle --assets-dest ./android/app/src/main/res/ --config ./metro.main.config.js --minify false",
-    "build:bu2": "react-native bundle --platform android --dev false --entry-file ./src/modules/Business2/main.js --bundle-output ./android/app/src/main/assets/bu2.android.bundle --assets-dest ./android/app/src/main/res/ --config ./metro.main.config.js --minify false"
+    "start": "react-native start --port=8082 ",
+    "build:index": "react-native bundle --platform android --dev false --entry-file ./index.js --bundle-output ./android/app/src/main/assets/index.android.bundle --assets-dest ./android/app/src/main/res --minify false --reset-cache",
+    "build:bu1": "react-native bundle --platform android --dev false --entry-file ./Bu1.js --bundle-output ./android/app/src/main/assets/bu1.android.bundle --assets-dest ./android/app/src/main/res --minify false --reset-cache",
+    "build:bu2": "react-native bundle --platform android --dev false --entry-file ./Bu2.js --bundle-output ./android/app/src/main/assets/bu2.android.bundle --assets-dest ./android/app/src/main/res --minify false --reset-cache"
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.12.1",
     "react": "18.1.0",
     "react-native": "^0.70.1",
-    "react-native-device-info": "^10.2.0"
+    "react-native-device-info": "^10.2.0",
+    "react-native-storage": "^1.0.1"
   }
 }

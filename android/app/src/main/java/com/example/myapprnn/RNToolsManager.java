@@ -3,16 +3,11 @@ package com.example.myapprnn;
 import android.app.Activity;
 import android.content.Intent;
 
-import androidx.annotation.Nullable;
 
-import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.JSApplicationIllegalArgumentException;
 import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
-import com.facebook.react.bridge.WritableMap;
-import com.facebook.react.modules.core.DeviceEventManagerModule;
 
 public class RNToolsManager extends ReactContextBaseJavaModule {
     public static final String EXTRA_MESSAGE = "MESSAGE";
@@ -49,28 +44,4 @@ public class RNToolsManager extends ReactContextBaseJavaModule {
                     "不能打开Activity : "+e.getMessage());
         }
     }
-
-
-    private void sendEvent(ReactContext reactContext,
-                           String eventName,
-                           @Nullable WritableMap params) {
-        reactContext
-                .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
-                .emit(eventName, params);
-    }
-    @ReactMethod
-    public void addListener(String eventName) {
-        // Set up any upstream listeners or background tasks as necessary
-    }
-    @ReactMethod
-    public void removeListeners(Integer count) {
-        // Remove upstream listeners, stop unnecessary background tasks
-    }
-
-    public void toRN (String message) {
-        WritableMap params = Arguments.createMap();
-        params.putString("message", message);
-        sendEvent(reactContext, "Activity", params);
-    }
-
 }

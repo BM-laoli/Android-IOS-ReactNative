@@ -1,13 +1,25 @@
-import React from "react";
-import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
+import React, { useEffect } from "react";
+import { StyleSheet, Text, View, Image, ScrollView, Button } from "react-native";
 import Imgx from "./assets/img/1024_500.png";
-
+import  { navigation  } from '../../../common/utils'
 // 整个App 的骨架，基础包 更新要严格控制
-class Frame extends React.Component {
-  render() {
-    return (
+const  Frame = (props) =>   {
+  useEffect(() => {
+    init()
+  }, []);
+
+  const init = async () => {
+    const params =  await navigation.getFromActivity()
+    console.log('params', params);
+  }
+
+  return (
       <View style={styles.container}>
         <Text style={styles.hello}>BU1 </Text>
+       <Button title="前往BU2" onPress={() => {
+         navigation.pushToActivity( "Bu2Activity" , { value:111 } );
+       }}  style={styles.btn}  />
+
         <ScrollView style={styles.flatContainer}>
           <View style={styles.imgView}>
             <Image
@@ -21,7 +33,6 @@ class Frame extends React.Component {
         </ScrollView>
       </View>
     );
-  }
 }
 
 const styles = StyleSheet.create({
@@ -45,6 +56,10 @@ const styles = StyleSheet.create({
   flatContainer: {
     flex: 1,
   },
+  btn: {
+    width: 30,
+    height: 30,
+  }
 });
 
 export default Frame;

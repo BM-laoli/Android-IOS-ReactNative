@@ -9,15 +9,7 @@ import {
 } from "react-native";
 import Imgx from "./assets/img/test.png";
 import TestNativeInfo from "./TestNativeInfo";
-
-const ToBU1 = () => {
-  if (!NativeModules || !NativeModules.RNToolsManager) return;
-
-  NativeModules.RNToolsManager.changeActivity(
-    "com.example.myapprnn.Bu1Activity",
-    null
-  );
-};
+import { navigation } from '../../../common/utils';
 
 // 整个App 的骨架，基础包 更新要严格控制
 class Frame extends React.Component {
@@ -31,7 +23,11 @@ class Frame extends React.Component {
         <Text
           style={styles.hello}
           onPress={() => {
-            ToBU1();
+            
+            navigation.pushToActivity("Bu1Activity" ,{
+              value :"1111"
+            });
+
           }}
         >
           {" "}

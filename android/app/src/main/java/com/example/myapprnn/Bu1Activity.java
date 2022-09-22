@@ -30,10 +30,6 @@ public class Bu1Activity  extends AppCompatActivity  implements DefaultHardwareB
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // 获取数据
-        Intent intentMy = getIntent();
-        String message = intentMy.getStringExtra(RNToolsManager.EXTRA_MESSAGE);
-
         // 调用方法 给RN 发回去
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -66,8 +62,6 @@ public class Bu1Activity  extends AppCompatActivity  implements DefaultHardwareB
         mReactRootView.startReactApplication(mReactInstanceManager, "bu1", null);
         setContentView(mReactRootView);
 
-        if(rntInstance.rnm == null) return;
-        rntInstance.rnm.toRN(message);
     }
 
     @Override

@@ -18,8 +18,7 @@ public class RNToolPackage implements ReactPackage {
     @NonNull
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-        this.rnm = new com.example.myapprnn.RNToolsManager(reactContext);
-        return Arrays.<NativeModule>asList(rnm);
+        return Arrays.<NativeModule>asList( new com.example.myapprnn.RNToolsManager(reactContext) );
     }
 
     public List<Class<? extends JavaScriptModule>> createJSModules() {

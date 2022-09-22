@@ -133,6 +133,74 @@ react-native bundle --platform android --dev false --entry-file index.js --bundl
 
   然后就用 TestNativeInfo.js 下的代码跑就好了。
 
+## 重点 拆包方案
+
+1.1 说到拆包我们先了解 包 是什么 由 什么组成
+
+   一个 包 bundle 说白了 就说 一些js 代码，只不过后缀叫 bundle ，它实际上是一些js 代码，只不过这些代码的运行 环境在RN 提供的环境 不是在浏览器，通过这些代码RN 引擎可以使用 Native 组件 渲染 出你想要的UI ，好 这就是 包 bundle。
+
+   一个rn 的bundle 主要由三部分构成
+
+   1. 环境变量 和 require define 方法的预定义
+
+   2. define 载入业务代码
+
+   3. 执行
+
+  ```js
+
+// 环境定义
+var __BUNDLE_START_TIME__=this.nativePerformanceNow?nativePerformanceNow():Date.now(),__DEV__=false,process=this.process||{},__METRO_GLOBAL_PREFIX__='';process.env=process.env||{};process.env.NODE_ENV=process.env.NODE_ENV||"production";
+
+
+// 全局的定义 比如 引擎自己的require defeind 
+(function (global) {
+  "use strict";
+
+  global.__r = metroRequire;
+  global[__METRO_GLOBAL_PREFIX__ + "__d"] = define;
+  global.__c = clear;
+  global.__registerSegment = registerSegment;
+  var modules = clear();
+  var EMPTY = {};
+
+
+  // 最后是执行 程序
+  __r(21);
+__r(0);
+......
+
+
+  ```
+
+1. 首先我们来看看第一版方案（ 直接丢到不同的 acitvy 中运行）
+
+   主要的思路：“让多个Native 容器去承载 不同的RN 容器，每一个RN容器都是一个独立的BU业务，在通过RN 的native 桥接 就能够实现 这类的拆包”，
+   需要注意的开发阶段 和 build 阶段，
+
+- 在开发阶段 尤其的metro 下，我们的需要在root 根目录下进行 要不然，会发生路径错误，然后 需要注意的一点是 路径问题
+   在metro 上 譬如你请求的是 index.bundle.好，默认就是根目录下的index ，如果你请求的是 a.bundle,那么加载和编译的就是 根目录下的 a.js 文件，这些就是所谓的“入口文件”，它里面有一个 registerComponent 方法，这个就是runtime 的时候 rn 触发的 view 试图绑定的逻辑，在RN 引擎中 ，它的加载顺序是 ：**js端先运行js代码注册组件---->原生端找到这个组件并关联**
+  
+- 需要注意我们的这个参数  
+
+  ```java
+          mReactInstanceManager = ReactInstanceManager.builder()
+                .setApplication(getApplication())
+                .setCurrentActivity(this)
+                .setBundleAssetName("index.android.bundle")  // 对应的release 包名称，如果多个业务就是 bu1.android.bundle, bu2.android.bundle ......
+                .setJSMainModulePath("index") // 根目录下 index.js . 如果同的文件 就是 Bu1.js  Bu2.js xxxxx 依次类推 不一定都叫这个名字哈
+                .addPackages(packages)
+                .setUseDeveloperSupport(BuildConfig.DEBUG)
+                .setInitialLifecycleState(LifecycleState.RESUMED)
+                .build();
+        mReactRootView.startReactApplication(mReactInstanceManager, "MyReactNativeApp", null); // js 端 的registerComponent name MyReactNativeApp
+        setContentView(mReactRootView);
+  ```
+
+2. 第二版方案 （基础包 common + bu 业务包 = 运行时的 全量包 ）
+
+ 要解决的问题
+
 # Todo
 
 | 项目      | Android | IOS     |
@@ -142,5 +210,7 @@ react-native bundle --platform android --dev false --entry-file index.js --bundl
 | build 一下是否正常运行   |    ✅ 完成     |  /      |
 | Assets 资源加载逻辑   |     ✅ 完成    |  /      |
 | native版本的包管理   |    ✅ 完成     |  /      |
+| 初步的拆包方案   |    ✅ 完成     |  /      |
+| 进一步的 初步的拆包方案   |         |  /      |
 | 热更新的实现   |    /     |  /      |
 | WebView 的实现   |    /     |  /      |
