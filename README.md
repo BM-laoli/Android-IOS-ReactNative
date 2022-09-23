@@ -141,22 +141,17 @@ react-native bundle --platform android --dev false --entry-file index.js --bundl
 
    一个rn 的bundle 主要由三部分构成
 
-   1. 环境变量 和 require define 方法的预定义
+   1. 环境变量 和 require define 方法的预定义 （polyfills）
 
-   2. define 载入业务代码
+   2. 模块代码定义 （module define）
 
-   3. 执行
+   3. 执行 （require 调用）
 
   ```js
 
-// 环境定义
-var __BUNDLE_START_TIME__=this.nativePerformanceNow?nativePerformanceNow():Date.now(),__DEV__=false,process=this.process||{},__METRO_GLOBAL_PREFIX__='';process.env=process.env||{};process.env.NODE_ENV=process.env.NODE_ENV||"production";
-
-
-// 全局的定义 比如 引擎自己的require defeind 
+// 环境变量 和 require define 方法的预定义 （polyfills）
 (function (global) {
   "use strict";
-
   global.__r = metroRequire;
   global[__METRO_GLOBAL_PREFIX__ + "__d"] = define;
   global.__c = clear;
@@ -165,8 +160,17 @@ var __BUNDLE_START_TIME__=this.nativePerformanceNow?nativePerformanceNow():Date.
   var EMPTY = {};
 
 
-  // 最后是执行 程序
-  __r(21);
+  // 模块代码定义 （module define）
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = undefined;
+
+  var TurboModuleRegistry = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[0]));
+
+  // 最后是执行 程序   （require 调用）
+__r(21);
 __r(0);
 ......
 
@@ -199,7 +203,7 @@ __r(0);
 
 2. 第二版方案 （基础包 common + bu 业务包 = 运行时的 全量包 ）
 
- 要解决的问题
+  我们先开看一个问题：“Android 中 RN 引擎到底是如何工作的？”，然后我们得处这样的结论：“上述的拆包方案的弊端”，最后我们的方案：“基础包+业务包 = runtimeBundle”
 
 # Todo
 

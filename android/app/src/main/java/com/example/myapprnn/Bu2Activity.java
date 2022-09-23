@@ -20,7 +20,7 @@ import com.facebook.soloader.SoLoader;
 
 import java.util.List;
 
-public class Bu2Activity  extends AppCompatActivity  implements DefaultHardwareBackBtnHandler  {
+public class Bu2Activity  extends AppCompatActivity implements DefaultHardwareBackBtnHandler  {
 
     private final int OVERLAY_PERMISSION_REQ_CODE = 1;  // 任写一个值
     private ReactRootView mReactRootView;

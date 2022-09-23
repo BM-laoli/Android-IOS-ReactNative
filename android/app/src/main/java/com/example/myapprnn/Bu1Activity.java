@@ -20,7 +20,7 @@ import com.facebook.soloader.SoLoader;
 
 import java.util.List;
 
-public class Bu1Activity  extends AppCompatActivity  implements DefaultHardwareBackBtnHandler {
+public class Bu1Activity  extends AppCompatActivity implements DefaultHardwareBackBtnHandler {
 
     private final int OVERLAY_PERMISSION_REQ_CODE = 1;  // 任写一个值
     private ReactRootView mReactRootView;
@@ -29,8 +29,6 @@ public class Bu1Activity  extends AppCompatActivity  implements DefaultHardwareB
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // 调用方法 给RN 发回去
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!Settings.canDrawOverlays(this)) {

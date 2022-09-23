@@ -1,60 +1,38 @@
-const pathSep = require("path").sep;
+const { hasBuildInfo, writeBuildInfo, getCacheFile } = require("./utils");
 
 function postProcessModulesFilter(module) {
-  //返回false则过滤不编译
-  // console.log('buz postProcessModulesFilter : ' + JSON.stringify(module));
-  if (module["path"].indexOf("__prelude__") >= 0) {
+  if (hasBuildInfo(module.path)) {
     return false;
   }
-  // 提前过滤依赖
-  if (module["path"].indexOf(pathSep + "node_modules" + pathSep) > 0) {
-    return false;
-  }
-  if (module["path"].indexOf(pathSep + "src" + pathSep) > 0) {
-    return true;
-  }
-  if (module["path"].indexOf(pathSep + "common" + pathSep) > 0) {
-    return true;
-  }
-  if (module["path"].indexOf("index") > 0) {
-    return true;
-  }
-  return false;
+
+  return true;
 }
 
+// 不要使用 string 会导致 bundle 体积陡增
 function createModuleIdFactory() {
-  const projectRootPath = __dirname;
+  // 如果是业务 模块请以 10000000 来自增命名
+  const fileToIdMap = new Map();
+  let nextId = 10000000;
+
   return (path) => {
-    // console.log('buz createModuleIdFactory path : '+ path);
-    let name = "";
-    if (
-      path.indexOf(
-        "node_modules" +
-          pathSep +
-          "react-native" +
-          pathSep +
-          "Libraries" +
-          pathSep
-      ) > 0
-    ) {
-      name = path.substr(path.lastIndexOf(pathSep) + 1);
-    } else if (path.indexOf(projectRootPath) == 0) {
-      name = path.substr(projectRootPath.length + 1);
+    if (Boolean(getCacheFile(path))) {
+      return getCacheFile(path);
     }
-    name = name.replace(".js", "");
-    name = name.replace(".png", "");
-    const regExp =
-      pathSep == "\\" ? new RegExp("\\\\", "gm") : new RegExp(pathSep, "gm");
-    name = name.replace(regExp, "_"); //把path中的/换成下划线
-    console.log("buz createModuleIdFactory : " + name);
-    return name;
+
+    let id = fileToIdMap.get(path);
+
+    if (typeof id !== "number") {
+      id = nextId++;
+      fileToIdMap.set(path, id);
+      // !hasBuildInfo(path) && writeBuildInfo(path, fileToIdMap.get(path));
+    }
+    return id;
   };
 }
 
 module.exports = {
   serializer: {
-    createModuleIdFactory: createModuleIdFactory,
-    processModuleFilter: postProcessModulesFilter,
-    /* serializer options */
+    createModuleIdFactory: createModuleIdFactory, // 给 bundle 一个id 避免冲突 cli 源码中这个id 是从1 开始 自增的
+    processModuleFilter: postProcessModulesFilter, // 返回false 就不会build 进去
   },
 };

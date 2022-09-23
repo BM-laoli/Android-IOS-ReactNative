@@ -130,8 +130,8 @@ module.exports = {
 ```json
   "scripts": {
     "start": "react-native start --port=8082 ",
-    "build:base": "react-native bundle --platform android --dev false --entry-file ./common/index.js --bundle-output ./android/app/src/main/assets/base.android.bundle --assets-dest ./android/app/src/main/res --config ./metro.base.config.js --minify false --reset-cache",
-    "build:main": "react-native bundle --platform android --dev false --entry-file ./src/modules/Main/main.js --bundle-output ./android/app/src/main/assets/main.android.bundle --assets-dest ./android/app/src/main/res/ --config ./metro.main.config.js --minify false",
+    "build:base": "react-native bundle --platform android --dev false --entry-file ./base.js --bundle-output ./android/app/src/main/assets/common.android.bundle --assets-dest ./android/app/src/main/res --config ./metro.base.config.js --reset-cache",
+    "build:main": "react-native bundle --platform android --dev false --entry-file ./index.js --bundle-output ./android/app/src/main/assets/index.android.bundle --assets-dest ./android/app/src/main/res/ --config ./metro.main.config.js",
     "build:bu1": "react-native bundle --platform android --dev false --entry-file ./src/modules/Business1/main.js --bundle-output ./android/app/src/main/assets/bu1.android.bundle --assets-dest ./android/app/src/main/res/ --config ./metro.main.config.js --minify false",
     "build:bu2": "react-native bundle --platform android --dev false --entry-file ./src/modules/Business2/main.js --bundle-output ./android/app/src/main/assets/bu2.android.bundle --assets-dest ./android/app/src/main/res/ --config ./metro.main.config.js --minify false"
   },
