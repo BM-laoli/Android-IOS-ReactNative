@@ -797,20 +797,215 @@ var __BUNDLE_START_TIME__=this.nativePerformanceNow?nativePerformanceNow():Date.
     }
   })();
 })(typeof globalThis !== 'undefined' ? globalThis : typeof global !== 'undefined' ? global : typeof window !== 'undefined' ? window : this);
+
+
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  _$$_REQUIRE(_dependencyMap[0]);
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
-  var _reactNative = _$$_REQUIRE(_dependencyMap[1]);
+  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1]));
 
-  _$$_REQUIRE(_dependencyMap[2]);
-},0,[1,3,376]);
+  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2]));
+
+  var _inherits2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3]));
+
+  var _possibleConstructorReturn2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4]));
+
+  var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5]));
+
+  var _react = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6]));
+
+  var _reactNative = _$$_REQUIRE(_dependencyMap[7]);
+
+  var _jsxRuntime = _$$_REQUIRE(_dependencyMap[8]);
+
+  function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
+
+  function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+  var BU1 = function (_React$Component) {
+    (0, _inherits2.default)(BU1, _React$Component);
+
+    var _super = _createSuper(BU1);
+
+    function BU1() {
+      (0, _classCallCheck2.default)(this, BU1);
+      return _super.apply(this, arguments);
+    }
+
+    (0, _createClass2.default)(BU1, [{
+      key: "render",
+      value: function render() {
+        return (0, _jsxRuntime.jsx)(_reactNative.View, {
+          style: styles.container,
+          children: (0, _jsxRuntime.jsx)(_reactNative.Text, {
+            style: styles.hello,
+            children: "BU1 "
+          })
+        });
+      }
+    }]);
+    return BU1;
+  }(_react.default.Component);
+
+  var styles = _reactNative.StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: "center",
+      height: 100
+    },
+    hello: {
+      fontSize: 20,
+      textAlign: "center",
+      margin: 10
+    },
+    imgView: {
+      width: "100%"
+    },
+    img: {
+      width: "100%",
+      height: 600
+    },
+    flatContainer: {
+      flex: 1
+    }
+  });
+
+  _reactNative.AppRegistry.registerComponent("Bu1Activity", function () {
+    return BU1;
+  });
+},0,[1,2,3,4,6,9,10,12,179]);
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      "default": obj
+    };
+  }
+
+  module.exports = _interopRequireDefault, module.exports.__esModule = true, module.exports["default"] = module.exports;
+},1,[]);
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+
+  module.exports = _classCallCheck, module.exports.__esModule = true, module.exports["default"] = module.exports;
+},2,[]);
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  function _defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  function _createClass(Constructor, protoProps, staticProps) {
+    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) _defineProperties(Constructor, staticProps);
+    Object.defineProperty(Constructor, "prototype", {
+      writable: false
+    });
+    return Constructor;
+  }
+
+  module.exports = _createClass, module.exports.__esModule = true, module.exports["default"] = module.exports;
+},3,[]);
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var setPrototypeOf = _$$_REQUIRE(_dependencyMap[0]);
+
+  function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+      throw new TypeError("Super expression must either be null or a function");
+    }
+
+    subClass.prototype = Object.create(superClass && superClass.prototype, {
+      constructor: {
+        value: subClass,
+        writable: true,
+        configurable: true
+      }
+    });
+    Object.defineProperty(subClass, "prototype", {
+      writable: false
+    });
+    if (superClass) setPrototypeOf(subClass, superClass);
+  }
+
+  module.exports = _inherits, module.exports.__esModule = true, module.exports["default"] = module.exports;
+},4,[5]);
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  function _setPrototypeOf(o, p) {
+    module.exports = _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) {
+      o.__proto__ = p;
+      return o;
+    }, module.exports.__esModule = true, module.exports["default"] = module.exports;
+    return _setPrototypeOf(o, p);
+  }
+
+  module.exports = _setPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
+},5,[]);
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _typeof = _$$_REQUIRE(_dependencyMap[0])["default"];
+
+  var assertThisInitialized = _$$_REQUIRE(_dependencyMap[1]);
+
+  function _possibleConstructorReturn(self, call) {
+    if (call && (_typeof(call) === "object" || typeof call === "function")) {
+      return call;
+    } else if (call !== undefined) {
+      throw new TypeError("Derived constructors may only return object or undefined");
+    }
+
+    return assertThisInitialized(self);
+  }
+
+  module.exports = _possibleConstructorReturn, module.exports.__esModule = true, module.exports["default"] = module.exports;
+},6,[7,8]);
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  function _typeof(obj) {
+    "@babel/helpers - typeof";
+
+    return (module.exports = _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
+      return typeof obj;
+    } : function (obj) {
+      return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    }, module.exports.__esModule = true, module.exports["default"] = module.exports), _typeof(obj);
+  }
+
+  module.exports = _typeof, module.exports.__esModule = true, module.exports["default"] = module.exports;
+},7,[]);
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  function _assertThisInitialized(self) {
+    if (self === undefined) {
+      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }
+
+    return self;
+  }
+
+  module.exports = _assertThisInitialized, module.exports.__esModule = true, module.exports["default"] = module.exports;
+},8,[]);
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  function _getPrototypeOf(o) {
+    module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
+      return o.__proto__ || Object.getPrototypeOf(o);
+    }, module.exports.__esModule = true, module.exports["default"] = module.exports;
+    return _getPrototypeOf(o);
+  }
+
+  module.exports = _getPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
+},9,[]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
   {
     module.exports = _$$_REQUIRE(_dependencyMap[0]);
   }
-},1,[2]);
+},10,[11]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   /**
    * @license React
@@ -1231,7 +1426,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   exports.version = "18.1.0";
-},2,[]);
+},11,[]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -1600,7 +1795,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
 
   };
-},3,[4,5,6,174,187,280,281,238,267,287,288,290,291,293,301,181,303,244,304,247,276,306,282,308,188,312,314,318,200,201,319,176,242,277,320,102,202,322,325,339,342,337,345,347,348,153,229,18,299,350,212,249,250,352,355,104,82,81,356,358,152,360,362,363,175,25,365,42,142,367,370,371,372,374,8,375,112,43,54,138,135,184,298]);
+},12,[13,14,15,174,187,280,281,238,267,287,288,290,291,293,301,181,303,244,304,247,276,306,282,308,188,312,314,318,200,201,319,176,242,277,320,102,202,322,325,339,342,337,345,347,348,153,229,24,299,350,212,249,250,352,355,104,82,81,356,358,152,360,362,363,175,31,365,42,142,367,370,371,372,374,16,375,112,43,54,138,135,184,298]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -1625,7 +1820,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   module.exports = invariant;
-},4,[]);
+},13,[]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -1641,7 +1836,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = warnOnce;
-},5,[]);
+},14,[]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -1813,16 +2008,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
   var _default = AccessibilityInfo;
   exports.default = _default;
-},6,[7,8,18,54,172,173,168]);
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-      "default": obj
-    };
-  }
-
-  module.exports = _interopRequireDefault, module.exports.__esModule = true, module.exports["default"] = module.exports;
-},7,[]);
+},15,[1,16,24,54,172,173,168]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -1836,7 +2022,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _default = new _EventEmitter.default();
 
   exports.default = _default;
-},8,[7,9]);
+},16,[1,17]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -1917,7 +2103,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
     return registrations;
   }
-},9,[7,10,16,17]);
+},17,[1,18,2,3]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var arrayWithoutHoles = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -1932,7 +2118,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = _toConsumableArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
-},10,[11,13,14,15]);
+},18,[19,21,22,23]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var arrayLikeToArray = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -1941,7 +2127,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = _arrayWithoutHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
-},11,[12]);
+},19,[20]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   function _arrayLikeToArray(arr, len) {
     if (len == null || len > arr.length) len = arr.length;
@@ -1954,14 +2140,14 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = _arrayLikeToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
-},12,[]);
+},20,[]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   function _iterableToArray(iter) {
     if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
   }
 
   module.exports = _iterableToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
-},13,[]);
+},21,[]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var arrayLikeToArray = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -1975,45 +2161,14 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = _unsupportedIterableToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
-},14,[12]);
+},22,[20]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   function _nonIterableSpread() {
     throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
   }
 
   module.exports = _nonIterableSpread, module.exports.__esModule = true, module.exports["default"] = module.exports;
-},15,[]);
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-      throw new TypeError("Cannot call a class as a function");
-    }
-  }
-
-  module.exports = _classCallCheck, module.exports.__esModule = true, module.exports["default"] = module.exports;
-},16,[]);
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  function _defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-
-  function _createClass(Constructor, protoProps, staticProps) {
-    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) _defineProperties(Constructor, staticProps);
-    Object.defineProperty(Constructor, "prototype", {
-      writable: false
-    });
-    return Constructor;
-  }
-
-  module.exports = _createClass, module.exports.__esModule = true, module.exports["default"] = module.exports;
-},17,[]);
+},23,[]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -2022,7 +2177,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     ReactNative = _$$_REQUIRE(_dependencyMap[0]);
   }
   module.exports = ReactNative;
-},18,[19]);
+},24,[25]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   "use strict";
 
@@ -8250,10 +8405,10 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   exports.unstable_batchedUpdates = batchedUpdates;
-},19,[20,118,1,126]);
+},25,[26,118,10,126]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   _$$_REQUIRE(_dependencyMap[0]);
-},20,[21]);
+},26,[27]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -8287,7 +8442,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   GlobalPerformanceLogger.markPoint('initializeCore_start', GlobalPerformanceLogger.currentTimestamp() - (Date.now() - start));
   GlobalPerformanceLogger.markPoint('initializeCore_end');
-},21,[22,23,24,26,56,62,65,70,101,105,106,116,78]);
+},27,[28,29,30,32,56,62,65,70,101,105,106,116,78]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -8305,7 +8460,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   if (!global.process.env.NODE_ENV) {
     global.process.env.NODE_ENV = 'production';
   }
-},22,[]);
+},28,[]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -8319,7 +8474,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       return performanceNow();
     };
   }
-},23,[]);
+},29,[]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -8329,7 +8484,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     Systrace.installReactHook();
     Systrace.setEnabled(true);
   }
-},24,[25]);
+},30,[31]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -8396,7 +8551,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
   };
   module.exports = Systrace;
-},25,[4]);
+},31,[13]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -8418,7 +8573,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
     ErrorUtils.setGlobalHandler(handleError);
   }
-},26,[27,52]);
+},32,[33,52]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -8606,92 +8761,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     SyntheticError: SyntheticError,
     unstable_setExceptionDecorator: unstable_setExceptionDecorator
   };
-},27,[17,16,28,30,33,34,38,41,51]);
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  var setPrototypeOf = _$$_REQUIRE(_dependencyMap[0]);
-
-  function _inherits(subClass, superClass) {
-    if (typeof superClass !== "function" && superClass !== null) {
-      throw new TypeError("Super expression must either be null or a function");
-    }
-
-    subClass.prototype = Object.create(superClass && superClass.prototype, {
-      constructor: {
-        value: subClass,
-        writable: true,
-        configurable: true
-      }
-    });
-    Object.defineProperty(subClass, "prototype", {
-      writable: false
-    });
-    if (superClass) setPrototypeOf(subClass, superClass);
-  }
-
-  module.exports = _inherits, module.exports.__esModule = true, module.exports["default"] = module.exports;
-},28,[29]);
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  function _setPrototypeOf(o, p) {
-    module.exports = _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) {
-      o.__proto__ = p;
-      return o;
-    }, module.exports.__esModule = true, module.exports["default"] = module.exports;
-    return _setPrototypeOf(o, p);
-  }
-
-  module.exports = _setPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
-},29,[]);
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  var _typeof = _$$_REQUIRE(_dependencyMap[0])["default"];
-
-  var assertThisInitialized = _$$_REQUIRE(_dependencyMap[1]);
-
-  function _possibleConstructorReturn(self, call) {
-    if (call && (_typeof(call) === "object" || typeof call === "function")) {
-      return call;
-    } else if (call !== undefined) {
-      throw new TypeError("Derived constructors may only return object or undefined");
-    }
-
-    return assertThisInitialized(self);
-  }
-
-  module.exports = _possibleConstructorReturn, module.exports.__esModule = true, module.exports["default"] = module.exports;
-},30,[31,32]);
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  function _typeof(obj) {
-    "@babel/helpers - typeof";
-
-    return (module.exports = _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
-      return typeof obj;
-    } : function (obj) {
-      return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    }, module.exports.__esModule = true, module.exports["default"] = module.exports), _typeof(obj);
-  }
-
-  module.exports = _typeof, module.exports.__esModule = true, module.exports["default"] = module.exports;
-},31,[]);
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  function _assertThisInitialized(self) {
-    if (self === undefined) {
-      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-    }
-
-    return self;
-  }
-
-  module.exports = _assertThisInitialized, module.exports.__esModule = true, module.exports["default"] = module.exports;
-},32,[]);
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  function _getPrototypeOf(o) {
-    module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
-      return o.__proto__ || Object.getPrototypeOf(o);
-    }, module.exports.__esModule = true, module.exports["default"] = module.exports;
-    return _getPrototypeOf(o);
-  }
-
-  module.exports = _getPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
-},33,[]);
+},33,[3,2,4,6,9,34,38,41,51]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var getPrototypeOf = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -8735,7 +8805,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = _wrapNativeSuper, module.exports.__esModule = true, module.exports["default"] = module.exports;
-},34,[33,29,35,36]);
+},34,[9,5,35,36]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   function _isNativeFunction(fn) {
     return Function.toString.call(fn).indexOf("[native code]") !== -1;
@@ -8766,7 +8836,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = _construct, module.exports.__esModule = true, module.exports["default"] = module.exports;
-},36,[29,37]);
+},36,[5,37]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   function _isNativeReflectConstruct() {
     if (typeof Reflect === "undefined" || !Reflect.construct) return false;
@@ -9121,7 +9191,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     (0, _invariant.default)(module != null, "TurboModuleRegistry.getEnforcing(...): '" + name + "' could not be found. " + 'Verify that a module by this name is registered in the native binary.');
     return module;
   }
-},42,[7,4,43]);
+},42,[1,13,43]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -9268,7 +9338,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = NativeModules;
-},43,[44,48,4,53]);
+},43,[44,48,13,53]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var arrayWithHoles = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -9283,7 +9353,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = _slicedToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
-},44,[45,46,14,47]);
+},44,[45,46,22,47]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   function _arrayWithHoles(arr) {
     if (Array.isArray(arr)) return arr;
@@ -9623,7 +9693,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }();
 
   module.exports = MessageQueue;
-},49,[10,16,17,25,50,51,5,52,4]);
+},49,[18,2,3,31,50,51,14,52,13]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -9747,7 +9817,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
   var _default = stringifySafe;
   exports.default = _default;
-},51,[7,4]);
+},51,[1,13]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   module.exports = global.ErrorUtils;
 },52,[]);
@@ -9825,7 +9895,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
   };
   module.exports = Platform;
-},54,[7,55]);
+},54,[1,55]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -11323,7 +11393,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   BatchedBridge.setReactNativeMicrotasksCallback(JSTimers.callReactNativeMicrotasks);
   module.exports = ExportedJSTimers;
-},66,[7,67,48,25,4]);
+},66,[1,67,48,31,13]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -12032,7 +12102,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   XMLHttpRequest.DONE = DONE;
   XMLHttpRequest._interceptor = null;
   module.exports = XMLHttpRequest;
-},71,[7,10,72,17,16,28,30,33,74,78,81,86,88,4]);
+},71,[1,18,72,3,2,4,6,9,74,78,81,86,88,13]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var superPropBase = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -12071,7 +12141,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = _superPropBase, module.exports.__esModule = true, module.exports["default"] = module.exports;
-},73,[33]);
+},73,[9]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -12204,7 +12274,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   BlobManager.isAvailable = !!_NativeBlobModule.default;
   module.exports = BlobManager;
-},74,[7,16,17,75,4,76,77]);
+},74,[1,2,3,75,13,76,77]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -12341,7 +12411,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }();
 
   module.exports = Blob;
-},76,[16,17,74]);
+},76,[2,3,74]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var registry = {};
 
@@ -12380,7 +12450,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var GlobalPerformanceLogger = (0, _createPerformanceLogger.default)();
   module.exports = GlobalPerformanceLogger;
-},78,[7,79]);
+},78,[1,79]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -12602,7 +12672,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   function createPerformanceLogger() {
     return new PerformanceLogger();
   }
-},79,[7,16,17,25,80]);
+},79,[1,2,3,31,80]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -12701,7 +12771,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }(_NativeEventEmitter2.default);
 
   module.exports = new RCTNetworking();
-},81,[7,16,17,28,30,33,82,83,84,54]);
+},81,[1,2,3,4,6,9,82,83,84,54]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -12797,7 +12867,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }();
 
   exports.default = NativeEventEmitter;
-},82,[7,16,17,54,8,4]);
+},82,[1,2,3,54,16,13]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -13069,7 +13139,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }();
 
   module.exports = FormData;
-},87,[44,16,17]);
+},87,[44,2,3]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -14508,7 +14578,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   WebSocket.CLOSING = CLOSING;
   WebSocket.CLOSED = CLOSED;
   module.exports = WebSocket;
-},91,[7,92,16,17,28,30,33,76,74,82,85,54,94,95,86,88,4]);
+},91,[1,92,2,3,4,6,9,76,74,82,85,54,94,95,86,88,13]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var objectWithoutPropertiesLoose = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -14582,7 +14652,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
 
   module.exports = WebSocketEvent;
-},95,[17,16]);
+},95,[3,2]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -14637,7 +14707,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }(Blob);
 
   module.exports = File;
-},96,[16,17,28,30,33,76,4]);
+},96,[2,3,4,6,9,76,13]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -14821,7 +14891,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   FileReader.LOADING = LOADING;
   FileReader.DONE = DONE;
   module.exports = FileReader;
-},97,[7,16,17,28,30,33,98,76,88]);
+},97,[1,2,3,4,6,9,98,76,88]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -15083,7 +15153,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }();
 
   exports.URL = URL;
-},99,[7,16,17,75,76]);
+},99,[1,2,3,75,76]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -15228,7 +15298,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   module.exports = AbortController;
   module.exports.AbortController = module.exports["default"] = AbortController;
   module.exports.AbortSignal = AbortSignal;
-},100,[16,17,28,30,33,88]);
+},100,[2,3,4,6,9,88]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -15373,7 +15443,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }();
 
   module.exports = Alert;
-},102,[7,16,17,54,103,104]);
+},102,[1,2,3,54,103,104]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -15390,7 +15460,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       _NativeDialogManagerAndroid.default.showAlert(args, emptyCallback, callback || emptyCallback);
     }
   };
-},103,[7,104]);
+},103,[1,104]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -15474,7 +15544,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       return _$$_REQUIRE(_dependencyMap[10]);
     });
   }
-},106,[48,25,66,107,109,111,8,112,78,113,115]);
+},106,[48,31,66,107,109,111,16,112,78,113,115]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -15498,7 +15568,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
   };
   module.exports = HeapCapture;
-},107,[7,108]);
+},107,[1,108]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -15605,7 +15675,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
   };
   module.exports = RCTLog;
-},111,[4]);
+},111,[13]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -15613,7 +15683,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var RCTNativeAppEventEmitter = _RCTDeviceEventEmitter.default;
   module.exports = RCTNativeAppEventEmitter;
-},112,[7,8]);
+},112,[1,16]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -15642,7 +15712,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
   };
   module.exports = JSDevSupportModule;
-},113,[7,114,18]);
+},113,[1,114,24]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -15787,7 +15857,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
 
   };
-},118,[48,27,54,119,120,121,142,165,50,166,167,168,169,170]);
+},118,[48,33,54,119,120,121,142,165,50,166,167,168,169,170]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -15869,7 +15939,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     (0, _invariant.default)(viewConfig, 'View config not found for name %s', name);
     return viewConfig;
   };
-},120,[7,4]);
+},120,[1,13]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _AndroidTextInputNativeComponent = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -15984,7 +16054,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     unregisterInput: unregisterInput,
     isTextInput: isTextInput
   };
-},121,[122,163,1,54,18]);
+},121,[122,163,10,54,24]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -16146,7 +16216,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
   var _default = AndroidTextInputNativeComponent;
   exports.default = _default;
-},122,[7,123,128,135]);
+},122,[1,123,128,135]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -16176,7 +16246,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default = codegenNativeCommands;
   exports.default = _default;
-},123,[124,18]);
+},123,[124,24]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -22280,7 +22350,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   exports.unmountComponentAtNode = function (containerTag) {
     this.stopSurface(containerTag);
   };
-},125,[20,118,1,126]);
+},125,[26,118,10,126]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -22707,7 +22777,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
     return !native;
   }
-},128,[7,129,131,142,120,148,162,4,1]);
+},128,[1,129,131,142,120,148,162,13,10]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -22817,7 +22887,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   function ifObject(value) {
     return typeof value === 'object' && !Array.isArray(value) ? value : null;
   }
-},129,[7,10,130]);
+},129,[1,18,130]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -22852,7 +22922,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
     return false;
   }
-},130,[7,54]);
+},130,[1,54]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -22878,7 +22948,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
     return maybeA == null || maybeB == null ? (_ref = maybeA != null ? maybeA : maybeB) != null ? _ref : {} : Object.assign({}, maybeA, maybeB);
   }
-},131,[7,132]);
+},131,[1,132]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -22892,7 +22962,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var PlatformBaseViewConfig = _BaseViewConfig.default;
   var _default = PlatformBaseViewConfig;
   exports.default = _default;
-},132,[7,133]);
+},132,[1,133]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -23143,7 +23213,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
   var _default = PlatformBaseViewConfigAndroid;
   exports.default = _default;
-},133,[7,130,134,135]);
+},133,[1,130,134,135]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -23264,7 +23334,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     tintColor: colorAttributes
   };
   module.exports = ReactNativeStyleAttributes;
-},134,[7,135,139,141]);
+},134,[1,135,139,141]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -23329,7 +23399,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = normalizeColor;
-},136,[7,137,138]);
+},136,[1,137,138]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -24098,7 +24168,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = processTransform;
-},139,[140,54,4,51]);
+},139,[140,54,13,51]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -24485,7 +24555,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
   };
   module.exports = MatrixMath;
-},140,[44,4]);
+},140,[44,13]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -24770,7 +24840,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = UIManagerJS;
-},145,[7,146,43,53,54,147]);
+},145,[1,146,43,53,54,147]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -24961,7 +25031,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = getNativeComponentAttributes;
-},148,[134,149,135,158,159,160,161,141,142,4]);
+},148,[134,149,135,158,159,160,161,141,142,13]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -25188,7 +25258,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   AssetSourceResolver.pickScale = pickScale;
   module.exports = AssetSourceResolver;
-},151,[16,17,152,155,54,4,156]);
+},151,[2,3,152,155,54,13,156]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -25233,7 +25303,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }();
 
   module.exports = PixelRatio;
-},152,[16,17,153]);
+},152,[2,3,153]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -25326,7 +25396,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   Dimensions.set(initialDims);
   module.exports = Dimensions;
-},153,[7,16,17,9,8,154,4]);
+},153,[1,2,3,17,16,154,13]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -25393,7 +25463,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
     return cacheBreaker;
   }
-},155,[7,152]);
+},155,[1,152]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -25496,7 +25566,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = processColorArray;
-},158,[7,135]);
+},158,[1,135]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -25633,7 +25703,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       return val;
     }, 2);
   }
-},162,[7,132]);
+},162,[1,132]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -25667,7 +25737,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
   var _default = SinglelineTextInputNativeComponent;
   exports.default = _default;
-},163,[7,123,164,128]);
+},163,[1,123,164,128]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _ViewConfigIgnore = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -25968,7 +26038,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
   var _default = ReactFiberErrorDialog;
   exports.default = _default;
-},167,[27]);
+},167,[33]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -25985,7 +26055,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = legacySendAccessibilityEvent;
-},168,[7,142]);
+},168,[1,142]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -25999,7 +26069,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var RawEventEmitter = new _EventEmitter.default();
   var _default = RawEventEmitter;
   exports.default = _default;
-},169,[7,9]);
+},169,[1,17]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -26050,7 +26120,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default = CustomEvent;
   exports.default = _default;
-},170,[7,17,16,28,30,33,171]);
+},170,[1,3,2,4,6,9,171]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -26127,7 +26197,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   global.Event = EventPolyfill;
   var _default = EventPolyfill;
   exports.default = _default;
-},171,[7,16,17]);
+},171,[1,2,3]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -26259,7 +26329,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
 
   module.exports = ActivityIndicatorWithRef;
-},174,[7,92,1,54,175,176,179,181,186]);
+},174,[1,92,10,54,175,176,179,181,186]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -26344,7 +26414,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
   View.displayName = 'View';
   module.exports = View;
-},176,[7,177,178,1,179]);
+},176,[1,177,178,10,179]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -26437,7 +26507,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   exports.Commands = Commands;
   var _default = ViewNativeComponent;
   exports.default = _default;
-},177,[7,128,123,54,1,135]);
+},177,[1,128,123,54,10,135]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -26445,7 +26515,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var TextAncestorContext = React.createContext(false);
   module.exports = TextAncestorContext;
-},178,[1]);
+},178,[10]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -26506,7 +26576,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   exports.Fragment = l;
   exports.jsx = q;
   exports.jsxs = q;
-},180,[1]);
+},180,[10]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -26539,7 +26609,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var ProgressBarAndroidToExport = React.forwardRef(ProgressBarAndroid);
   module.exports = ProgressBarAndroidToExport;
-},181,[7,92,182,179,1]);
+},181,[1,92,182,179,10]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -26555,7 +26625,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
 
   exports.default = _default;
-},182,[7,183]);
+},182,[1,183]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -26593,7 +26663,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default = codegenNativeComponent;
   exports.default = _default;
-},183,[7,184,142]);
+},183,[1,184,142]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -26637,7 +26707,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
 
   exports.default = _default;
-},186,[7,183]);
+},186,[1,183]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -26813,7 +26883,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
 
   module.exports = Button;
-},187,[7,16,17,28,30,33,1,54,175,188,200,201,176,4,179]);
+},187,[1,2,3,4,6,9,10,54,175,188,200,201,176,13,179]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -26987,7 +27057,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = Text;
-},188,[7,44,92,54,189,191,175,135,178,198,1,179]);
+},188,[1,44,92,54,189,191,175,135,178,198,10,179]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -27023,7 +27093,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   function setEnabled(value) {}
-},189,[7,136,190,176,1,179]);
+},189,[1,136,190,176,10,179]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -27078,7 +27148,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }, [pressability]);
     return pressability == null ? null : pressability.getEventHandlers();
   }
-},191,[7,192,1]);
+},191,[1,192,10]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -27777,7 +27847,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       }
     });
   }
-},192,[7,16,17,193,4,194,190,196,54,142,1,197]);
+},192,[1,2,3,193,13,194,190,196,54,142,10,197]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -27822,7 +27892,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   function isHoverEnabled() {
     return isEnabled;
   }
-},193,[7,54]);
+},193,[1,54]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -27836,7 +27906,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
   };
   module.exports = SoundManager;
-},194,[7,195]);
+},194,[1,195]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -27905,7 +27975,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var PressabilityPerformanceEventEmitterSingleton = new PressabilityPerformanceEventEmitter();
   var _default = PressabilityPerformanceEventEmitterSingleton;
   exports.default = _default;
-},196,[7,16,17]);
+},196,[1,2,3]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -27985,7 +28055,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     };
   });
   exports.NativeVirtualText = NativeVirtualText;
-},198,[7,199,142,185]);
+},198,[1,199,142,185]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -28026,7 +28096,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     RCTView: RCTView
   };
   module.exports = ReactNativeViewAttributes;
-},199,[7,134]);
+},199,[1,134]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -28265,7 +28335,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
   TouchableNativeFeedback.displayName = 'TouchableNativeFeedback';
   module.exports = TouchableNativeFeedback;
-},200,[7,92,16,17,28,30,33,192,189,177,18,54,176,135,1,4,179]);
+},200,[1,92,2,3,4,6,9,192,189,177,24,54,176,135,10,13,179]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -28482,7 +28552,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
   Touchable.displayName = 'TouchableOpacity';
   module.exports = Touchable;
-},201,[7,92,16,17,28,30,33,192,189,202,229,166,54,1,179]);
+},201,[1,92,2,3,4,6,9,192,189,202,229,166,54,10,179]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -28523,7 +28593,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
 
   }, Animated);
-},202,[7,54,203,216,237,266,274,275,278,279]);
+},202,[1,54,203,216,237,266,274,275,278,279]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -28671,7 +28741,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     unforkEvent: AnimatedImplementation.unforkEvent,
     Event: AnimatedEvent
   };
-},203,[7,204,214,216,206,207,205,215,231]);
+},203,[1,204,214,216,206,207,205,215,231]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -28996,7 +29066,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }(_AnimatedWithChildren2.default);
 
   exports.default = AnimatedColor;
-},204,[7,16,17,72,28,30,33,205,211,136,138,208]);
+},204,[1,2,3,72,4,6,9,205,211,136,138,208]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -29248,7 +29318,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }(AnimatedWithChildren);
 
   module.exports = AnimatedValue;
-},205,[16,17,72,28,30,33,206,211,212,208]);
+},205,[2,3,72,4,6,9,206,211,212,208]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -29511,7 +29581,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   AnimatedInterpolation.__createInterpolation = createInterpolation;
   module.exports = AnimatedInterpolation;
-},206,[16,17,72,28,30,33,207,211,208,4,136]);
+},206,[2,3,72,4,6,9,207,211,208,13,136]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -29712,7 +29782,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }();
 
   module.exports = AnimatedNode;
-},207,[16,17,208,4]);
+},207,[2,3,208,13]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -30133,7 +30203,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
 
   };
-},208,[7,209,210,82,54,197,4,8]);
+},208,[1,209,210,82,54,197,13,16]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -30278,7 +30348,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }(AnimatedNode);
 
   module.exports = AnimatedWithChildren;
-},211,[16,17,72,28,30,33,207,208]);
+},211,[2,3,72,4,6,9,207,208]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -30414,7 +30484,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = InteractionManager;
-},212,[7,9,48,213,80,4]);
+},212,[1,17,48,213,80,13]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -30546,7 +30616,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }();
 
   module.exports = TaskQueue;
-},213,[16,17,80,4]);
+},213,[2,3,80,13]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -30719,7 +30789,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     AnimatedEvent: AnimatedEvent,
     attachNativeEvent: attachNativeEvent
   };
-},214,[16,17,205,215,208,18,4]);
+},214,[2,3,205,215,208,24,13]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -30909,7 +30979,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }(AnimatedWithChildren);
 
   module.exports = AnimatedValueXY;
-},215,[16,17,72,28,30,33,205,211,4]);
+},215,[2,3,72,4,6,9,205,211,13]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -31385,7 +31455,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     unforkEvent: unforkEvent,
     Event: AnimatedEvent
   };
-},216,[7,204,214,217,218,219,206,220,221,207,222,223,205,215,224,226,228,231]);
+},216,[1,204,214,217,218,219,206,220,221,207,222,223,205,215,224,226,228,231]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -31478,7 +31548,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }(AnimatedWithChildren);
 
   module.exports = AnimatedAddition;
-},217,[16,17,72,28,30,33,206,207,205,211]);
+},217,[2,3,72,4,6,9,206,207,205,211]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -31572,7 +31642,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }(AnimatedWithChildren);
 
   module.exports = AnimatedDiffClamp;
-},218,[16,17,72,28,30,33,206,207,211]);
+},218,[2,3,72,4,6,9,206,207,211]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -31685,7 +31755,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }(AnimatedWithChildren);
 
   module.exports = AnimatedDivision;
-},219,[16,17,72,28,30,33,206,207,205,211]);
+},219,[2,3,72,4,6,9,206,207,205,211]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -31771,7 +31841,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }(AnimatedWithChildren);
 
   module.exports = AnimatedModulo;
-},220,[16,17,72,28,30,33,206,207,211]);
+},220,[2,3,72,4,6,9,206,207,211]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -31864,7 +31934,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }(AnimatedWithChildren);
 
   module.exports = AnimatedMultiplication;
-},221,[16,17,72,28,30,33,206,207,205,211]);
+},221,[2,3,72,4,6,9,206,207,205,211]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -31957,7 +32027,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }(AnimatedWithChildren);
 
   module.exports = AnimatedSubtraction;
-},222,[16,17,72,28,30,33,206,207,205,211]);
+},222,[2,3,72,4,6,9,206,207,205,211]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -32072,7 +32142,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }(AnimatedNode);
 
   module.exports = AnimatedTracking;
-},223,[16,17,72,28,30,33,205,207,208]);
+},223,[2,3,72,4,6,9,205,207,208]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -32186,7 +32256,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }(Animation);
 
   module.exports = DecayAnimation;
-},224,[16,17,72,28,30,33,225,208]);
+},224,[2,3,72,4,6,9,225,208]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -32251,7 +32321,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }();
 
   module.exports = Animation;
-},225,[16,17,208]);
+},225,[2,3,208]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -32505,7 +32575,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }(Animation);
 
   module.exports = SpringAnimation;
-},226,[7,16,17,72,28,30,33,204,205,215,206,225,227,4,208]);
+},226,[1,2,3,72,4,6,9,204,205,215,206,225,227,13,208]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -32744,7 +32814,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }(Animation);
 
   module.exports = TimingAnimation;
-},228,[7,16,17,72,28,30,33,204,205,215,206,225,208,229]);
+},228,[1,2,3,72,4,6,9,204,205,215,206,225,208,229]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -33226,7 +33296,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = (_createAnimatedCompon = createAnimatedComponentInjection.recordAndRetrieve()) != null ? _createAnimatedCompon : createAnimatedComponent;
-},231,[7,92,16,17,28,30,33,232,179,176,214,233,1,208,4,236]);
+},231,[1,92,2,3,4,6,9,232,179,176,214,233,10,208,13,236]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -33257,7 +33327,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
     return injected;
   }
-},232,[1]);
+},232,[10]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -33469,7 +33539,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }(AnimatedNode);
 
   module.exports = AnimatedProps;
-},233,[16,17,72,28,30,33,18,214,208,207,234,4]);
+},233,[2,3,72,4,6,9,24,214,208,207,234,13]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -33636,7 +33706,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }(AnimatedWithChildren);
 
   module.exports = AnimatedStyle;
-},234,[16,17,72,28,30,33,166,208,207,235,211]);
+},234,[2,3,72,4,6,9,166,208,207,235,211]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -33799,7 +33869,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }(AnimatedWithChildren);
 
   module.exports = AnimatedTransform;
-},235,[16,17,72,28,30,33,208,207,211]);
+},235,[2,3,72,4,6,9,208,207,211]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -33841,7 +33911,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }));
   });
   module.exports = createAnimatedComponent(FlatListWithEventThrottle);
-},237,[1,179,238,231]);
+},237,[10,179,238,231]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -34191,7 +34261,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
   });
   module.exports = FlatList;
-},238,[7,92,239,16,17,28,30,33,240,241,179,54,165,1,176,242,175,4]);
+},238,[1,92,239,2,3,4,6,9,240,241,179,54,165,10,176,242,175,13]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   function _defineProperty(obj, key, value) {
     if (key in obj) {
@@ -34365,7 +34435,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
     return String(index);
   }
-},240,[7,44,4]);
+},240,[1,44,13]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -35999,7 +36069,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
   });
   module.exports = VirtualizedList;
-},242,[7,239,16,17,32,28,30,33,243,240,1,179,244,247,176,263,18,166,175,80,264,265,4]);
+},242,[1,239,2,3,8,4,6,9,243,240,10,179,244,247,176,263,24,166,175,80,264,265,13]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -36068,7 +36138,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       children: children
     });
   }
-},243,[1,179]);
+},243,[10,179]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -36174,7 +36244,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }(React.Component);
 
   module.exports = RefreshControl;
-},244,[7,92,16,17,28,30,33,245,246,179,54,1]);
+},244,[1,92,2,3,4,6,9,245,246,179,54,10]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -36201,7 +36271,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _default = (0, _codegenNativeComponent.default)('AndroidSwipeRefreshLayout');
 
   exports.default = _default;
-},245,[7,1,123,183]);
+},245,[1,10,123,183]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -36231,7 +36301,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
 
   exports.default = _default;
-},246,[7,1,183,123]);
+},246,[1,10,183,123]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -36981,7 +37051,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   ForwardedScrollView.Context = _ScrollViewContext.default;
   ForwardedScrollView.displayName = 'ScrollView';
   module.exports = ForwardedScrollView;
-},247,[7,44,16,17,32,28,30,33,216,153,54,1,18,248,175,176,142,249,253,121,251,166,4,255,256,236,257,258,259,260,261,262,179]);
+},247,[1,44,2,3,8,4,6,9,216,153,54,10,24,248,175,176,142,249,253,121,251,166,13,255,256,236,257,258,259,260,261,262,179]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -37260,7 +37330,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
 
   module.exports = ScrollViewStickyHeader;
-},248,[7,16,17,28,30,33,216,217,218,207,1,175,176,54,179]);
+},248,[1,2,3,4,6,9,216,217,218,207,10,175,176,54,179]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -37320,7 +37390,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }();
 
   module.exports = new Keyboard();
-},249,[7,16,17,82,250,251,54,252]);
+},249,[1,2,3,82,250,251,54,252]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -37439,7 +37509,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     setEnabled: setEnabled
   };
   module.exports = LayoutAnimation;
-},250,[7,54,197,142]);
+},250,[1,54,197,142]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -37500,7 +37570,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
   };
   module.exports = FrameRateLogger;
-},253,[7,254,4]);
+},253,[1,254,13]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -37539,7 +37609,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = processDecelerationRate;
-},255,[7,54]);
+},255,[1,54]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -37619,7 +37689,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     horizontal: false
   });
   exports.VERTICAL = VERTICAL;
-},257,[1]);
+},257,[10]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -37641,7 +37711,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
 
   exports.default = _default;
-},258,[7,123,1]);
+},258,[1,123,10]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -37655,7 +37725,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _default = (0, _codegenNativeComponent.default)('AndroidHorizontalScrollContentView');
 
   exports.default = _default;
-},259,[7,183]);
+},259,[1,183]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -37917,7 +37987,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
   var _default = ScrollViewNativeComponent;
   exports.default = _default;
-},262,[7,128,130,54,161,135,159]);
+},262,[1,128,130,54,161,135,159]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -37980,7 +38050,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }();
 
   module.exports = Batchinator;
-},263,[16,17,212]);
+},263,[2,3,212]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -38184,7 +38254,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }();
 
   module.exports = FillRateHelper;
-},264,[17,16]);
+},264,[3,2]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -38390,7 +38460,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = ViewabilityHelper;
-},265,[44,16,17,4]);
+},265,[44,2,3,13]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[0]));
 
@@ -38403,7 +38473,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var createAnimatedComponent = _$$_REQUIRE(_dependencyMap[2]);
 
   module.exports = createAnimatedComponent(Image);
-},266,[1,267,231]);
+},266,[10,267,231]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -38592,7 +38662,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
 
   module.exports = Image;
-},267,[7,268,269,1,175,178,270,272,166,149,273,271,179]);
+},267,[1,268,269,10,175,178,270,272,166,149,273,271,179]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
     try {
@@ -38751,7 +38821,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
   var _default = ImageViewNativeComponent;
   exports.default = _default;
-},269,[7,128,130,54,135,159,149]);
+},269,[1,128,130,54,135,159,149]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -38774,7 +38844,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     unstable_createImageComponent: null
   };
   exports.default = _default;
-},270,[7,1,269,271]);
+},270,[1,10,269,271]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -38824,7 +38894,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var Context = React.createContext(null);
   var _default = Context;
   exports.default = _default;
-},272,[1]);
+},272,[10]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -38862,7 +38932,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }));
   });
   module.exports = createAnimatedComponent(ScrollViewWithEventThrottle);
-},274,[1,179,247,231]);
+},274,[10,179,247,231]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -38886,7 +38956,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }));
   });
   module.exports = createAnimatedComponent(SectionListWithEventThrottle);
-},275,[7,1,276,179,231]);
+},275,[1,10,276,179,231]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -39021,7 +39091,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }(React.PureComponent);
 
   exports.default = SectionList;
-},276,[7,92,16,17,28,30,33,54,1,277,179]);
+},276,[1,92,2,3,4,6,9,54,10,277,179]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -39494,7 +39564,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = VirtualizedSectionList;
-},277,[7,44,92,16,17,32,28,30,33,240,4,1,3,179]);
+},277,[1,44,92,2,3,8,4,6,9,240,13,10,12,179]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[0]));
 
@@ -39507,7 +39577,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var createAnimatedComponent = _$$_REQUIRE(_dependencyMap[2]);
 
   module.exports = createAnimatedComponent(Text);
-},278,[1,188,231]);
+},278,[10,188,231]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[0]));
 
@@ -39520,7 +39590,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var createAnimatedComponent = _$$_REQUIRE(_dependencyMap[2]);
 
   module.exports = createAnimatedComponent(View);
-},279,[1,176,231]);
+},279,[10,176,231]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -39597,7 +39667,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
 
   module.exports = DummyDatePickerIOS;
-},280,[7,16,17,28,30,33,1,175,188,176,179]);
+},280,[1,2,3,4,6,9,10,175,188,176,179]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -39826,7 +39896,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
 
   module.exports = DrawerLayoutAndroid;
-},281,[7,92,16,17,28,30,33,54,1,282,175,176,251,285,286,179]);
+},281,[1,92,2,3,4,6,9,54,10,282,175,176,251,285,286,179]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -40104,7 +40174,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
 
   module.exports = StatusBar;
-},282,[7,16,17,28,30,33,1,54,4,135,283,284]);
+},282,[1,2,3,4,6,9,10,54,13,135,283,284]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -40232,7 +40302,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _default = (0, _codegenNativeComponent.default)('AndroidDrawerLayout');
 
   exports.default = _default;
-},286,[7,123,183,1]);
+},286,[1,123,183,10]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -40333,7 +40403,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }(React.Component);
 
   module.exports = ImageBackground;
-},287,[7,92,16,17,28,30,33,267,1,175,166,176,179]);
+},287,[1,92,2,3,4,6,9,267,10,175,166,176,179]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -40405,7 +40475,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
 
   module.exports = InputAccessoryView;
-},288,[7,16,17,28,30,33,1,54,175,289,179]);
+},288,[1,2,3,4,6,9,10,54,175,289,179]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -40423,7 +40493,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
 
   exports.default = _default;
-},289,[7,183]);
+},289,[1,183]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -40674,7 +40744,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default = KeyboardAvoidingView;
   exports.default = _default;
-},290,[7,92,268,16,17,28,30,33,249,250,54,1,175,176,6,179]);
+},290,[1,92,268,2,3,4,6,9,249,250,54,10,175,176,15,179]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -40738,7 +40808,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
 
   module.exports = UnimplementedView;
-},292,[7,16,17,28,30,33,1,175,179,176]);
+},292,[1,2,3,4,6,9,10,175,179,176]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -40900,7 +40970,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
   var ExportedModal = (_ModalInjection$unsta = _ModalInjection.default.unstable_Modal) != null ? _ModalInjection$unsta : Modal;
   module.exports = ExportedModal;
-},293,[7,239,16,17,28,30,33,294,82,295,243,296,179,297,299,54,1,247,175,176,298]);
+},293,[1,239,2,3,4,6,9,294,82,295,243,296,179,297,299,54,10,247,175,176,298]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -40943,7 +41013,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
 
   exports.default = _default;
-},296,[7,183]);
+},296,[1,183]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -41061,7 +41131,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
 
   module.exports = AppContainer;
-},297,[7,16,17,28,30,33,176,8,175,298,1,179]);
+},297,[1,2,3,4,6,9,176,16,175,298,10,179]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -41081,7 +41151,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   function createRootTag(rootTag) {
     return rootTag;
   }
-},298,[1]);
+},298,[10]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -41137,7 +41207,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     isRTL: i18nConstants.isRTL,
     doLeftAndRightSwapInRTL: i18nConstants.doLeftAndRightSwapInRTL
   };
-},299,[7,300]);
+},299,[1,300]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -41293,7 +41363,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   MemoedPressable.displayName = 'Pressable';
   var _default = MemoedPressable;
   exports.default = _default;
-},301,[7,44,92,1,302,189,191,176,179]);
+},301,[1,44,92,10,302,189,191,176,179]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -41370,7 +41440,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       return null;
     }, [borderless, color, foreground, radius, viewRef]);
   }
-},302,[7,4,177,3,1]);
+},302,[1,13,177,12,10]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -41447,7 +41517,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
 
   module.exports = DummyProgressViewIOS;
-},303,[7,16,17,28,30,33,1,175,188,176,179]);
+},303,[1,2,3,4,6,9,10,175,188,176,179]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -41476,7 +41546,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default = exported;
   exports.default = _default;
-},304,[7,54,1,176,305]);
+},304,[1,54,10,176,305]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -41493,7 +41563,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
 
   exports.default = _default;
-},305,[7,183]);
+},305,[1,183]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -41584,7 +41654,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = SliderWithRef;
-},306,[7,92,1,54,307,175,179]);
+},306,[1,92,10,54,307,175,179]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -41601,7 +41671,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
 
   exports.default = _default;
-},307,[7,183]);
+},307,[1,183]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -41743,7 +41813,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
   var _default = SwitchWithForwardedRef;
   exports.default = _default;
-},308,[7,44,92,54,1,175,309,310,311,179]);
+},308,[1,44,92,54,10,175,309,310,311,179]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -41769,7 +41839,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       }
     }, [].concat(refs));
   }
-},309,[1]);
+},309,[10]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -41798,7 +41868,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
 
   exports.default = _default;
-},310,[7,1,123,183]);
+},310,[1,10,123,183]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -41828,7 +41898,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
 
   exports.default = _default;
-},311,[7,1,183,123]);
+},311,[1,10,183,123]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -42200,7 +42270,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
 
   module.exports = ExportedForwardRef;
-},312,[7,92,44,1,54,175,188,178,121,4,285,236,191,179,122,163,313]);
+},312,[1,92,44,10,54,175,188,178,121,13,285,236,191,179,122,163,313]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -42238,7 +42308,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
   var _default = MultilineTextInputNativeComponent;
   exports.default = _default;
-},313,[7,123,164,128]);
+},313,[1,123,164,128]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -42683,7 +42753,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
   };
   module.exports = Touchable;
-},314,[7,92,1,315,54,317,142,194,189,179]);
+},314,[1,92,10,315,54,317,142,194,189,179]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -42710,7 +42780,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   _PooledClass.default.addPoolingTo(BoundingDimensions, twoArgumentPooler);
 
   module.exports = BoundingDimensions;
-},315,[7,316]);
+},315,[1,316]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -42804,7 +42874,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     fourArgumentPooler: fourArgumentPooler
   };
   module.exports = PooledClass;
-},316,[7,4]);
+},316,[1,13]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -42827,7 +42897,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   _PooledClass.default.addPoolingTo(Position, twoArgumentPooler);
 
   module.exports = Position;
-},317,[7,316]);
+},317,[1,316]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -43103,7 +43173,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
   Touchable.displayName = 'TouchableHighlight';
   module.exports = Touchable;
-},318,[7,92,16,17,28,30,33,192,189,175,54,176,1,179]);
+},318,[1,92,2,3,4,6,9,192,189,175,54,176,10,179]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -43227,7 +43297,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   TouchableWithoutFeedback.displayName = 'TouchableWithoutFeedback';
   module.exports = TouchableWithoutFeedback;
-},319,[7,92,16,17,28,30,33,192,189,176,1,179]);
+},319,[1,92,2,3,4,6,9,192,189,176,10,179]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -43288,7 +43358,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
   };
   module.exports = ActionSheetIOS;
-},320,[7,92,321,4,135]);
+},320,[1,92,321,13,135]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -43343,7 +43413,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       return eventEmitter.addListener('change', listener);
     }
   };
-},322,[7,9,82,323,4,324,54]);
+},322,[1,17,82,323,13,324,54]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -43566,7 +43636,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = AppRegistry;
-},325,[7,326,79,327,328,48,329,18,333,80,4,334]);
+},325,[1,326,79,327,328,48,329,24,333,80,13,334]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -43649,7 +43719,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }((0, _wrapNativeSuper2.default)(Error));
 
   exports.default = HeadlessJsTaskError;
-},328,[7,17,16,28,30,33,34]);
+},328,[1,3,2,4,6,9,34]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -43759,7 +43829,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   BugReporting._subscription = null;
   BugReporting._redboxSubscription = null;
   module.exports = BugReporting;
-},329,[7,44,16,17,8,330,331,332]);
+},329,[1,44,2,3,16,330,331,332]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -43891,7 +43961,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = renderApplication;
-},334,[7,78,335,336,179,297,1,4,337,124,18]);
+},334,[1,78,335,336,179,297,10,13,337,124,24]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -43917,7 +43987,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default = PerformanceLoggerContext;
   exports.default = _default;
-},335,[7,1,78]);
+},335,[1,10,78]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -43987,7 +44057,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
   };
   module.exports = BackHandler;
-},337,[7,338,8]);
+},337,[1,338,16]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -44089,7 +44159,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }();
 
   module.exports = new AppState();
-},339,[7,16,17,82,340,341,54]);
+},339,[1,2,3,82,340,341,54]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -44358,7 +44428,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = AsyncStorage;
-},342,[7,44,343,344,4]);
+},342,[1,44,343,344,13]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -44404,7 +44474,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       _NativeClipboard.default.setString(content);
     }
   };
-},345,[7,346]);
+},345,[1,346]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -44427,7 +44497,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _NativeDeviceInfo = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1]));
 
   module.exports = _NativeDeviceInfo.default;
-},347,[7,154]);
+},347,[1,154]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -44443,7 +44513,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     onFastRefresh: function onFastRefresh() {}
   };
   module.exports = DevSettings;
-},348,[7,349,82,54]);
+},348,[1,349,82,54]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -44522,7 +44592,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
   };
   module.exports = ImagePickerIOS;
-},350,[7,351,4]);
+},350,[1,351,13]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -44645,7 +44715,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }(_NativeEventEmitter2.default);
 
   module.exports = new Linking();
-},352,[7,16,17,28,30,33,82,212,54,353,354,4,285]);
+},352,[1,2,3,4,6,9,82,212,54,353,354,13,285]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -44701,7 +44771,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     };
   }
   module.exports = LogBox;
-},355,[7,54,111]);
+},355,[1,54,111]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -45075,7 +45145,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var PermissionsAndroidInstance = new PermissionsAndroid();
   module.exports = PermissionsAndroidInstance;
-},358,[7,268,16,17,104,359,4,54]);
+},358,[1,268,2,3,104,359,13,54]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -45376,7 +45446,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     ResultFailed: 'UIBackgroundFetchResultFailed'
   };
   module.exports = PushNotificationIOS;
-},360,[7,16,17,82,361,4,54]);
+},360,[1,2,3,82,361,13,54]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -45464,7 +45534,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   Share.sharedAction = 'sharedAction';
   Share.dismissedAction = 'dismissedAction';
   module.exports = Share;
-},363,[7,16,17,321,364,54,4,135]);
+},363,[1,2,3,321,364,54,13,135]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -45505,7 +45575,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
   };
   module.exports = ToastAndroid;
-},365,[7,366]);
+},365,[1,366]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -45547,7 +45617,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       return _Appearance.default.getColorScheme();
     });
   }
-},367,[7,368,322]);
+},367,[1,368,322]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -45623,7 +45693,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   exports.useSyncExternalStore = undefined !== e.useSyncExternalStore ? e.useSyncExternalStore : q;
-},369,[1]);
+},369,[10]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
@@ -45666,7 +45736,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }, [dimensions]);
     return dimensions;
   }
-},370,[7,44,153,1]);
+},370,[1,44,153,10]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -45743,7 +45813,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
   };
   module.exports = Vibration;
-},372,[7,373,54]);
+},372,[1,373,54]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -45814,7 +45884,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }(React.Component);
   }
   module.exports = YellowBox;
-},374,[16,17,28,30,33,1,355]);
+},374,[2,3,4,6,9,10,355]);
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -45827,2590 +45897,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   exports.DynamicColorIOS = DynamicColorIOS;
 },375,[]);
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
 
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.getDeviceSync = exports.getDeviceNameSync = exports.getDeviceName = exports.getDeviceId = exports.getDevice = exports.getCodenameSync = exports.getCodename = exports.getCarrierSync = exports.getCarrier = exports.getBundleId = exports.getBuildNumber = exports.getBuildIdSync = exports.getBuildId = exports.getBrightnessSync = exports.getBrightness = exports.getBrand = exports.getBootloaderSync = exports.getBootloader = exports.getBatteryLevelSync = exports.getBatteryLevel = exports.getBaseOsSync = exports.getBaseOs = exports.getAvailableLocationProvidersSync = exports.getAvailableLocationProviders = exports.getApplicationName = exports.getApiLevelSync = exports.getApiLevel = exports.getAndroidIdSync = exports.getAndroidId = exports.default = undefined;
-  exports.getDeviceToken = getDeviceToken;
-  exports.getFreeDiskStorage = exports.getFontScaleSync = exports.getFontScale = exports.getFirstInstallTimeSync = exports.getFirstInstallTime = exports.getFingerprintSync = exports.getFingerprint = exports.getDisplaySync = exports.getDisplay = exports.getDeviceTypeSync = exports.getDeviceType = undefined;
-  exports.getFreeDiskStorageOld = getFreeDiskStorageOld;
-  exports.getFreeDiskStorageOldSync = getFreeDiskStorageOldSync;
-  exports.getLastUpdateTimeSync = exports.getLastUpdateTime = exports.getIpAddressSync = exports.getIpAddress = exports.getInstanceIdSync = exports.getInstanceId = exports.getInstallerPackageNameSync = exports.getInstallerPackageName = exports.getInstallReferrerSync = exports.getInstallReferrer = exports.getIncrementalSync = exports.getIncremental = exports.getHostSync = exports.getHost = exports.getHardwareSync = exports.getHardware = exports.getFreeDiskStorageSync = undefined;
-  exports.getMacAddress = getMacAddress;
-  exports.getMacAddressSync = getMacAddressSync;
-  exports.getProductSync = exports.getProduct = exports.getPreviewSdkIntSync = exports.getPreviewSdkInt = exports.getPowerStateSync = exports.getPowerState = exports.getPhoneNumberSync = exports.getPhoneNumber = exports.getModel = exports.getMaxMemorySync = exports.getMaxMemory = exports.getManufacturerSync = exports.getManufacturer = undefined;
-  exports.getReadableVersion = getReadableVersion;
-  exports.getTotalDiskCapacity = exports.getTagsSync = exports.getTags = exports.getSystemVersion = exports.getSystemName = exports.getSystemAvailableFeaturesSync = exports.getSystemAvailableFeatures = exports.getSerialNumberSync = exports.getSerialNumber = exports.getSecurityPatchSync = exports.getSecurityPatch = undefined;
-  exports.getTotalDiskCapacityOld = getTotalDiskCapacityOld;
-  exports.getTotalDiskCapacityOldSync = getTotalDiskCapacityOldSync;
-  exports.getUserAgent = exports.getUsedMemorySync = exports.getUsedMemory = exports.getUniqueIdSync = exports.getUniqueId = exports.getTypeSync = exports.getType = exports.getTotalMemorySync = exports.getTotalMemory = exports.getTotalDiskCapacitySync = undefined;
-  exports.getVersion = exports.getUserAgentSync = undefined;
-  exports.hasDynamicIsland = hasDynamicIsland;
-  exports.hasHmsSync = exports.hasHms = exports.hasGmsSync = exports.hasGms = undefined;
-  exports.hasNotch = hasNotch;
-  exports.hasSystemFeature = hasSystemFeature;
-  exports.hasSystemFeatureSync = hasSystemFeatureSync;
-  exports.isKeyboardConnectedSync = exports.isKeyboardConnected = exports.isHeadphonesConnectedSync = exports.isHeadphonesConnected = exports.isEmulatorSync = exports.isEmulator = exports.isCameraPresentSync = exports.isCameraPresent = exports.isBatteryChargingSync = exports.isBatteryCharging = exports.isAirplaneModeSync = exports.isAirplaneMode = undefined;
-  exports.isLandscape = isLandscape;
-  exports.isLandscapeSync = isLandscapeSync;
-  exports.isLocationEnabledSync = exports.isLocationEnabled = undefined;
-  exports.isLowBatteryLevel = isLowBatteryLevel;
-  exports.supportedAbisSync = exports.supportedAbis = exports.supported64BitAbisSync = exports.supported64BitAbis = exports.supported32BitAbisSync = exports.supported32BitAbis = exports.isTabletMode = exports.isTablet = exports.isPinOrFingerprintSetSync = exports.isPinOrFingerprintSet = exports.isMouseConnectedSync = exports.isMouseConnected = undefined;
-  exports.syncUniqueId = syncUniqueId;
-  exports.useBatteryLevel = useBatteryLevel;
-  exports.useBatteryLevelIsLow = useBatteryLevelIsLow;
-  exports.useBrightness = useBrightness;
-  exports.useDeviceName = useDeviceName;
-  exports.useFirstInstallTime = useFirstInstallTime;
-  exports.useHasSystemFeature = useHasSystemFeature;
-  exports.useIsEmulator = useIsEmulator;
-  exports.useIsHeadphonesConnected = useIsHeadphonesConnected;
-  exports.useManufacturer = useManufacturer;
-  exports.usePowerState = usePowerState;
 
-  var _asyncToGenerator2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1]));
-
-  var _slicedToArray2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2]));
-
-  var _react = _$$_REQUIRE(_dependencyMap[3]);
-
-  var _reactNative = _$$_REQUIRE(_dependencyMap[4]);
-
-  var _asyncHookWrappers = _$$_REQUIRE(_dependencyMap[5]);
-
-  var _devicesWithDynamicIsland = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6]));
-
-  var _devicesWithNotch = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[7]));
-
-  var _nativeInterface = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[8]));
-
-  var _supportedPlatformInfo = _$$_REQUIRE(_dependencyMap[9]);
-
-  var _getSupportedPlatform = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: 'uniqueId',
-    supportedPlatforms: ['android', 'ios', 'windows'],
-    getter: function getter() {
-      return _nativeInterface.default.getUniqueId();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getUniqueIdSync();
-    },
-    defaultValue: 'unknown'
-  }),
-      _getSupportedPlatform2 = (0, _slicedToArray2.default)(_getSupportedPlatform, 2),
-      getUniqueId = _getSupportedPlatform2[0],
-      getUniqueIdSync = _getSupportedPlatform2[1];
-
-  exports.getUniqueIdSync = getUniqueIdSync;
-  exports.getUniqueId = getUniqueId;
-  var uniqueId;
-
-  function syncUniqueId() {
-    return _syncUniqueId.apply(this, arguments);
-  }
-
-  function _syncUniqueId() {
-    _syncUniqueId = (0, _asyncToGenerator2.default)(function* () {
-      if (_reactNative.Platform.OS === 'ios') {
-        uniqueId = yield _nativeInterface.default.syncUniqueId();
-      } else {
-        uniqueId = yield getUniqueId();
-      }
-
-      return uniqueId;
-    });
-    return _syncUniqueId.apply(this, arguments);
-  }
-
-  var _getSupportedPlatform3 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: 'instanceId',
-    supportedPlatforms: ['android'],
-    getter: function getter() {
-      return _nativeInterface.default.getInstanceId();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getInstanceIdSync();
-    },
-    defaultValue: 'unknown'
-  }),
-      _getSupportedPlatform4 = (0, _slicedToArray2.default)(_getSupportedPlatform3, 2),
-      getInstanceId = _getSupportedPlatform4[0],
-      getInstanceIdSync = _getSupportedPlatform4[1];
-
-  exports.getInstanceIdSync = getInstanceIdSync;
-  exports.getInstanceId = getInstanceId;
-
-  var _getSupportedPlatform5 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: 'serialNumber',
-    supportedPlatforms: ['android', 'windows'],
-    getter: function getter() {
-      return _nativeInterface.default.getSerialNumber();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getSerialNumberSync();
-    },
-    defaultValue: 'unknown'
-  }),
-      _getSupportedPlatform6 = (0, _slicedToArray2.default)(_getSupportedPlatform5, 2),
-      getSerialNumber = _getSupportedPlatform6[0],
-      getSerialNumberSync = _getSupportedPlatform6[1];
-
-  exports.getSerialNumberSync = getSerialNumberSync;
-  exports.getSerialNumber = getSerialNumber;
-
-  var _getSupportedPlatform7 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: 'androidId',
-    supportedPlatforms: ['android'],
-    getter: function getter() {
-      return _nativeInterface.default.getAndroidId();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getAndroidIdSync();
-    },
-    defaultValue: 'unknown'
-  }),
-      _getSupportedPlatform8 = (0, _slicedToArray2.default)(_getSupportedPlatform7, 2),
-      getAndroidId = _getSupportedPlatform8[0],
-      getAndroidIdSync = _getSupportedPlatform8[1];
-
-  exports.getAndroidIdSync = getAndroidIdSync;
-  exports.getAndroidId = getAndroidId;
-
-  var _getSupportedPlatform9 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    supportedPlatforms: ['android', 'ios', 'windows'],
-    getter: function getter() {
-      return _nativeInterface.default.getIpAddress();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getIpAddressSync();
-    },
-    defaultValue: 'unknown'
-  }),
-      _getSupportedPlatform10 = (0, _slicedToArray2.default)(_getSupportedPlatform9, 2),
-      getIpAddress = _getSupportedPlatform10[0],
-      getIpAddressSync = _getSupportedPlatform10[1];
-
-  exports.getIpAddressSync = getIpAddressSync;
-  exports.getIpAddress = getIpAddress;
-
-  var _getSupportedPlatform11 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    supportedPlatforms: ['android', 'windows', 'web'],
-    getter: function getter() {
-      return _nativeInterface.default.isCameraPresent();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.isCameraPresentSync();
-    },
-    defaultValue: false
-  }),
-      _getSupportedPlatform12 = (0, _slicedToArray2.default)(_getSupportedPlatform11, 2),
-      isCameraPresent = _getSupportedPlatform12[0],
-      isCameraPresentSync = _getSupportedPlatform12[1];
-
-  exports.isCameraPresentSync = isCameraPresentSync;
-  exports.isCameraPresent = isCameraPresent;
-
-  function getMacAddress() {
-    return _getMacAddress.apply(this, arguments);
-  }
-
-  function _getMacAddress() {
-    _getMacAddress = (0, _asyncToGenerator2.default)(function* () {
-      if (_reactNative.Platform.OS === 'android') {
-        return _nativeInterface.default.getMacAddress();
-      } else if (_reactNative.Platform.OS === 'ios') {
-        return '02:00:00:00:00:00';
-      }
-
-      return 'unknown';
-    });
-    return _getMacAddress.apply(this, arguments);
-  }
-
-  function getMacAddressSync() {
-    if (_reactNative.Platform.OS === 'android') {
-      return _nativeInterface.default.getMacAddressSync();
-    } else if (_reactNative.Platform.OS === 'ios') {
-      return '02:00:00:00:00:00';
-    }
-
-    return 'unknown';
-  }
-
-  var getDeviceId = function getDeviceId() {
-    return (0, _supportedPlatformInfo.getSupportedPlatformInfoSync)({
-      defaultValue: 'unknown',
-      memoKey: 'deviceId',
-      getter: function getter() {
-        return _nativeInterface.default.deviceId;
-      },
-      supportedPlatforms: ['android', 'ios', 'windows']
-    });
-  };
-
-  exports.getDeviceId = getDeviceId;
-
-  var _getSupportedPlatform13 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: 'manufacturer',
-    supportedPlatforms: ['android', 'ios', 'windows'],
-    getter: function getter() {
-      return _reactNative.Platform.OS == 'ios' ? Promise.resolve('Apple') : _nativeInterface.default.getSystemManufacturer();
-    },
-    syncGetter: function syncGetter() {
-      return _reactNative.Platform.OS == 'ios' ? 'Apple' : _nativeInterface.default.getSystemManufacturerSync();
-    },
-    defaultValue: 'unknown'
-  }),
-      _getSupportedPlatform14 = (0, _slicedToArray2.default)(_getSupportedPlatform13, 2),
-      getManufacturer = _getSupportedPlatform14[0],
-      getManufacturerSync = _getSupportedPlatform14[1];
-
-  exports.getManufacturerSync = getManufacturerSync;
-  exports.getManufacturer = getManufacturer;
-
-  var getModel = function getModel() {
-    return (0, _supportedPlatformInfo.getSupportedPlatformInfoSync)({
-      memoKey: 'model',
-      defaultValue: 'unknown',
-      supportedPlatforms: ['ios', 'android', 'windows'],
-      getter: function getter() {
-        return _nativeInterface.default.model;
-      }
-    });
-  };
-
-  exports.getModel = getModel;
-
-  var getBrand = function getBrand() {
-    return (0, _supportedPlatformInfo.getSupportedPlatformInfoSync)({
-      memoKey: 'brand',
-      supportedPlatforms: ['android', 'ios', 'windows'],
-      defaultValue: 'unknown',
-      getter: function getter() {
-        return _nativeInterface.default.brand;
-      }
-    });
-  };
-
-  exports.getBrand = getBrand;
-
-  var getSystemName = function getSystemName() {
-    return (0, _supportedPlatformInfo.getSupportedPlatformInfoSync)({
-      defaultValue: 'unknown',
-      supportedPlatforms: ['ios', 'android', 'windows'],
-      memoKey: 'systemName',
-      getter: function getter() {
-        return _reactNative.Platform.select({
-          ios: _nativeInterface.default.systemName,
-          android: 'Android',
-          windows: 'Windows',
-          default: 'unknown'
-        });
-      }
-    });
-  };
-
-  exports.getSystemName = getSystemName;
-
-  var getSystemVersion = function getSystemVersion() {
-    return (0, _supportedPlatformInfo.getSupportedPlatformInfoSync)({
-      defaultValue: 'unknown',
-      getter: function getter() {
-        return _nativeInterface.default.systemVersion;
-      },
-      supportedPlatforms: ['android', 'ios', 'windows'],
-      memoKey: 'systemVersion'
-    });
-  };
-
-  exports.getSystemVersion = getSystemVersion;
-
-  var _getSupportedPlatform15 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: 'buildId',
-    supportedPlatforms: ['android', 'ios', 'windows'],
-    getter: function getter() {
-      return _nativeInterface.default.getBuildId();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getBuildIdSync();
-    },
-    defaultValue: 'unknown'
-  }),
-      _getSupportedPlatform16 = (0, _slicedToArray2.default)(_getSupportedPlatform15, 2),
-      getBuildId = _getSupportedPlatform16[0],
-      getBuildIdSync = _getSupportedPlatform16[1];
-
-  exports.getBuildIdSync = getBuildIdSync;
-  exports.getBuildId = getBuildId;
-
-  var _getSupportedPlatform17 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: 'apiLevel',
-    supportedPlatforms: ['android'],
-    getter: function getter() {
-      return _nativeInterface.default.getApiLevel();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getApiLevelSync();
-    },
-    defaultValue: -1
-  }),
-      _getSupportedPlatform18 = (0, _slicedToArray2.default)(_getSupportedPlatform17, 2),
-      getApiLevel = _getSupportedPlatform18[0],
-      getApiLevelSync = _getSupportedPlatform18[1];
-
-  exports.getApiLevelSync = getApiLevelSync;
-  exports.getApiLevel = getApiLevel;
-
-  var getBundleId = function getBundleId() {
-    return (0, _supportedPlatformInfo.getSupportedPlatformInfoSync)({
-      memoKey: 'bundleId',
-      supportedPlatforms: ['android', 'ios', 'windows'],
-      defaultValue: 'unknown',
-      getter: function getter() {
-        return _nativeInterface.default.bundleId;
-      }
-    });
-  };
-
-  exports.getBundleId = getBundleId;
-
-  var _getSupportedPlatform19 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: 'installerPackageName',
-    supportedPlatforms: ['android', 'windows', 'ios'],
-    getter: function getter() {
-      return _nativeInterface.default.getInstallerPackageName();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getInstallerPackageNameSync();
-    },
-    defaultValue: 'unknown'
-  }),
-      _getSupportedPlatform20 = (0, _slicedToArray2.default)(_getSupportedPlatform19, 2),
-      getInstallerPackageName = _getSupportedPlatform20[0],
-      getInstallerPackageNameSync = _getSupportedPlatform20[1];
-
-  exports.getInstallerPackageNameSync = getInstallerPackageNameSync;
-  exports.getInstallerPackageName = getInstallerPackageName;
-
-  var getApplicationName = function getApplicationName() {
-    return (0, _supportedPlatformInfo.getSupportedPlatformInfoSync)({
-      memoKey: 'appName',
-      defaultValue: 'unknown',
-      getter: function getter() {
-        return _nativeInterface.default.appName;
-      },
-      supportedPlatforms: ['android', 'ios', 'windows']
-    });
-  };
-
-  exports.getApplicationName = getApplicationName;
-
-  var getBuildNumber = function getBuildNumber() {
-    return (0, _supportedPlatformInfo.getSupportedPlatformInfoSync)({
-      memoKey: 'buildNumber',
-      supportedPlatforms: ['android', 'ios', 'windows'],
-      getter: function getter() {
-        return _nativeInterface.default.buildNumber;
-      },
-      defaultValue: 'unknown'
-    });
-  };
-
-  exports.getBuildNumber = getBuildNumber;
-
-  var getVersion = function getVersion() {
-    return (0, _supportedPlatformInfo.getSupportedPlatformInfoSync)({
-      memoKey: 'version',
-      defaultValue: 'unknown',
-      supportedPlatforms: ['android', 'ios', 'windows'],
-      getter: function getter() {
-        return _nativeInterface.default.appVersion;
-      }
-    });
-  };
-
-  exports.getVersion = getVersion;
-
-  function getReadableVersion() {
-    return getVersion() + '.' + getBuildNumber();
-  }
-
-  var _getSupportedPlatform21 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    supportedPlatforms: ['android', 'ios', 'windows'],
-    getter: function getter() {
-      return _nativeInterface.default.getDeviceName();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getDeviceNameSync();
-    },
-    defaultValue: 'unknown'
-  }),
-      _getSupportedPlatform22 = (0, _slicedToArray2.default)(_getSupportedPlatform21, 2),
-      getDeviceName = _getSupportedPlatform22[0],
-      getDeviceNameSync = _getSupportedPlatform22[1];
-
-  exports.getDeviceNameSync = getDeviceNameSync;
-  exports.getDeviceName = getDeviceName;
-
-  var _getSupportedPlatform23 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    supportedPlatforms: ['android', 'ios', 'windows', 'web'],
-    getter: function getter() {
-      return _nativeInterface.default.getUsedMemory();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getUsedMemorySync();
-    },
-    defaultValue: -1
-  }),
-      _getSupportedPlatform24 = (0, _slicedToArray2.default)(_getSupportedPlatform23, 2),
-      getUsedMemory = _getSupportedPlatform24[0],
-      getUsedMemorySync = _getSupportedPlatform24[1];
-
-  exports.getUsedMemorySync = getUsedMemorySync;
-  exports.getUsedMemory = getUsedMemory;
-
-  var getUserAgent = function getUserAgent() {
-    return (0, _supportedPlatformInfo.getSupportedPlatformInfoAsync)({
-      memoKey: 'userAgent',
-      defaultValue: 'unknown',
-      supportedPlatforms: ['android', 'ios', 'web'],
-      getter: function getter() {
-        return _nativeInterface.default.getUserAgent();
-      }
-    });
-  };
-
-  exports.getUserAgent = getUserAgent;
-
-  var getUserAgentSync = function getUserAgentSync() {
-    return (0, _supportedPlatformInfo.getSupportedPlatformInfoSync)({
-      memoKey: 'userAgent',
-      defaultValue: 'unknown',
-      supportedPlatforms: ['android', 'web'],
-      getter: function getter() {
-        return _nativeInterface.default.getUserAgentSync();
-      }
-    });
-  };
-
-  exports.getUserAgentSync = getUserAgentSync;
-
-  var _getSupportedPlatform25 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    supportedPlatforms: ['android', 'ios', 'windows'],
-    getter: function getter() {
-      return _nativeInterface.default.getFontScale();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getFontScaleSync();
-    },
-    defaultValue: -1
-  }),
-      _getSupportedPlatform26 = (0, _slicedToArray2.default)(_getSupportedPlatform25, 2),
-      getFontScale = _getSupportedPlatform26[0],
-      getFontScaleSync = _getSupportedPlatform26[1];
-
-  exports.getFontScaleSync = getFontScaleSync;
-  exports.getFontScale = getFontScale;
-
-  var _getSupportedPlatform27 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: 'bootloader',
-    supportedPlatforms: ['android'],
-    getter: function getter() {
-      return _nativeInterface.default.getBootloader();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getBootloaderSync();
-    },
-    defaultValue: 'unknown'
-  }),
-      _getSupportedPlatform28 = (0, _slicedToArray2.default)(_getSupportedPlatform27, 2),
-      getBootloader = _getSupportedPlatform28[0],
-      getBootloaderSync = _getSupportedPlatform28[1];
-
-  exports.getBootloaderSync = getBootloaderSync;
-  exports.getBootloader = getBootloader;
-
-  var _getSupportedPlatform29 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    getter: function getter() {
-      return _nativeInterface.default.getDevice();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getDeviceSync();
-    },
-    defaultValue: 'unknown',
-    memoKey: 'device',
-    supportedPlatforms: ['android']
-  }),
-      _getSupportedPlatform30 = (0, _slicedToArray2.default)(_getSupportedPlatform29, 2),
-      getDevice = _getSupportedPlatform30[0],
-      getDeviceSync = _getSupportedPlatform30[1];
-
-  exports.getDeviceSync = getDeviceSync;
-  exports.getDevice = getDevice;
-
-  var _getSupportedPlatform31 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: 'display',
-    supportedPlatforms: ['android'],
-    getter: function getter() {
-      return _nativeInterface.default.getDisplay();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getDisplaySync();
-    },
-    defaultValue: 'unknown'
-  }),
-      _getSupportedPlatform32 = (0, _slicedToArray2.default)(_getSupportedPlatform31, 2),
-      getDisplay = _getSupportedPlatform32[0],
-      getDisplaySync = _getSupportedPlatform32[1];
-
-  exports.getDisplaySync = getDisplaySync;
-  exports.getDisplay = getDisplay;
-
-  var _getSupportedPlatform33 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: 'fingerprint',
-    supportedPlatforms: ['android'],
-    getter: function getter() {
-      return _nativeInterface.default.getFingerprint();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getFingerprintSync();
-    },
-    defaultValue: 'unknown'
-  }),
-      _getSupportedPlatform34 = (0, _slicedToArray2.default)(_getSupportedPlatform33, 2),
-      getFingerprint = _getSupportedPlatform34[0],
-      getFingerprintSync = _getSupportedPlatform34[1];
-
-  exports.getFingerprintSync = getFingerprintSync;
-  exports.getFingerprint = getFingerprint;
-
-  var _getSupportedPlatform35 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: 'hardware',
-    supportedPlatforms: ['android'],
-    getter: function getter() {
-      return _nativeInterface.default.getHardware();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getHardwareSync();
-    },
-    defaultValue: 'unknown'
-  }),
-      _getSupportedPlatform36 = (0, _slicedToArray2.default)(_getSupportedPlatform35, 2),
-      getHardware = _getSupportedPlatform36[0],
-      getHardwareSync = _getSupportedPlatform36[1];
-
-  exports.getHardwareSync = getHardwareSync;
-  exports.getHardware = getHardware;
-
-  var _getSupportedPlatform37 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: 'host',
-    supportedPlatforms: ['android'],
-    getter: function getter() {
-      return _nativeInterface.default.getHost();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getHostSync();
-    },
-    defaultValue: 'unknown'
-  }),
-      _getSupportedPlatform38 = (0, _slicedToArray2.default)(_getSupportedPlatform37, 2),
-      getHost = _getSupportedPlatform38[0],
-      getHostSync = _getSupportedPlatform38[1];
-
-  exports.getHostSync = getHostSync;
-  exports.getHost = getHost;
-
-  var _getSupportedPlatform39 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: 'product',
-    supportedPlatforms: ['android'],
-    getter: function getter() {
-      return _nativeInterface.default.getProduct();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getProductSync();
-    },
-    defaultValue: 'unknown'
-  }),
-      _getSupportedPlatform40 = (0, _slicedToArray2.default)(_getSupportedPlatform39, 2),
-      getProduct = _getSupportedPlatform40[0],
-      getProductSync = _getSupportedPlatform40[1];
-
-  exports.getProductSync = getProductSync;
-  exports.getProduct = getProduct;
-
-  var _getSupportedPlatform41 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: 'tags',
-    supportedPlatforms: ['android'],
-    getter: function getter() {
-      return _nativeInterface.default.getTags();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getTagsSync();
-    },
-    defaultValue: 'unknown'
-  }),
-      _getSupportedPlatform42 = (0, _slicedToArray2.default)(_getSupportedPlatform41, 2),
-      getTags = _getSupportedPlatform42[0],
-      getTagsSync = _getSupportedPlatform42[1];
-
-  exports.getTagsSync = getTagsSync;
-  exports.getTags = getTags;
-
-  var _getSupportedPlatform43 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: 'type',
-    supportedPlatforms: ['android'],
-    getter: function getter() {
-      return _nativeInterface.default.getType();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getTypeSync();
-    },
-    defaultValue: 'unknown'
-  }),
-      _getSupportedPlatform44 = (0, _slicedToArray2.default)(_getSupportedPlatform43, 2),
-      getType = _getSupportedPlatform44[0],
-      getTypeSync = _getSupportedPlatform44[1];
-
-  exports.getTypeSync = getTypeSync;
-  exports.getType = getType;
-
-  var _getSupportedPlatform45 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: 'baseOs',
-    supportedPlatforms: ['android', 'web', 'windows'],
-    getter: function getter() {
-      return _nativeInterface.default.getBaseOs();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getBaseOsSync();
-    },
-    defaultValue: 'unknown'
-  }),
-      _getSupportedPlatform46 = (0, _slicedToArray2.default)(_getSupportedPlatform45, 2),
-      getBaseOs = _getSupportedPlatform46[0],
-      getBaseOsSync = _getSupportedPlatform46[1];
-
-  exports.getBaseOsSync = getBaseOsSync;
-  exports.getBaseOs = getBaseOs;
-
-  var _getSupportedPlatform47 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: 'previewSdkInt',
-    supportedPlatforms: ['android'],
-    getter: function getter() {
-      return _nativeInterface.default.getPreviewSdkInt();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getPreviewSdkIntSync();
-    },
-    defaultValue: -1
-  }),
-      _getSupportedPlatform48 = (0, _slicedToArray2.default)(_getSupportedPlatform47, 2),
-      getPreviewSdkInt = _getSupportedPlatform48[0],
-      getPreviewSdkIntSync = _getSupportedPlatform48[1];
-
-  exports.getPreviewSdkIntSync = getPreviewSdkIntSync;
-  exports.getPreviewSdkInt = getPreviewSdkInt;
-
-  var _getSupportedPlatform49 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: 'securityPatch',
-    supportedPlatforms: ['android'],
-    getter: function getter() {
-      return _nativeInterface.default.getSecurityPatch();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getSecurityPatchSync();
-    },
-    defaultValue: 'unknown'
-  }),
-      _getSupportedPlatform50 = (0, _slicedToArray2.default)(_getSupportedPlatform49, 2),
-      getSecurityPatch = _getSupportedPlatform50[0],
-      getSecurityPatchSync = _getSupportedPlatform50[1];
-
-  exports.getSecurityPatchSync = getSecurityPatchSync;
-  exports.getSecurityPatch = getSecurityPatch;
-
-  var _getSupportedPlatform51 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: 'codeName',
-    supportedPlatforms: ['android'],
-    getter: function getter() {
-      return _nativeInterface.default.getCodename();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getCodenameSync();
-    },
-    defaultValue: 'unknown'
-  }),
-      _getSupportedPlatform52 = (0, _slicedToArray2.default)(_getSupportedPlatform51, 2),
-      getCodename = _getSupportedPlatform52[0],
-      getCodenameSync = _getSupportedPlatform52[1];
-
-  exports.getCodenameSync = getCodenameSync;
-  exports.getCodename = getCodename;
-
-  var _getSupportedPlatform53 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: 'incremental',
-    supportedPlatforms: ['android'],
-    getter: function getter() {
-      return _nativeInterface.default.getIncremental();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getIncrementalSync();
-    },
-    defaultValue: 'unknown'
-  }),
-      _getSupportedPlatform54 = (0, _slicedToArray2.default)(_getSupportedPlatform53, 2),
-      getIncremental = _getSupportedPlatform54[0],
-      getIncrementalSync = _getSupportedPlatform54[1];
-
-  exports.getIncrementalSync = getIncrementalSync;
-  exports.getIncremental = getIncremental;
-
-  var _getSupportedPlatform55 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: 'emulator',
-    supportedPlatforms: ['android', 'ios', 'windows'],
-    getter: function getter() {
-      return _nativeInterface.default.isEmulator();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.isEmulatorSync();
-    },
-    defaultValue: false
-  }),
-      _getSupportedPlatform56 = (0, _slicedToArray2.default)(_getSupportedPlatform55, 2),
-      isEmulator = _getSupportedPlatform56[0],
-      isEmulatorSync = _getSupportedPlatform56[1];
-
-  exports.isEmulatorSync = isEmulatorSync;
-  exports.isEmulator = isEmulator;
-
-  var isTablet = function isTablet() {
-    return (0, _supportedPlatformInfo.getSupportedPlatformInfoSync)({
-      defaultValue: false,
-      supportedPlatforms: ['android', 'ios', 'windows'],
-      memoKey: 'tablet',
-      getter: function getter() {
-        return _nativeInterface.default.isTablet;
-      }
-    });
-  };
-
-  exports.isTablet = isTablet;
-
-  var _getSupportedPlatform57 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    supportedPlatforms: ['android', 'ios', 'windows'],
-    getter: function getter() {
-      return _nativeInterface.default.isPinOrFingerprintSet();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.isPinOrFingerprintSetSync();
-    },
-    defaultValue: false
-  }),
-      _getSupportedPlatform58 = (0, _slicedToArray2.default)(_getSupportedPlatform57, 2),
-      isPinOrFingerprintSet = _getSupportedPlatform58[0],
-      isPinOrFingerprintSetSync = _getSupportedPlatform58[1];
-
-  exports.isPinOrFingerprintSetSync = isPinOrFingerprintSetSync;
-  exports.isPinOrFingerprintSet = isPinOrFingerprintSet;
-  var notch;
-
-  function hasNotch() {
-    if (notch === undefined) {
-      var _brand = getBrand();
-
-      var _model = getModel();
-
-      notch = _devicesWithNotch.default.findIndex(function (item) {
-        return item.brand.toLowerCase() === _brand.toLowerCase() && item.model.toLowerCase() === _model.toLowerCase();
-      }) !== -1;
-    }
-
-    return notch;
-  }
-
-  var dynamicIsland;
-
-  function hasDynamicIsland() {
-    if (dynamicIsland === undefined) {
-      var _brand = getBrand();
-
-      var _model = getModel();
-
-      dynamicIsland = _devicesWithDynamicIsland.default.findIndex(function (item) {
-        return item.brand.toLowerCase() === _brand.toLowerCase() && item.model.toLowerCase() === _model.toLowerCase();
-      }) !== -1;
-    }
-
-    return dynamicIsland;
-  }
-
-  var _getSupportedPlatform59 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    supportedPlatforms: ['android'],
-    getter: function getter() {
-      return _nativeInterface.default.hasGms();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.hasGmsSync();
-    },
-    defaultValue: false
-  }),
-      _getSupportedPlatform60 = (0, _slicedToArray2.default)(_getSupportedPlatform59, 2),
-      hasGms = _getSupportedPlatform60[0],
-      hasGmsSync = _getSupportedPlatform60[1];
-
-  exports.hasGmsSync = hasGmsSync;
-  exports.hasGms = hasGms;
-
-  var _getSupportedPlatform61 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    supportedPlatforms: ['android'],
-    getter: function getter() {
-      return _nativeInterface.default.hasHms();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.hasHmsSync();
-    },
-    defaultValue: false
-  }),
-      _getSupportedPlatform62 = (0, _slicedToArray2.default)(_getSupportedPlatform61, 2),
-      hasHms = _getSupportedPlatform62[0],
-      hasHmsSync = _getSupportedPlatform62[1];
-
-  exports.hasHmsSync = hasHmsSync;
-  exports.hasHms = hasHms;
-
-  var _getSupportedPlatform63 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: 'firstInstallTime',
-    supportedPlatforms: ['android', 'ios', 'windows'],
-    getter: function getter() {
-      return _nativeInterface.default.getFirstInstallTime();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getFirstInstallTimeSync();
-    },
-    defaultValue: -1
-  }),
-      _getSupportedPlatform64 = (0, _slicedToArray2.default)(_getSupportedPlatform63, 2),
-      getFirstInstallTime = _getSupportedPlatform64[0],
-      getFirstInstallTimeSync = _getSupportedPlatform64[1];
-
-  exports.getFirstInstallTimeSync = getFirstInstallTimeSync;
-  exports.getFirstInstallTime = getFirstInstallTime;
-
-  var _getSupportedPlatform65 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: 'installReferrer',
-    supportedPlatforms: ['android', 'windows', 'web'],
-    getter: function getter() {
-      return _nativeInterface.default.getInstallReferrer();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getInstallReferrerSync();
-    },
-    defaultValue: 'unknown'
-  }),
-      _getSupportedPlatform66 = (0, _slicedToArray2.default)(_getSupportedPlatform65, 2),
-      getInstallReferrer = _getSupportedPlatform66[0],
-      getInstallReferrerSync = _getSupportedPlatform66[1];
-
-  exports.getInstallReferrerSync = getInstallReferrerSync;
-  exports.getInstallReferrer = getInstallReferrer;
-
-  var _getSupportedPlatform67 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: 'lastUpdateTime',
-    supportedPlatforms: ['android'],
-    getter: function getter() {
-      return _nativeInterface.default.getLastUpdateTime();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getLastUpdateTimeSync();
-    },
-    defaultValue: -1
-  }),
-      _getSupportedPlatform68 = (0, _slicedToArray2.default)(_getSupportedPlatform67, 2),
-      getLastUpdateTime = _getSupportedPlatform68[0],
-      getLastUpdateTimeSync = _getSupportedPlatform68[1];
-
-  exports.getLastUpdateTimeSync = getLastUpdateTimeSync;
-  exports.getLastUpdateTime = getLastUpdateTime;
-
-  var _getSupportedPlatform69 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    supportedPlatforms: ['android'],
-    getter: function getter() {
-      return _nativeInterface.default.getPhoneNumber();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getPhoneNumberSync();
-    },
-    defaultValue: 'unknown'
-  }),
-      _getSupportedPlatform70 = (0, _slicedToArray2.default)(_getSupportedPlatform69, 2),
-      getPhoneNumber = _getSupportedPlatform70[0],
-      getPhoneNumberSync = _getSupportedPlatform70[1];
-
-  exports.getPhoneNumberSync = getPhoneNumberSync;
-  exports.getPhoneNumber = getPhoneNumber;
-
-  var _getSupportedPlatform71 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    supportedPlatforms: ['android', 'ios'],
-    getter: function getter() {
-      return _nativeInterface.default.getCarrier();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getCarrierSync();
-    },
-    defaultValue: 'unknown'
-  }),
-      _getSupportedPlatform72 = (0, _slicedToArray2.default)(_getSupportedPlatform71, 2),
-      getCarrier = _getSupportedPlatform72[0],
-      getCarrierSync = _getSupportedPlatform72[1];
-
-  exports.getCarrierSync = getCarrierSync;
-  exports.getCarrier = getCarrier;
-
-  var _getSupportedPlatform73 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: 'totalMemory',
-    supportedPlatforms: ['android', 'ios', 'windows', 'web'],
-    getter: function getter() {
-      return _nativeInterface.default.getTotalMemory();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getTotalMemorySync();
-    },
-    defaultValue: -1
-  }),
-      _getSupportedPlatform74 = (0, _slicedToArray2.default)(_getSupportedPlatform73, 2),
-      getTotalMemory = _getSupportedPlatform74[0],
-      getTotalMemorySync = _getSupportedPlatform74[1];
-
-  exports.getTotalMemorySync = getTotalMemorySync;
-  exports.getTotalMemory = getTotalMemory;
-
-  var _getSupportedPlatform75 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: 'maxMemory',
-    supportedPlatforms: ['android', 'windows', 'web'],
-    getter: function getter() {
-      return _nativeInterface.default.getMaxMemory();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getMaxMemorySync();
-    },
-    defaultValue: -1
-  }),
-      _getSupportedPlatform76 = (0, _slicedToArray2.default)(_getSupportedPlatform75, 2),
-      getMaxMemory = _getSupportedPlatform76[0],
-      getMaxMemorySync = _getSupportedPlatform76[1];
-
-  exports.getMaxMemorySync = getMaxMemorySync;
-  exports.getMaxMemory = getMaxMemory;
-
-  var _getSupportedPlatform77 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    supportedPlatforms: ['android', 'ios', 'windows', 'web'],
-    getter: function getter() {
-      return _nativeInterface.default.getTotalDiskCapacity();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getTotalDiskCapacitySync();
-    },
-    defaultValue: -1
-  }),
-      _getSupportedPlatform78 = (0, _slicedToArray2.default)(_getSupportedPlatform77, 2),
-      getTotalDiskCapacity = _getSupportedPlatform78[0],
-      getTotalDiskCapacitySync = _getSupportedPlatform78[1];
-
-  exports.getTotalDiskCapacitySync = getTotalDiskCapacitySync;
-  exports.getTotalDiskCapacity = getTotalDiskCapacity;
-
-  function getTotalDiskCapacityOld() {
-    return _getTotalDiskCapacityOld.apply(this, arguments);
-  }
-
-  function _getTotalDiskCapacityOld() {
-    _getTotalDiskCapacityOld = (0, _asyncToGenerator2.default)(function* () {
-      if (_reactNative.Platform.OS === 'android') {
-        return _nativeInterface.default.getTotalDiskCapacityOld();
-      }
-
-      if (_reactNative.Platform.OS === 'ios' || _reactNative.Platform.OS === 'windows' || _reactNative.Platform.OS === 'web') {
-        return getTotalDiskCapacity();
-      }
-
-      return -1;
-    });
-    return _getTotalDiskCapacityOld.apply(this, arguments);
-  }
-
-  function getTotalDiskCapacityOldSync() {
-    if (_reactNative.Platform.OS === 'android') {
-      return _nativeInterface.default.getTotalDiskCapacityOldSync();
-    }
-
-    if (_reactNative.Platform.OS === 'ios' || _reactNative.Platform.OS === 'windows' || _reactNative.Platform.OS === 'web') {
-      return getTotalDiskCapacitySync();
-    }
-
-    return -1;
-  }
-
-  var _getSupportedPlatform79 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    supportedPlatforms: ['android', 'ios', 'windows', 'web'],
-    getter: function getter() {
-      return _nativeInterface.default.getFreeDiskStorage();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getFreeDiskStorageSync();
-    },
-    defaultValue: -1
-  }),
-      _getSupportedPlatform80 = (0, _slicedToArray2.default)(_getSupportedPlatform79, 2),
-      getFreeDiskStorage = _getSupportedPlatform80[0],
-      getFreeDiskStorageSync = _getSupportedPlatform80[1];
-
-  exports.getFreeDiskStorageSync = getFreeDiskStorageSync;
-  exports.getFreeDiskStorage = getFreeDiskStorage;
-
-  function getFreeDiskStorageOld() {
-    return _getFreeDiskStorageOld.apply(this, arguments);
-  }
-
-  function _getFreeDiskStorageOld() {
-    _getFreeDiskStorageOld = (0, _asyncToGenerator2.default)(function* () {
-      if (_reactNative.Platform.OS === 'android') {
-        return _nativeInterface.default.getFreeDiskStorageOld();
-      }
-
-      if (_reactNative.Platform.OS === 'ios' || _reactNative.Platform.OS === 'windows' || _reactNative.Platform.OS === 'web') {
-        return getFreeDiskStorage();
-      }
-
-      return -1;
-    });
-    return _getFreeDiskStorageOld.apply(this, arguments);
-  }
-
-  function getFreeDiskStorageOldSync() {
-    if (_reactNative.Platform.OS === 'android') {
-      return _nativeInterface.default.getFreeDiskStorageOldSync();
-    }
-
-    if (_reactNative.Platform.OS === 'ios' || _reactNative.Platform.OS === 'windows' || _reactNative.Platform.OS === 'web') {
-      return getFreeDiskStorageSync();
-    }
-
-    return -1;
-  }
-
-  var _getSupportedPlatform81 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    supportedPlatforms: ['android', 'ios', 'windows', 'web'],
-    getter: function getter() {
-      return _nativeInterface.default.getBatteryLevel();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getBatteryLevelSync();
-    },
-    defaultValue: -1
-  }),
-      _getSupportedPlatform82 = (0, _slicedToArray2.default)(_getSupportedPlatform81, 2),
-      getBatteryLevel = _getSupportedPlatform82[0],
-      getBatteryLevelSync = _getSupportedPlatform82[1];
-
-  exports.getBatteryLevelSync = getBatteryLevelSync;
-  exports.getBatteryLevel = getBatteryLevel;
-
-  var _getSupportedPlatform83 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    supportedPlatforms: ['ios', 'android', 'windows', 'web'],
-    getter: function getter() {
-      return _nativeInterface.default.getPowerState();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getPowerStateSync();
-    },
-    defaultValue: {}
-  }),
-      _getSupportedPlatform84 = (0, _slicedToArray2.default)(_getSupportedPlatform83, 2),
-      getPowerState = _getSupportedPlatform84[0],
-      getPowerStateSync = _getSupportedPlatform84[1];
-
-  exports.getPowerStateSync = getPowerStateSync;
-  exports.getPowerState = getPowerState;
-
-  var _getSupportedPlatform85 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    supportedPlatforms: ['android', 'ios', 'windows', 'web'],
-    getter: function getter() {
-      return _nativeInterface.default.isBatteryCharging();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.isBatteryChargingSync();
-    },
-    defaultValue: false
-  }),
-      _getSupportedPlatform86 = (0, _slicedToArray2.default)(_getSupportedPlatform85, 2),
-      isBatteryCharging = _getSupportedPlatform86[0],
-      isBatteryChargingSync = _getSupportedPlatform86[1];
-
-  exports.isBatteryChargingSync = isBatteryChargingSync;
-  exports.isBatteryCharging = isBatteryCharging;
-
-  function isLandscape() {
-    return _isLandscape.apply(this, arguments);
-  }
-
-  function _isLandscape() {
-    _isLandscape = (0, _asyncToGenerator2.default)(function* () {
-      return Promise.resolve(isLandscapeSync());
-    });
-    return _isLandscape.apply(this, arguments);
-  }
-
-  function isLandscapeSync() {
-    var _Dimensions$get = _reactNative.Dimensions.get('window'),
-        height = _Dimensions$get.height,
-        width = _Dimensions$get.width;
-
-    return width >= height;
-  }
-
-  var _getSupportedPlatform87 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    supportedPlatforms: ['android', 'web'],
-    getter: function getter() {
-      return _nativeInterface.default.isAirplaneMode();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.isAirplaneModeSync();
-    },
-    defaultValue: false
-  }),
-      _getSupportedPlatform88 = (0, _slicedToArray2.default)(_getSupportedPlatform87, 2),
-      isAirplaneMode = _getSupportedPlatform88[0],
-      isAirplaneModeSync = _getSupportedPlatform88[1];
-
-  exports.isAirplaneModeSync = isAirplaneModeSync;
-  exports.isAirplaneMode = isAirplaneMode;
-
-  var getDeviceType = function getDeviceType() {
-    return (0, _supportedPlatformInfo.getSupportedPlatformInfoSync)({
-      memoKey: 'deviceType',
-      supportedPlatforms: ['android', 'ios', 'windows'],
-      defaultValue: 'unknown',
-      getter: function getter() {
-        return _nativeInterface.default.deviceType;
-      }
-    });
-  };
-
-  exports.getDeviceType = getDeviceType;
-
-  var getDeviceTypeSync = function getDeviceTypeSync() {
-    return (0, _supportedPlatformInfo.getSupportedPlatformInfoSync)({
-      memoKey: 'deviceType',
-      supportedPlatforms: ['android', 'ios', 'windows'],
-      defaultValue: 'unknown',
-      getter: function getter() {
-        return _nativeInterface.default.deviceType;
-      }
-    });
-  };
-
-  exports.getDeviceTypeSync = getDeviceTypeSync;
-
-  var _getSupportedPlatform89 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: '_supportedAbis',
-    supportedPlatforms: ['android', 'ios', 'windows'],
-    getter: function getter() {
-      return _nativeInterface.default.getSupportedAbis();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getSupportedAbisSync();
-    },
-    defaultValue: []
-  }),
-      _getSupportedPlatform90 = (0, _slicedToArray2.default)(_getSupportedPlatform89, 2),
-      supportedAbis = _getSupportedPlatform90[0],
-      supportedAbisSync = _getSupportedPlatform90[1];
-
-  exports.supportedAbisSync = supportedAbisSync;
-  exports.supportedAbis = supportedAbis;
-
-  var _getSupportedPlatform91 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: '_supported32BitAbis',
-    supportedPlatforms: ['android'],
-    getter: function getter() {
-      return _nativeInterface.default.getSupported32BitAbis();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getSupported32BitAbisSync();
-    },
-    defaultValue: []
-  }),
-      _getSupportedPlatform92 = (0, _slicedToArray2.default)(_getSupportedPlatform91, 2),
-      supported32BitAbis = _getSupportedPlatform92[0],
-      supported32BitAbisSync = _getSupportedPlatform92[1];
-
-  exports.supported32BitAbisSync = supported32BitAbisSync;
-  exports.supported32BitAbis = supported32BitAbis;
-
-  var _getSupportedPlatform93 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    memoKey: '_supported64BitAbis',
-    supportedPlatforms: ['android'],
-    getter: function getter() {
-      return _nativeInterface.default.getSupported64BitAbis();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getSupported64BitAbisSync();
-    },
-    defaultValue: []
-  }),
-      _getSupportedPlatform94 = (0, _slicedToArray2.default)(_getSupportedPlatform93, 2),
-      supported64BitAbis = _getSupportedPlatform94[0],
-      supported64BitAbisSync = _getSupportedPlatform94[1];
-
-  exports.supported64BitAbisSync = supported64BitAbisSync;
-  exports.supported64BitAbis = supported64BitAbis;
-
-  function hasSystemFeature(_x) {
-    return _hasSystemFeature.apply(this, arguments);
-  }
-
-  function _hasSystemFeature() {
-    _hasSystemFeature = (0, _asyncToGenerator2.default)(function* (feature) {
-      if (_reactNative.Platform.OS === 'android') {
-        return _nativeInterface.default.hasSystemFeature(feature);
-      }
-
-      return false;
-    });
-    return _hasSystemFeature.apply(this, arguments);
-  }
-
-  function hasSystemFeatureSync(feature) {
-    if (_reactNative.Platform.OS === 'android') {
-      return _nativeInterface.default.hasSystemFeatureSync(feature);
-    }
-
-    return false;
-  }
-
-  function isLowBatteryLevel(level) {
-    if (_reactNative.Platform.OS === 'android') {
-      return level < 0.15;
-    }
-
-    return level < 0.2;
-  }
-
-  var _getSupportedPlatform95 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    supportedPlatforms: ['android'],
-    getter: function getter() {
-      return _nativeInterface.default.getSystemAvailableFeatures();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getSystemAvailableFeaturesSync();
-    },
-    defaultValue: []
-  }),
-      _getSupportedPlatform96 = (0, _slicedToArray2.default)(_getSupportedPlatform95, 2),
-      getSystemAvailableFeatures = _getSupportedPlatform96[0],
-      getSystemAvailableFeaturesSync = _getSupportedPlatform96[1];
-
-  exports.getSystemAvailableFeaturesSync = getSystemAvailableFeaturesSync;
-  exports.getSystemAvailableFeatures = getSystemAvailableFeatures;
-
-  var _getSupportedPlatform97 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    supportedPlatforms: ['android', 'ios', 'web'],
-    getter: function getter() {
-      return _nativeInterface.default.isLocationEnabled();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.isLocationEnabledSync();
-    },
-    defaultValue: false
-  }),
-      _getSupportedPlatform98 = (0, _slicedToArray2.default)(_getSupportedPlatform97, 2),
-      isLocationEnabled = _getSupportedPlatform98[0],
-      isLocationEnabledSync = _getSupportedPlatform98[1];
-
-  exports.isLocationEnabledSync = isLocationEnabledSync;
-  exports.isLocationEnabled = isLocationEnabled;
-
-  var _getSupportedPlatform99 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    supportedPlatforms: ['android', 'ios'],
-    getter: function getter() {
-      return _nativeInterface.default.isHeadphonesConnected();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.isHeadphonesConnectedSync();
-    },
-    defaultValue: false
-  }),
-      _getSupportedPlatform100 = (0, _slicedToArray2.default)(_getSupportedPlatform99, 2),
-      isHeadphonesConnected = _getSupportedPlatform100[0],
-      isHeadphonesConnectedSync = _getSupportedPlatform100[1];
-
-  exports.isHeadphonesConnectedSync = isHeadphonesConnectedSync;
-  exports.isHeadphonesConnected = isHeadphonesConnected;
-
-  var _getSupportedPlatform101 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    supportedPlatforms: ['windows'],
-    getter: function getter() {
-      return _nativeInterface.default.isMouseConnected();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.isMouseConnectedSync();
-    },
-    defaultValue: false
-  }),
-      _getSupportedPlatform102 = (0, _slicedToArray2.default)(_getSupportedPlatform101, 2),
-      isMouseConnected = _getSupportedPlatform102[0],
-      isMouseConnectedSync = _getSupportedPlatform102[1];
-
-  exports.isMouseConnectedSync = isMouseConnectedSync;
-  exports.isMouseConnected = isMouseConnected;
-
-  var _getSupportedPlatform103 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    supportedPlatforms: ['windows'],
-    getter: function getter() {
-      return _nativeInterface.default.isKeyboardConnected();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.isKeyboardConnectedSync();
-    },
-    defaultValue: false
-  }),
-      _getSupportedPlatform104 = (0, _slicedToArray2.default)(_getSupportedPlatform103, 2),
-      isKeyboardConnected = _getSupportedPlatform104[0],
-      isKeyboardConnectedSync = _getSupportedPlatform104[1];
-
-  exports.isKeyboardConnectedSync = isKeyboardConnectedSync;
-  exports.isKeyboardConnected = isKeyboardConnected;
-
-  var isTabletMode = function isTabletMode() {
-    return (0, _supportedPlatformInfo.getSupportedPlatformInfoAsync)({
-      supportedPlatforms: ['windows'],
-      getter: function getter() {
-        return _nativeInterface.default.isTabletMode();
-      },
-      defaultValue: false
-    });
-  };
-
-  exports.isTabletMode = isTabletMode;
-
-  var _getSupportedPlatform105 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    supportedPlatforms: ['android', 'ios'],
-    getter: function getter() {
-      return _nativeInterface.default.getAvailableLocationProviders();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getAvailableLocationProvidersSync();
-    },
-    defaultValue: {}
-  }),
-      _getSupportedPlatform106 = (0, _slicedToArray2.default)(_getSupportedPlatform105, 2),
-      getAvailableLocationProviders = _getSupportedPlatform106[0],
-      getAvailableLocationProvidersSync = _getSupportedPlatform106[1];
-
-  exports.getAvailableLocationProvidersSync = getAvailableLocationProvidersSync;
-  exports.getAvailableLocationProviders = getAvailableLocationProviders;
-
-  var _getSupportedPlatform107 = (0, _supportedPlatformInfo.getSupportedPlatformInfoFunctions)({
-    supportedPlatforms: ['ios'],
-    getter: function getter() {
-      return _nativeInterface.default.getBrightness();
-    },
-    syncGetter: function syncGetter() {
-      return _nativeInterface.default.getBrightnessSync();
-    },
-    defaultValue: -1
-  }),
-      _getSupportedPlatform108 = (0, _slicedToArray2.default)(_getSupportedPlatform107, 2),
-      getBrightness = _getSupportedPlatform108[0],
-      getBrightnessSync = _getSupportedPlatform108[1];
-
-  exports.getBrightnessSync = getBrightnessSync;
-  exports.getBrightness = getBrightness;
-
-  function getDeviceToken() {
-    return _getDeviceToken.apply(this, arguments);
-  }
-
-  function _getDeviceToken() {
-    _getDeviceToken = (0, _asyncToGenerator2.default)(function* () {
-      if (_reactNative.Platform.OS === 'ios') {
-        return _nativeInterface.default.getDeviceToken();
-      }
-
-      return 'unknown';
-    });
-    return _getDeviceToken.apply(this, arguments);
-  }
-
-  var deviceInfoEmitter = new _reactNative.NativeEventEmitter(_reactNative.NativeModules.RNDeviceInfo);
-
-  function useBatteryLevel() {
-    var _useState = (0, _react.useState)(null),
-        _useState2 = (0, _slicedToArray2.default)(_useState, 2),
-        batteryLevel = _useState2[0],
-        setBatteryLevel = _useState2[1];
-
-    (0, _react.useEffect)(function () {
-      var setInitialValue = function () {
-        var _ref = (0, _asyncToGenerator2.default)(function* () {
-          var initialValue = yield getBatteryLevel();
-          setBatteryLevel(initialValue);
-        });
-
-        return function setInitialValue() {
-          return _ref.apply(this, arguments);
-        };
-      }();
-
-      var onChange = function onChange(level) {
-        setBatteryLevel(level);
-      };
-
-      setInitialValue();
-      var subscription = deviceInfoEmitter.addListener('RNDeviceInfo_batteryLevelDidChange', onChange);
-      return function () {
-        return subscription.remove();
-      };
-    }, []);
-    return batteryLevel;
-  }
-
-  function useBatteryLevelIsLow() {
-    var _useState3 = (0, _react.useState)(null),
-        _useState4 = (0, _slicedToArray2.default)(_useState3, 2),
-        batteryLevelIsLow = _useState4[0],
-        setBatteryLevelIsLow = _useState4[1];
-
-    (0, _react.useEffect)(function () {
-      var setInitialValue = function () {
-        var _ref2 = (0, _asyncToGenerator2.default)(function* () {
-          var initialValue = yield getBatteryLevel();
-          isLowBatteryLevel(initialValue) && setBatteryLevelIsLow(initialValue);
-        });
-
-        return function setInitialValue() {
-          return _ref2.apply(this, arguments);
-        };
-      }();
-
-      setInitialValue();
-
-      var onChange = function onChange(level) {
-        setBatteryLevelIsLow(level);
-      };
-
-      var subscription = deviceInfoEmitter.addListener('RNDeviceInfo_batteryLevelIsLow', onChange);
-      return function () {
-        return subscription.remove();
-      };
-    }, []);
-    return batteryLevelIsLow;
-  }
-
-  function usePowerState() {
-    var _useState5 = (0, _react.useState)({}),
-        _useState6 = (0, _slicedToArray2.default)(_useState5, 2),
-        powerState = _useState6[0],
-        setPowerState = _useState6[1];
-
-    (0, _react.useEffect)(function () {
-      var setInitialValue = function () {
-        var _ref3 = (0, _asyncToGenerator2.default)(function* () {
-          var initialValue = yield getPowerState();
-          setPowerState(initialValue);
-        });
-
-        return function setInitialValue() {
-          return _ref3.apply(this, arguments);
-        };
-      }();
-
-      var onChange = function onChange(state) {
-        setPowerState(state);
-      };
-
-      setInitialValue();
-      var subscription = deviceInfoEmitter.addListener('RNDeviceInfo_powerStateDidChange', onChange);
-      return function () {
-        return subscription.remove();
-      };
-    }, []);
-    return powerState;
-  }
-
-  function useIsHeadphonesConnected() {
-    return (0, _asyncHookWrappers.useOnEvent)('RNDeviceInfo_headphoneConnectionDidChange', isHeadphonesConnected, false);
-  }
-
-  function useFirstInstallTime() {
-    return (0, _asyncHookWrappers.useOnMount)(getFirstInstallTime, -1);
-  }
-
-  function useDeviceName() {
-    return (0, _asyncHookWrappers.useOnMount)(getDeviceName, 'unknown');
-  }
-
-  function useHasSystemFeature(feature) {
-    var asyncGetter = (0, _react.useCallback)(function () {
-      return hasSystemFeature(feature);
-    }, [feature]);
-    return (0, _asyncHookWrappers.useOnMount)(asyncGetter, false);
-  }
-
-  function useIsEmulator() {
-    return (0, _asyncHookWrappers.useOnMount)(isEmulator, false);
-  }
-
-  function useManufacturer() {
-    return (0, _asyncHookWrappers.useOnMount)(getManufacturer, 'unknown');
-  }
-
-  function useBrightness() {
-    var _useState7 = (0, _react.useState)(null),
-        _useState8 = (0, _slicedToArray2.default)(_useState7, 2),
-        brightness = _useState8[0],
-        setBrightness = _useState8[1];
-
-    (0, _react.useEffect)(function () {
-      var setInitialValue = function () {
-        var _ref4 = (0, _asyncToGenerator2.default)(function* () {
-          var initialValue = yield getBrightness();
-          setBrightness(initialValue);
-        });
-
-        return function setInitialValue() {
-          return _ref4.apply(this, arguments);
-        };
-      }();
-
-      var onChange = function onChange(value) {
-        setBrightness(value);
-      };
-
-      setInitialValue();
-      var subscription = deviceInfoEmitter.addListener('RNDeviceInfo_brightnessDidChange', onChange);
-      return function () {
-        return subscription.remove();
-      };
-    }, []);
-    return brightness;
-  }
-
-  var deviceInfoModule = {
-    getAndroidId: getAndroidId,
-    getAndroidIdSync: getAndroidIdSync,
-    getApiLevel: getApiLevel,
-    getApiLevelSync: getApiLevelSync,
-    getApplicationName: getApplicationName,
-    getAvailableLocationProviders: getAvailableLocationProviders,
-    getAvailableLocationProvidersSync: getAvailableLocationProvidersSync,
-    getBaseOs: getBaseOs,
-    getBaseOsSync: getBaseOsSync,
-    getBatteryLevel: getBatteryLevel,
-    getBatteryLevelSync: getBatteryLevelSync,
-    getBootloader: getBootloader,
-    getBootloaderSync: getBootloaderSync,
-    getBrand: getBrand,
-    getBuildId: getBuildId,
-    getBuildIdSync: getBuildIdSync,
-    getBuildNumber: getBuildNumber,
-    getBundleId: getBundleId,
-    getCarrier: getCarrier,
-    getCarrierSync: getCarrierSync,
-    getCodename: getCodename,
-    getCodenameSync: getCodenameSync,
-    getDevice: getDevice,
-    getDeviceId: getDeviceId,
-    getDeviceName: getDeviceName,
-    getDeviceNameSync: getDeviceNameSync,
-    getDeviceSync: getDeviceSync,
-    getDeviceToken: getDeviceToken,
-    getDeviceType: getDeviceType,
-    getDisplay: getDisplay,
-    getDisplaySync: getDisplaySync,
-    getFingerprint: getFingerprint,
-    getFingerprintSync: getFingerprintSync,
-    getFirstInstallTime: getFirstInstallTime,
-    getFirstInstallTimeSync: getFirstInstallTimeSync,
-    getFontScale: getFontScale,
-    getFontScaleSync: getFontScaleSync,
-    getFreeDiskStorage: getFreeDiskStorage,
-    getFreeDiskStorageOld: getFreeDiskStorageOld,
-    getFreeDiskStorageSync: getFreeDiskStorageSync,
-    getFreeDiskStorageOldSync: getFreeDiskStorageOldSync,
-    getHardware: getHardware,
-    getHardwareSync: getHardwareSync,
-    getHost: getHost,
-    getHostSync: getHostSync,
-    getIncremental: getIncremental,
-    getIncrementalSync: getIncrementalSync,
-    getInstallerPackageName: getInstallerPackageName,
-    getInstallerPackageNameSync: getInstallerPackageNameSync,
-    getInstallReferrer: getInstallReferrer,
-    getInstallReferrerSync: getInstallReferrerSync,
-    getInstanceId: getInstanceId,
-    getInstanceIdSync: getInstanceIdSync,
-    getIpAddress: getIpAddress,
-    getIpAddressSync: getIpAddressSync,
-    getLastUpdateTime: getLastUpdateTime,
-    getLastUpdateTimeSync: getLastUpdateTimeSync,
-    getMacAddress: getMacAddress,
-    getMacAddressSync: getMacAddressSync,
-    getManufacturer: getManufacturer,
-    getManufacturerSync: getManufacturerSync,
-    getMaxMemory: getMaxMemory,
-    getMaxMemorySync: getMaxMemorySync,
-    getModel: getModel,
-    getPhoneNumber: getPhoneNumber,
-    getPhoneNumberSync: getPhoneNumberSync,
-    getPowerState: getPowerState,
-    getPowerStateSync: getPowerStateSync,
-    getPreviewSdkInt: getPreviewSdkInt,
-    getPreviewSdkIntSync: getPreviewSdkIntSync,
-    getProduct: getProduct,
-    getProductSync: getProductSync,
-    getReadableVersion: getReadableVersion,
-    getSecurityPatch: getSecurityPatch,
-    getSecurityPatchSync: getSecurityPatchSync,
-    getSerialNumber: getSerialNumber,
-    getSerialNumberSync: getSerialNumberSync,
-    getSystemAvailableFeatures: getSystemAvailableFeatures,
-    getSystemAvailableFeaturesSync: getSystemAvailableFeaturesSync,
-    getSystemName: getSystemName,
-    getSystemVersion: getSystemVersion,
-    getTags: getTags,
-    getTagsSync: getTagsSync,
-    getTotalDiskCapacity: getTotalDiskCapacity,
-    getTotalDiskCapacityOld: getTotalDiskCapacityOld,
-    getTotalDiskCapacitySync: getTotalDiskCapacitySync,
-    getTotalDiskCapacityOldSync: getTotalDiskCapacityOldSync,
-    getTotalMemory: getTotalMemory,
-    getTotalMemorySync: getTotalMemorySync,
-    getType: getType,
-    getTypeSync: getTypeSync,
-    getUniqueId: getUniqueId,
-    getUniqueIdSync: getUniqueIdSync,
-    getUsedMemory: getUsedMemory,
-    getUsedMemorySync: getUsedMemorySync,
-    getUserAgent: getUserAgent,
-    getUserAgentSync: getUserAgentSync,
-    getVersion: getVersion,
-    getBrightness: getBrightness,
-    getBrightnessSync: getBrightnessSync,
-    hasGms: hasGms,
-    hasGmsSync: hasGmsSync,
-    hasHms: hasHms,
-    hasHmsSync: hasHmsSync,
-    hasNotch: hasNotch,
-    hasDynamicIsland: hasDynamicIsland,
-    hasSystemFeature: hasSystemFeature,
-    hasSystemFeatureSync: hasSystemFeatureSync,
-    isAirplaneMode: isAirplaneMode,
-    isAirplaneModeSync: isAirplaneModeSync,
-    isBatteryCharging: isBatteryCharging,
-    isBatteryChargingSync: isBatteryChargingSync,
-    isCameraPresent: isCameraPresent,
-    isCameraPresentSync: isCameraPresentSync,
-    isEmulator: isEmulator,
-    isEmulatorSync: isEmulatorSync,
-    isHeadphonesConnected: isHeadphonesConnected,
-    isHeadphonesConnectedSync: isHeadphonesConnectedSync,
-    isLandscape: isLandscape,
-    isLandscapeSync: isLandscapeSync,
-    isLocationEnabled: isLocationEnabled,
-    isLocationEnabledSync: isLocationEnabledSync,
-    isPinOrFingerprintSet: isPinOrFingerprintSet,
-    isPinOrFingerprintSetSync: isPinOrFingerprintSetSync,
-    isMouseConnected: isMouseConnected,
-    isMouseConnectedSync: isMouseConnectedSync,
-    isKeyboardConnected: isKeyboardConnected,
-    isKeyboardConnectedSync: isKeyboardConnectedSync,
-    isTabletMode: isTabletMode,
-    isTablet: isTablet,
-    supported32BitAbis: supported32BitAbis,
-    supported32BitAbisSync: supported32BitAbisSync,
-    supported64BitAbis: supported64BitAbis,
-    supported64BitAbisSync: supported64BitAbisSync,
-    supportedAbis: supportedAbis,
-    supportedAbisSync: supportedAbisSync,
-    syncUniqueId: syncUniqueId,
-    useBatteryLevel: useBatteryLevel,
-    useBatteryLevelIsLow: useBatteryLevelIsLow,
-    useDeviceName: useDeviceName,
-    useFirstInstallTime: useFirstInstallTime,
-    useHasSystemFeature: useHasSystemFeature,
-    useIsEmulator: useIsEmulator,
-    usePowerState: usePowerState,
-    useManufacturer: useManufacturer,
-    useIsHeadphonesConnected: useIsHeadphonesConnected,
-    useBrightness: useBrightness
-  };
-  var _default = deviceInfoModule;
-  exports.default = _default;
-},376,[7,268,44,1,3,377,378,379,380,382]);
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.deviceInfoEmitter = undefined;
-  exports.useOnEvent = useOnEvent;
-  exports.useOnMount = useOnMount;
-
-  var _asyncToGenerator2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1]));
-
-  var _slicedToArray2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2]));
-
-  var _react = _$$_REQUIRE(_dependencyMap[3]);
-
-  var _reactNative = _$$_REQUIRE(_dependencyMap[4]);
-
-  function useOnMount(asyncGetter, initialResult) {
-    var _useState = (0, _react.useState)({
-      loading: true,
-      result: initialResult
-    }),
-        _useState2 = (0, _slicedToArray2.default)(_useState, 2),
-        response = _useState2[0],
-        setResponse = _useState2[1];
-
-    (0, _react.useEffect)(function () {
-      var getAsync = function () {
-        var _ref = (0, _asyncToGenerator2.default)(function* () {
-          var result = yield asyncGetter();
-          setResponse({
-            loading: false,
-            result: result
-          });
-        });
-
-        return function getAsync() {
-          return _ref.apply(this, arguments);
-        };
-      }();
-
-      getAsync();
-    }, [asyncGetter]);
-    return response;
-  }
-
-  var deviceInfoEmitter = new _reactNative.NativeEventEmitter(_reactNative.NativeModules.RNDeviceInfo);
-  exports.deviceInfoEmitter = deviceInfoEmitter;
-
-  function useOnEvent(eventName, initialValueAsyncGetter, defaultValue) {
-    var _useOnMount = useOnMount(initialValueAsyncGetter, defaultValue),
-        loading = _useOnMount.loading,
-        initialResult = _useOnMount.result;
-
-    var _useState3 = (0, _react.useState)(defaultValue),
-        _useState4 = (0, _slicedToArray2.default)(_useState3, 2),
-        result = _useState4[0],
-        setResult = _useState4[1];
-
-    (0, _react.useEffect)(function () {
-      setResult(initialResult);
-    }, [initialResult]);
-    (0, _react.useEffect)(function () {
-      var subscription = deviceInfoEmitter.addListener(eventName, setResult);
-      return function () {
-        return subscription.remove();
-      };
-    }, [eventName]);
-    return {
-      loading: loading,
-      result: result
-    };
-  }
-},377,[7,268,44,1,3]);
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = undefined;
-  var devicesWithDynamicIsland = [{
-    brand: 'Apple',
-    model: 'iPhone 14 Pro'
-  }, {
-    brand: 'Apple',
-    model: 'iPhone 14 Pro Max'
-  }];
-  var _default = devicesWithDynamicIsland;
-  exports.default = _default;
-},378,[]);
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = undefined;
-  var devicesWithNotch = [{
-    brand: 'Apple',
-    model: 'iPhone 14'
-  }, {
-    brand: 'Apple',
-    model: 'iPhone 14 Plus'
-  }, {
-    brand: 'Apple',
-    model: 'iPhone 14 Pro'
-  }, {
-    brand: 'Apple',
-    model: 'iPhone 14 Pro Max'
-  }, {
-    brand: 'Apple',
-    model: 'iPhone 13 mini'
-  }, {
-    brand: 'Apple',
-    model: 'iPhone 13'
-  }, {
-    brand: 'Apple',
-    model: 'iPhone 13 Pro'
-  }, {
-    brand: 'Apple',
-    model: 'iPhone 13 Pro Max'
-  }, {
-    brand: 'Apple',
-    model: 'iPhone 12 mini'
-  }, {
-    brand: 'Apple',
-    model: 'iPhone 12'
-  }, {
-    brand: 'Apple',
-    model: 'iPhone 12 Pro'
-  }, {
-    brand: 'Apple',
-    model: 'iPhone 12 Pro Max'
-  }, {
-    brand: 'Apple',
-    model: 'iPhone 11'
-  }, {
-    brand: 'Apple',
-    model: 'iPhone 11 Pro'
-  }, {
-    brand: 'Apple',
-    model: 'iPhone 11 Pro Max'
-  }, {
-    brand: 'Apple',
-    model: 'iPhone X'
-  }, {
-    brand: 'Apple',
-    model: 'iPhone XS'
-  }, {
-    brand: 'Apple',
-    model: 'iPhone XS Max'
-  }, {
-    brand: 'Apple',
-    model: 'iPhone XR'
-  }, {
-    brand: 'Asus',
-    model: 'ZenFone 5'
-  }, {
-    brand: 'Asus',
-    model: 'ZenFone 5z'
-  }, {
-    brand: 'google',
-    model: 'Pixel 3 XL'
-  }, {
-    brand: 'google',
-    model: 'Pixel 4a'
-  }, {
-    brand: 'Huawei',
-    model: 'P20'
-  }, {
-    brand: 'Huawei',
-    model: 'P20 Plus'
-  }, {
-    brand: 'Huawei',
-    model: 'P20 Lite'
-  }, {
-    brand: 'Huawei',
-    model: 'ANE-LX1'
-  }, {
-    brand: 'Huawei',
-    model: 'INE-LX1'
-  }, {
-    brand: 'Huawei',
-    model: 'POT-LX1'
-  }, {
-    brand: 'Huawei',
-    model: 'Honor Play'
-  }, {
-    brand: 'Huawei',
-    model: 'Honor 10'
-  }, {
-    brand: 'Huawei',
-    model: 'Mate 20 Lite'
-  }, {
-    brand: 'Huawei',
-    model: 'Mate 20 Pro'
-  }, {
-    brand: 'Huawei',
-    model: 'ELE-L29'
-  }, {
-    brand: 'Huawei',
-    model: 'P30 Lite'
-  }, {
-    brand: 'Huawei',
-    model: 'P30 Pro'
-  }, {
-    brand: 'Huawei',
-    model: 'JNY-LX1'
-  }, {
-    brand: 'Huawei',
-    model: 'Nova 3'
-  }, {
-    brand: 'Huawei',
-    model: 'Nova 3i'
-  }, {
-    brand: 'Leagoo',
-    model: 'S9'
-  }, {
-    brand: 'LG',
-    model: 'G7'
-  }, {
-    brand: 'LG',
-    model: 'G7 ThinQ'
-  }, {
-    brand: 'LG',
-    model: 'G7+ ThinQ'
-  }, {
-    brand: 'LG',
-    model: 'LM-Q910'
-  }, {
-    brand: 'LG',
-    model: 'LM-G710'
-  }, {
-    brand: 'LG',
-    model: 'LM-V405'
-  }, {
-    brand: 'Motorola',
-    model: 'Moto g7 Play'
-  }, {
-    brand: 'Motorola',
-    model: 'Moto g7 Power'
-  }, {
-    brand: 'Motorola',
-    model: 'One'
-  }, {
-    brand: 'Motorola',
-    model: 'Motorola One Vision'
-  }, {
-    brand: 'Nokia',
-    model: '5.1 Plus'
-  }, {
-    brand: 'Nokia',
-    model: 'Nokia 6.1 Plus'
-  }, {
-    brand: 'Nokia',
-    model: '7.1'
-  }, {
-    brand: 'Nokia',
-    model: '8.1'
-  }, {
-    brand: 'OnePlus',
-    model: '6'
-  }, {
-    brand: 'OnePlus',
-    model: 'A6003'
-  }, {
-    brand: 'ONEPLUS',
-    model: 'A6000'
-  }, {
-    brand: 'OnePlus',
-    model: 'OnePlus A6003'
-  }, {
-    brand: 'OnePlus',
-    model: 'ONEPLUS A6010'
-  }, {
-    brand: 'OnePlus',
-    model: 'ONEPLUS A6013'
-  }, {
-    brand: 'OnePlus',
-    model: 'ONEPLUS A6000'
-  }, {
-    brand: 'Oppo',
-    model: 'R15'
-  }, {
-    brand: 'Oppo',
-    model: 'R15 Pro'
-  }, {
-    brand: 'Oppo',
-    model: 'F7'
-  }, {
-    brand: 'Oukitel',
-    model: 'U18'
-  }, {
-    brand: 'Redmi',
-    model: 'M2004J19C'
-  }, {
-    brand: 'Sharp',
-    model: 'Aquos S3'
-  }, {
-    brand: 'Vivo',
-    model: 'V9'
-  }, {
-    brand: 'Vivo',
-    model: 'X21'
-  }, {
-    brand: 'Vivo',
-    model: 'X21 UD'
-  }, {
-    brand: 'xiaomi',
-    model: 'MI 8'
-  }, {
-    brand: 'xiaomi',
-    model: 'MI 8 Explorer Edition'
-  }, {
-    brand: 'xiaomi',
-    model: 'MI 8 SE'
-  }, {
-    brand: 'xiaomi',
-    model: 'MI 8 UD'
-  }, {
-    brand: 'xiaomi',
-    model: 'MI 8 Lite'
-  }, {
-    brand: 'xiaomi',
-    model: 'Mi 9'
-  }, {
-    brand: 'xiaomi',
-    model: 'POCO F1'
-  }, {
-    brand: 'xiaomi',
-    model: 'POCOPHONE F1'
-  }, {
-    brand: 'xiaomi',
-    model: 'Redmi 6 Pro'
-  }, {
-    brand: 'xiaomi',
-    model: 'Redmi Note 7'
-  }, {
-    brand: 'xiaomi',
-    model: 'Redmi 7'
-  }, {
-    brand: 'xiaomi',
-    model: 'Redmi Note 8'
-  }, {
-    brand: 'xiaomi',
-    model: 'Redmi Note 8 Pro'
-  }, {
-    brand: 'xiaomi',
-    model: 'Mi A2 Lite'
-  }, {
-    brand: 'Blackview',
-    model: 'A30'
-  }, {
-    brand: 'Samsung',
-    model: 'SM-A217F'
-  }, {
-    brand: 'Samsung',
-    model: 'SM-A715F'
-  }];
-  var _default = devicesWithNotch;
-  exports.default = _default;
-},379,[]);
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = undefined;
-
-  var _reactNative = _$$_REQUIRE(_dependencyMap[0]);
-
-  var RNDeviceInfo = _reactNative.NativeModules.RNDeviceInfo;
-
-  if (_reactNative.Platform.OS === 'web' || _reactNative.Platform.OS === 'dom') {
-    RNDeviceInfo = _$$_REQUIRE(_dependencyMap[1]);
-  }
-
-  if (!RNDeviceInfo) {
-    if (_reactNative.Platform.OS === 'android' || _reactNative.Platform.OS === 'ios' || _reactNative.Platform.OS === 'web' || _reactNative.Platform.OS === 'dom') {
-      throw new Error("react-native-device-info: NativeModule.RNDeviceInfo is null. To fix this issue try these steps:\n  \u2022 For react-native <= 0.59: Run `react-native link react-native-device-info` in the project root.\n  \u2022 Rebuild and re-run the app.\n  \u2022 If you are using CocoaPods on iOS, run `pod install` in the `ios` directory and then rebuild and re-run the app. You may also need to re-open Xcode to get the new pods.\n  If none of these fix the issue, please open an issue on the Github repository: https://github.com/react-native-device-info/react-native-device-info");
-    }
-  }
-
-  var _default = RNDeviceInfo;
-  exports.default = _default;
-},380,[3,381]);
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.isLocationEnabledSync = exports.isLocationEnabled = exports.isCameraPresentSync = exports.isCameraPresent = exports.isBatteryChargingSync = exports.isBatteryCharging = exports.isAirplaneModeSync = exports.isAirplaneMode = exports.getUserAgentSync = exports.getUserAgent = exports.getUsedMemorySync = exports.getUsedMemory = exports.getTotalMemorySync = exports.getTotalMemory = exports.getTotalDiskCapacitySync = exports.getTotalDiskCapacity = exports.getPowerStateSync = exports.getPowerState = exports.getMaxMemorySync = exports.getMaxMemory = exports.getInstallReferrerSync = exports.getInstallReferrer = exports.getFreeDiskStorageSync = exports.getFreeDiskStorage = exports.getBatteryLevelSync = exports.getBatteryLevel = exports.getBaseOs = undefined;
-
-  var _asyncToGenerator2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1]));
-
-  var _reactNative = _$$_REQUIRE(_dependencyMap[2]);
-
-  var deviceInfoEmitter = new _reactNative.NativeEventEmitter(_reactNative.NativeModules.RNDeviceInfo);
-  var batteryCharging = false,
-      batteryLevel = -1,
-      powerState = {};
-
-  var _readPowerState = function _readPowerState(battery) {
-    var level = battery.level,
-        charging = battery.charging,
-        chargingtime = battery.chargingtime,
-        dischargingtime = battery.dischargingtime;
-    return {
-      batteryLevel: level,
-      lowPowerMode: false,
-      batteryState: level === 1 ? 'full' : charging ? 'charging' : 'unplugged',
-      chargingtime: chargingtime,
-      dischargingtime: dischargingtime
-    };
-  };
-
-  var getMaxMemorySync = function getMaxMemorySync() {
-    if (window.performance && window.performance.memory) {
-      return window.performance.memory.jsHeapSizeLimit;
-    }
-
-    return -1;
-  };
-
-  exports.getMaxMemorySync = getMaxMemorySync;
-
-  var getInstallReferrerSync = function getInstallReferrerSync() {
-    return document.referrer;
-  };
-
-  exports.getInstallReferrerSync = getInstallReferrerSync;
-
-  var isAirplaneModeSync = function isAirplaneModeSync() {
-    return !!navigator.onLine;
-  };
-
-  exports.isAirplaneModeSync = isAirplaneModeSync;
-
-  var getUserAgentSync = function getUserAgentSync() {
-    return window.navigator.userAgent;
-  };
-
-  exports.getUserAgentSync = getUserAgentSync;
-
-  var isLocationEnabledSync = function isLocationEnabledSync() {
-    return !!navigator.geolocation;
-  };
-
-  exports.isLocationEnabledSync = isLocationEnabledSync;
-
-  var getTotalMemorySync = function getTotalMemorySync() {
-    if (navigator.deviceMemory) {
-      return navigator.deviceMemory * 1000000000;
-    }
-
-    return -1;
-  };
-
-  exports.getTotalMemorySync = getTotalMemorySync;
-
-  var getUsedMemorySync = function getUsedMemorySync() {
-    if (window.performance && window.performance.memory) {
-      return window.performance.memory.usedJSHeapSize;
-    }
-
-    return -1;
-  };
-
-  exports.getUsedMemorySync = getUsedMemorySync;
-
-  var init = function init() {
-    if (typeof navigator === 'undefined' || !navigator.getBattery) return;
-    navigator.getBattery().then(function (battery) {
-      batteryCharging = battery.charging;
-      battery.addEventListener('chargingchange', function () {
-        var charging = battery.charging;
-        batteryCharging = charging;
-        powerState = _readPowerState(battery);
-        deviceInfoEmitter.emit('RNDeviceInfo_powerStateDidChange', powerState);
-      });
-      battery.addEventListener('levelchange', function () {
-        var level = battery.level;
-        batteryLevel = level;
-        powerState = _readPowerState(battery);
-        deviceInfoEmitter.emit('RNDeviceInfo_batteryLevelDidChange', level);
-
-        if (level < 0.2) {
-          deviceInfoEmitter.emit('RNDeviceInfo_batteryLevelIsLow', level);
-        }
-      });
-    });
-  };
-
-  var getBaseOsSync = function getBaseOsSync() {
-    var userAgent = window.navigator.userAgent,
-        platform = window.navigator.platform,
-        macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
-        windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
-        iosPlatforms = ['iPhone', 'iPad', 'iPod'];
-    var os = platform;
-
-    if (macosPlatforms.indexOf(platform) !== -1) {
-      os = 'Mac OS';
-    } else if (iosPlatforms.indexOf(platform) !== -1) {
-      os = 'iOS';
-    } else if (windowsPlatforms.indexOf(platform) !== -1) {
-      os = 'Windows';
-    } else if (/Android/.test(userAgent)) {
-      os = 'Android';
-    } else if (!os && /Linux/.test(platform)) {
-      os = 'Linux';
-    }
-
-    return os;
-  };
-
-  init();
-
-  var getInstallReferrer = function () {
-    var _ref = (0, _asyncToGenerator2.default)(function* () {
-      return getInstallReferrerSync();
-    });
-
-    return function getInstallReferrer() {
-      return _ref.apply(this, arguments);
-    };
-  }();
-
-  exports.getInstallReferrer = getInstallReferrer;
-
-  var getUserAgent = function () {
-    var _ref2 = (0, _asyncToGenerator2.default)(function* () {
-      return getUserAgentSync();
-    });
-
-    return function getUserAgent() {
-      return _ref2.apply(this, arguments);
-    };
-  }();
-
-  exports.getUserAgent = getUserAgent;
-
-  var isBatteryCharging = function () {
-    var _ref3 = (0, _asyncToGenerator2.default)(function* () {
-      if (navigator.getBattery) {
-        return navigator.getBattery().then(function (battery) {
-          return battery.charging;
-        });
-      }
-
-      return false;
-    });
-
-    return function isBatteryCharging() {
-      return _ref3.apply(this, arguments);
-    };
-  }();
-
-  exports.isBatteryCharging = isBatteryCharging;
-
-  var isBatteryChargingSync = function isBatteryChargingSync() {
-    return batteryCharging;
-  };
-
-  exports.isBatteryChargingSync = isBatteryChargingSync;
-
-  var isCameraPresent = function () {
-    var _ref4 = (0, _asyncToGenerator2.default)(function* () {
-      if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
-        return navigator.mediaDevices.enumerateDevices().then(function (devices) {
-          return !!devices.find(function (d) {
-            return d.kind === 'videoinput';
-          });
-        });
-      }
-
-      return false;
-    });
-
-    return function isCameraPresent() {
-      return _ref4.apply(this, arguments);
-    };
-  }();
-
-  exports.isCameraPresent = isCameraPresent;
-
-  var isCameraPresentSync = function isCameraPresentSync() {
-    console.log('[react-native-device-info] isCameraPresentSync not supported - please use isCameraPresent');
-    return false;
-  };
-
-  exports.isCameraPresentSync = isCameraPresentSync;
-
-  var getBatteryLevel = function () {
-    var _ref5 = (0, _asyncToGenerator2.default)(function* () {
-      if (navigator.getBattery) {
-        return navigator.getBattery().then(function (battery) {
-          return battery.level;
-        });
-      }
-
-      return -1;
-    });
-
-    return function getBatteryLevel() {
-      return _ref5.apply(this, arguments);
-    };
-  }();
-
-  exports.getBatteryLevel = getBatteryLevel;
-
-  var getBatteryLevelSync = function getBatteryLevelSync() {
-    return batteryLevel;
-  };
-
-  exports.getBatteryLevelSync = getBatteryLevelSync;
-
-  var isLocationEnabled = function () {
-    var _ref6 = (0, _asyncToGenerator2.default)(function* () {
-      return isLocationEnabledSync();
-    });
-
-    return function isLocationEnabled() {
-      return _ref6.apply(this, arguments);
-    };
-  }();
-
-  exports.isLocationEnabled = isLocationEnabled;
-
-  var isAirplaneMode = function () {
-    var _ref7 = (0, _asyncToGenerator2.default)(function* () {
-      return isAirplaneModeSync();
-    });
-
-    return function isAirplaneMode() {
-      return _ref7.apply(this, arguments);
-    };
-  }();
-
-  exports.isAirplaneMode = isAirplaneMode;
-
-  var getBaseOs = function () {
-    var _ref8 = (0, _asyncToGenerator2.default)(function* () {
-      return getBaseOsSync();
-    });
-
-    return function getBaseOs() {
-      return _ref8.apply(this, arguments);
-    };
-  }();
-
-  exports.getBaseOs = getBaseOs;
-
-  var getTotalDiskCapacity = function () {
-    var _ref9 = (0, _asyncToGenerator2.default)(function* () {
-      if (navigator.storage && navigator.storage.estimate) {
-        return navigator.storage.estimate().then(function (_ref10) {
-          var quota = _ref10.quota;
-          return quota;
-        });
-      }
-
-      return -1;
-    });
-
-    return function getTotalDiskCapacity() {
-      return _ref9.apply(this, arguments);
-    };
-  }();
-
-  exports.getTotalDiskCapacity = getTotalDiskCapacity;
-
-  var getTotalDiskCapacitySync = function getTotalDiskCapacitySync() {
-    console.log('[react-native-device-info] getTotalDiskCapacitySync not supported - please use getTotalDiskCapacity');
-    return -1;
-  };
-
-  exports.getTotalDiskCapacitySync = getTotalDiskCapacitySync;
-
-  var getFreeDiskStorage = function () {
-    var _ref11 = (0, _asyncToGenerator2.default)(function* () {
-      if (navigator.storage && navigator.storage.estimate) {
-        return navigator.storage.estimate().then(function (_ref12) {
-          var quota = _ref12.quota,
-              usage = _ref12.usage;
-          return quota - usage;
-        });
-      }
-
-      return -1;
-    });
-
-    return function getFreeDiskStorage() {
-      return _ref11.apply(this, arguments);
-    };
-  }();
-
-  exports.getFreeDiskStorage = getFreeDiskStorage;
-
-  var getFreeDiskStorageSync = function getFreeDiskStorageSync() {
-    console.log('[react-native-device-info] getFreeDiskStorageSync not supported - please use getFreeDiskStorage');
-    return -1;
-  };
-
-  exports.getFreeDiskStorageSync = getFreeDiskStorageSync;
-
-  var getMaxMemory = function () {
-    var _ref13 = (0, _asyncToGenerator2.default)(function* () {
-      return getMaxMemorySync();
-    });
-
-    return function getMaxMemory() {
-      return _ref13.apply(this, arguments);
-    };
-  }();
-
-  exports.getMaxMemory = getMaxMemory;
-
-  var getUsedMemory = function () {
-    var _ref14 = (0, _asyncToGenerator2.default)(function* () {
-      return getUsedMemorySync();
-    });
-
-    return function getUsedMemory() {
-      return _ref14.apply(this, arguments);
-    };
-  }();
-
-  exports.getUsedMemory = getUsedMemory;
-
-  var getTotalMemory = function () {
-    var _ref15 = (0, _asyncToGenerator2.default)(function* () {
-      return getTotalMemorySync();
-    });
-
-    return function getTotalMemory() {
-      return _ref15.apply(this, arguments);
-    };
-  }();
-
-  exports.getTotalMemory = getTotalMemory;
-
-  var getPowerState = function () {
-    var _ref16 = (0, _asyncToGenerator2.default)(function* () {
-      if (navigator.getBattery) {
-        return navigator.getBattery().then(function (battery) {
-          return _readPowerState(battery);
-        });
-      }
-
-      return {};
-    });
-
-    return function getPowerState() {
-      return _ref16.apply(this, arguments);
-    };
-  }();
-
-  exports.getPowerState = getPowerState;
-
-  var getPowerStateSync = function getPowerStateSync() {
-    return powerState;
-  };
-
-  exports.getPowerStateSync = getPowerStateSync;
-},381,[7,268,3]);
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.clearMemo = clearMemo;
-  exports.getSupportedPlatformInfoAsync = getSupportedPlatformInfoAsync;
-  exports.getSupportedPlatformInfoFunctions = getSupportedPlatformInfoFunctions;
-  exports.getSupportedPlatformInfoSync = getSupportedPlatformInfoSync;
-
-  var _objectWithoutProperties2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1]));
-
-  var _asyncToGenerator2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2]));
-
-  var _reactNative = _$$_REQUIRE(_dependencyMap[3]);
-
-  var _excluded = ["syncGetter"];
-  var memo = {};
-
-  function clearMemo() {
-    memo = {};
-  }
-
-  function getSupportedFunction(supportedPlatforms, getter, defaultGetter) {
-    var supportedMap = {};
-    supportedPlatforms.filter(function (key) {
-      return _reactNative.Platform.OS == key;
-    }).forEach(function (key) {
-      return supportedMap[key] = getter;
-    });
-    return _reactNative.Platform.select(Object.assign({}, supportedMap, {
-      default: defaultGetter
-    }));
-  }
-
-  function getSupportedPlatformInfoSync(_ref) {
-    var getter = _ref.getter,
-        supportedPlatforms = _ref.supportedPlatforms,
-        defaultValue = _ref.defaultValue,
-        memoKey = _ref.memoKey;
-
-    if (memoKey && memo[memoKey] != undefined) {
-      return memo[memoKey];
-    } else {
-      var output = getSupportedFunction(supportedPlatforms, getter, function () {
-        return defaultValue;
-      })();
-
-      if (memoKey) {
-        memo[memoKey] = output;
-      }
-
-      return output;
-    }
-  }
-
-  function getSupportedPlatformInfoAsync(_x) {
-    return _getSupportedPlatformInfoAsync.apply(this, arguments);
-  }
-
-  function _getSupportedPlatformInfoAsync() {
-    _getSupportedPlatformInfoAsync = (0, _asyncToGenerator2.default)(function* (_ref2) {
-      var getter = _ref2.getter,
-          supportedPlatforms = _ref2.supportedPlatforms,
-          defaultValue = _ref2.defaultValue,
-          memoKey = _ref2.memoKey;
-
-      if (memoKey && memo[memoKey] != undefined) {
-        return memo[memoKey];
-      } else {
-        var output = yield getSupportedFunction(supportedPlatforms, getter, function () {
-          return Promise.resolve(defaultValue);
-        })();
-
-        if (memoKey) {
-          memo[memoKey] = output;
-        }
-
-        return output;
-      }
-    });
-    return _getSupportedPlatformInfoAsync.apply(this, arguments);
-  }
-
-  function getSupportedPlatformInfoFunctions(_ref3) {
-    var syncGetter = _ref3.syncGetter,
-        asyncParams = (0, _objectWithoutProperties2.default)(_ref3, _excluded);
-    return [function () {
-      return getSupportedPlatformInfoAsync(asyncParams);
-    }, function () {
-      return getSupportedPlatformInfoSync(Object.assign({}, asyncParams, {
-        getter: syncGetter
-      }));
-    }];
-  }
-},382,[7,92,268,3]);
-__r(21);
+__r(27);
 __r(0);
- 
