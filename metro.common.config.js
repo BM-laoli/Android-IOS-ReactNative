@@ -1,9 +1,9 @@
-const path = require("path");
-const { hasBuildInfo, writeBuildInfo } = require("./utils");
+const { hasBuildInfo, writeBuildInfo, clean } = require("./build");
 
 function createModuleIdFactory() {
   const fileToIdMap = new Map();
   let nextId = 0;
+  clean("./config/bundleCommonInfo.json");
 
   // 如果是业务 模块请以 10000000 来自增命名
   return (path) => {
@@ -13,7 +13,12 @@ function createModuleIdFactory() {
       id = nextId++;
       fileToIdMap.set(path, id);
 
-      !hasBuildInfo(path) && writeBuildInfo(path, fileToIdMap.get(path));
+      !hasBuildInfo("./config/bundleCommonInfo.json", path) &&
+        writeBuildInfo(
+          "./config/bundleCommonInfo.json",
+          path,
+          fileToIdMap.get(path)
+        );
     }
 
     return id;

@@ -1,7 +1,14 @@
-const { hasBuildInfo, writeBuildInfo, getCacheFile } = require("./utils");
-
+const { hasBuildInfo, getCacheFile, isPwdFile } = require("./build");
+const bundleBuInfo = require("./config/bundleBuInfo.json");
 function postProcessModulesFilter(module) {
-  if (hasBuildInfo(module.path)) {
+  if (
+    module["path"].indexOf("__prelude__") >= 0 ||
+    module["path"].indexOf("polyfills") >= 0
+  ) {
+    return false;
+  }
+
+  if (hasBuildInfo("./config/bundleCommonInfo.json", module.path)) {
     return false;
   }
 
@@ -13,18 +20,22 @@ function createModuleIdFactory() {
   // 如果是业务 模块请以 10000000 来自增命名
   const fileToIdMap = new Map();
   let nextId = 10000000;
+  let isFirst = false;
 
   return (path) => {
-    if (Boolean(getCacheFile(path))) {
-      return getCacheFile(path);
+    if (Boolean(getCacheFile("./config/bundleCommonInfo.json", path))) {
+      return getCacheFile("./config/bundleCommonInfo.json", path);
+    }
+
+    if (!isFirst && isPwdFile(path)) {
+      nextId = bundleBuInfo[isPwdFile(path)];
+      isFirst = true;
     }
 
     let id = fileToIdMap.get(path);
-
     if (typeof id !== "number") {
       id = nextId++;
       fileToIdMap.set(path, id);
-      // !hasBuildInfo(path) && writeBuildInfo(path, fileToIdMap.get(path));
     }
     return id;
   };

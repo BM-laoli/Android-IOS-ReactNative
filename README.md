@@ -2,7 +2,7 @@
 
 为了实现和探究ReactNative的分包功能，以及构建一个 相对从性能上 和 技术上都比较ok 的项目架构 而存在的一个库。你可以把它理解为一个 App的技术架构 方案。
 
-# 重要细节
+# 重要细节（Android）
 
 ## 按照官方的教程踩坑的地方
 
@@ -135,6 +135,8 @@ react-native bundle --platform android --dev false --entry-file index.js --bundl
 
 ## 重点 拆包方案
 
+**要想完善拆包方案，就必须对包 和RN的运行原理有所了解**
+
 1.1 说到拆包我们先了解 “包” 是什么， 由 什么组成
 
    一个 包 bundle 说白了 就说 一些js 代码，只不过后缀叫 bundle ，它实际上是一些js 代码，只不过这些代码的运行 环境在RN 提供的环境 不是在浏览器，通过这些代码RN 引擎可以使用 Native 组件 渲染 出你想要的UI ，好 这就是 包 bundle。
@@ -180,14 +182,999 @@ yarn react-native bundle --platform android --dev false --entry-file ./RNDemo.js
 # 上面有几个参数 --minify false 不要混淆，--reset-cache 清理缓存 具体的可以看 @react-native-community/cli 源代码
  ```
 
+首先我们前面说过  个rn 的bundle 主要由三部分构成 （polyfills、defined、require ）
+
+先看第一部分 polyfills 它从第 1行 一直到 第 799 行
+
  ```js
+// 第一句话
+var __BUNDLE_START_TIME__=this.nativePerformanceNow?nativePerformanceNow():Date.now(),
+    __DEV__=false,
+    process=this.process||{},
+    __METRO_GLOBAL_PREFIX__='';
+    process.env=process.env||{};
+    process.env.NODE_ENV=process.env.NODE_ENV||"production";
+//可以看到 它定义了 运行时的基本环境变量 __BUNDLE_START_TIME__、__DEV__、__METRO_GLOBAL_PREFIX__..... 其作用是给RN 的Native 容器识别的 ，我们这里不深入，你只需要 知道没有这个 RN 的Native 容器识别会异常！ 报错闪退
+
+
+// 解析来 是三个闭包立即执行 函数 ，重点是第一个 它定义了 __r ,__d, 这两个函数 就说后面 模块定义 和 模块执行的关键函数
+global.__r = metroRequire;
+global[__METRO_GLOBAL_PREFIX__ + "__d"] = define;
+metroRequire.packModuleId = packModuleId;
+var modules = clear();
+function clear() {
+  modules = Object.create(null);
+  return modules;
+}
+var moduleDefinersBySegmentID = [];
+var definingSegmentByModuleID = new Map();
+
+// 下面的说 __r  的主要定义  
+ function metroRequire(moduleId) {
+    var moduleIdReallyIsNumber = moduleId;
+    var module = modules[moduleIdReallyIsNumber];
+    return module && module.isInitialized ? module.publicModule.exports : guardedLoadModule(moduleIdReallyIsNumber, module);
+  }
+  // 可以看到上述函数 的作用是 从 module（在下称它为 模块组册表 ）看看 是否已经初始化 了 ，如果是 就导出 （exports） 如果没有就 加载一次 （guardedLoadModule）
+
+  function guardedLoadModule(moduleId, module) {
+    if (!inGuard && global.ErrorUtils) {
+      inGuard = true;
+      var returnValue;
+
+      try {
+        returnValue = loadModuleImplementation(moduleId, module);
+      } catch (e) {
+        global.ErrorUtils.reportFatalError(e);
+      }
+
+      inGuard = false;
+      return returnValue;
+    } else {
+      return loadModuleImplementation(moduleId, module);
+    }
+  }
+  // 上述函数 最重要的事情 就是 执行 loadModuleImplementation 函数，传递 moduleId 和 module 
+
+
+  function loadModuleImplementation(moduleId, module) {
+    if (!module && moduleDefinersBySegmentID.length > 0) {
+      var _definingSegmentByMod;
+
+      var segmentId = (_definingSegmentByMod = definingSegmentByModuleID.get(moduleId)) !== null && _definingSegmentByMod !== undefined ? _definingSegmentByMod : 0;
+      var definer = moduleDefinersBySegmentID[segmentId];
+
+      if (definer != null) {
+        definer(moduleId);
+        module = modules[moduleId];
+        definingSegmentByModuleID.delete(moduleId);
+      }
+    }
+
+    var nativeRequire = global.nativeRequire;
+
+    if (!module && nativeRequire) {
+      var _unpackModuleId = unpackModuleId(moduleId),
+          _segmentId = _unpackModuleId.segmentId,
+          localId = _unpackModuleId.localId;
+
+      nativeRequire(localId, _segmentId);
+      module = modules[moduleId];
+    }
+
+    if (!module) {
+      throw unknownModuleError(moduleId);
+    }
+
+    if (module.hasError) {
+      throw moduleThrewError(moduleId, module.error);
+    }
+
+    module.isInitialized = true;
+    var _module = module,
+        factory = _module.factory,
+        dependencyMap = _module.dependencyMap;
+
+    try {
+      var moduleObject = module.publicModule;
+      moduleObject.id = moduleId;
+      factory(global, metroRequire, metroImportDefault, metroImportAll, moduleObject, moduleObject.exports, dependencyMap);
+      {
+        module.factory = undefined;
+        module.dependencyMap = undefined;
+      }
+      return moduleObject.exports;
+    } catch (e) {
+      module.hasError = true;
+      module.error = e;
+      module.isInitialized = false;
+      module.publicModule.exports = undefined;
+      throw e;
+    } finally {}
+  }
+// 上述 重要的函数就是  factory(global, metroRequire, metroImportDefault, metroImportAll, moduleObject, moduleObject.exports, dependencyMap); 。它复杂执行模块的代码 ，好了 到这里为止我们就够了，现在不用分析太深入，要特别注意的是 factory  不是 定义好的函数，而是传入 的函数 ！ factory = _module.factory, 具体点来说，它的执行是依据每个模块 的传入参数来执行的
+
+
+// 然后我们来看看 __d define  ，这个东西就比较的简单了
+function define(factory, moduleId, dependencyMap) {
+    if (modules[moduleId] != null) {
+      return;
+    }
+
+    var mod = {
+      dependencyMap: dependencyMap,
+      factory: factory,
+      hasError: false,
+      importedAll: EMPTY,
+      importedDefault: EMPTY,
+      isInitialized: false,
+      publicModule: {
+        exports: {}
+      }
+    };
+    modules[moduleId] = mod;
+  }
+  // 可以看到这个非常的简单，就是在 组册表（modules）中 添加 对应的 模块 
+
  ```
+
+我们再来看看 重要的 一个 module 的定义是如何实现的
+
+```js
+// 为了方便起见 我们直接找到  BU1 组件的声明  通过全局搜索🔍 我们找到了这个 定义，他在 802 -> 876 行
+
+// 我们先看他 __d 参数部分 ,它 的执行器 factory = fn，模块id = 0 ， 依赖模块的Map（别的依赖模块的 moduleId） = [1,2,3,4,6,9,10,12,179]
+__d(fn,0,[1,2,3,4,6,9,10,12,179]) 
+
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
+
+  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1]));
+
+  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2]));
+
+  var _inherits2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3]));
+
+  var _possibleConstructorReturn2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4]));
+
+  var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5]));
+
+// 下面三个模块 是 react -> react-native -> jsxRuntime 的重要模块 ！分包负责 核心加载 RN 以来，JSXruntime 解析 
+  var _react = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6]));
+
+  var _reactNative = _$$_REQUIRE(_dependencyMap[7]);
+
+  var _jsxRuntime = _$$_REQUIRE(_dependencyMap[8]);
+
+  function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
+
+  function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+// BU1 组件编译后的渲染就是 这一坨
+  var BU1 = function (_React$Component) {
+    (0, _inherits2.default)(BU1, _React$Component);
+
+    var _super = _createSuper(BU1);
+
+    function BU1() {
+      (0, _classCallCheck2.default)(this, BU1);
+      return _super.apply(this, arguments);
+    }
+
+    (0, _createClass2.default)(BU1, [{
+      key: "render",
+      value: function render() {
+        return (0, _jsxRuntime.jsx)(_reactNative.View, {
+          style: styles.container,
+          children: (0, _jsxRuntime.jsx)(_reactNative.Text, {
+            style: styles.hello,
+            children: "BU1 "
+          })
+        });
+      }
+    }]);
+    return BU1;
+  }(_react.default.Component);
+
+// 我们自己写的styles 函数
+  var styles = _reactNative.StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: "center",
+      height: 100
+    },
+    hello: {
+      fontSize: 20,
+      textAlign: "center",
+      margin: 10
+    },
+    imgView: {
+      width: "100%"
+    },
+    img: {
+      width: "100%",
+      height: 600
+    },
+    flatContainer: {
+      flex: 1
+    }
+  });
+
+// RNDemo 的 registerComponent 函数 
+  _reactNative.AppRegistry.registerComponent("Bu1Activity", function () {
+    return BU1;
+  });
+},0,[1,2,3,4,6,9,10,12,179]);
+
+```
+
+最后 就是RNDemo 的__r 执行了
+
+```js
+
+__r(27);
+// 27 这个模块id 我们可以去看看它在做什么
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  'use strict';
+
+  var start = Date.now();
+
+  _$$_REQUIRE(_dependencyMap[0]);
+
+  _$$_REQUIRE(_dependencyMap[1]);
+
+  _$$_REQUIRE(_dependencyMap[2]);
+
+  _$$_REQUIRE(_dependencyMap[3]);
+
+  _$$_REQUIRE(_dependencyMap[4]);
+
+  _$$_REQUIRE(_dependencyMap[5]);
+
+  _$$_REQUIRE(_dependencyMap[6]);
+
+  _$$_REQUIRE(_dependencyMap[7]);
+
+  _$$_REQUIRE(_dependencyMap[8]);
+
+  _$$_REQUIRE(_dependencyMap[9]);
+
+  _$$_REQUIRE(_dependencyMap[10]);
+
+  _$$_REQUIRE(_dependencyMap[11]); 
+
+  var GlobalPerformanceLogger = _$$_REQUIRE(_dependencyMap[12]);
+
+  GlobalPerformanceLogger.markPoint('initializeCore_start', GlobalPerformanceLogger.currentTimestamp() - (Date.now() - start));
+  GlobalPerformanceLogger.markPoint('initializeCore_end');
+},27,[28,29,30,32,56,62,65,70,101,105,106,116,78]);
+
+// 这个 模块，可以这样理解，它实际上是 在执行 initializeCore_start，初始化的工作 initializeCore，预载入一些系统 模块 
+
+
+// 直接就是执行 RNDemo 1 的模块代码了 具体的细节这里就不说了，核心就是 执行 模块中 的factory 代码 既__d 的第一个参数fn 
+__r(0);
+```
 
 1.3 从 刚才的demo 我们来看 metro 的打包工作流
 
-  ```js
+我们了解完 bundle 的生成之后，不妨陷入了一个思考 🤔  这些模块id 如何生成的呢？
 
-  ```
+  首先我们看命了行
+
+```ts
+yarn react-native bundle 
+     --platform android 
+     --dev false 
+     --entry-file ./RNDemo.js 
+     --bundle-output ./android/app/src/main/assets/rn.android.bundle 
+     --assets-dest ./android/app/src/main/res 
+     --minify false 
+     --reset-cache
+// 我们不妨找一下 react-native cli 的源码 它位于/node_modules/bin 下的目录（为什么是bin 目录？你对node 不熟悉，请去补充一下node 相关的知识） 
+
+'use strict';
+var cli = require('@react-native-community/cli');
+if (require.main === module) {
+  cli.run();
+}
+module.exports = cli;
+
+// 可以看到 实际上就是执行 @react-native-community/cli 里的 cli 
+// 然后我们去看看 官方，仓库源代码 仓库里有一份清晰的文档说明，详细的描述里 每个参数的作用 ，这里不详细的解了 
+
+// 我们找到源代码仓库 .cli/ 里面有一个bin bin 里有一个run ，run 函数定义在 index 中
+
+async function run() {
+  try {
+    await setupAndRun();
+  } catch (e) {
+    handleError(e);
+  }
+}
+
+async function setupAndRun() {
+  ....
+  // 重点函数  从 detachedCommands 添加更多的 command
+  for (const command of detachedCommands) {
+    attachCommand(command);
+  }
+  ....
+}
+
+// command 在 commands index 中 于是我们发现了 
+import {Command, DetachedCommand} from '@react-native-community/cli-types';
+import {commands as cleanCommands} from '@react-native-community/cli-clean';
+import {commands as doctorCommands} from '@react-native-community/cli-doctor';
+import {commands as configCommands} from '@react-native-community/cli-config';
+import {commands as metroCommands} from '@react-native-community/cli-plugin-metro';
+
+import profileHermes from '@react-native-community/cli-hermes';
+import upgrade from './upgrade/upgrade';
+import init from './init';
+
+export const projectCommands = [
+  ...metroCommands,
+  ...configCommands,
+  cleanCommands.clean,
+  doctorCommands.info,
+  upgrade,
+  profileHermes,
+] as Command[];
+
+export const detachedCommands = [
+  init,
+  doctorCommands.doctor,
+] as DetachedCommand[];
+
+
+// 我们找到 cli-plugin-metro 是我们需要的因为 在其文件夹下 我们发现了start 和bundle 两个command 
+// 解析来 我们找到了它的调用链
+import Server from 'metro/src/Server';
+
+ const server = new Server(config);
+
+  try {
+    const bundle = await output.build(server, requestOpts);
+
+    await output.save(bundle, args, logger.info);
+  }
+
+// 然后我们来看 Server  metro 仓库的 Server 中 
+class Server {
+ constructor(config, options) {
+    this._config = config;
+    this._serverOptions = options;
+
+    if (this._config.resetCache) {
+      this._config.cacheStores.forEach((store) => store.clear());
+
+      this._config.reporter.update({
+        type: "transform_cache_reset",
+      });
+    }
+
+    this._reporter = config.reporter;
+    this._logger = Logger;
+    this._platforms = new Set(this._config.resolver.platforms);
+    this._isEnded = false; // TODO(T34760917): These two properties should eventually be instantiated
+    // elsewhere and passed as parameters, since they are also needed by
+    // the HmrServer.
+    // The whole bundling/serializing logic should follow as well.
+
+    
+    this._createModuleId = config.serializer.createModuleIdFactory();
+    this._bundler = new IncrementalBundler(config, {
+      hasReducedPerformance: options && options.hasReducedPerformance,
+      watch: options ? options.watch : undefined,
+    });
+    this._nextBundleBuildID = 1;
+  }
+  //....
+
+    // 诶 重点代码 _createModuleId ，创建 ModuleId 但 它从那儿来呢？我们回到执行的地方 @react-native-community/的 cli-plugin-metro中 找到 buildBundle， 它就是命令 执行的地方
+// 这个函数下 loadMetroConfig 返回一个config 我们看看 loadMetroConfig 在干什么
+async function buildBundle(
+  args: CommandLineArgs,
+  ctx: Config,
+  output: typeof outputBundle = outputBundle,
+) {
+  const config = await loadMetroConfig(ctx, {
+    maxWorkers: args.maxWorkers,
+    resetCache: args.resetCache,
+    config: args.config,
+  });
+
+  return buildBundleWithConfig(args, config, output);
+}
+
+
+export default function loadMetroConfig(
+  ctx: ConfigLoadingContext,
+  options?: ConfigOptionsT,
+): Promise<MetroConfig> {
+  const defaultConfig = getDefaultConfig(ctx);
+  if (options && options.reporter) {
+    defaultConfig.reporter = options.reporter;
+  }
+  // 发现这里有一个 loadConfig
+  return loadConfig({cwd: ctx.root, ...options}, defaultConfig);
+}
+
+// loadConfig 从 metro 里 来 通过调用链我们锁定了 这行代码
+const getDefaultConfig = require('./defaults');
+
+// 它里面正好有一个
+
+const defaultCreateModuleIdFactory = require('metro/src/lib/createModuleIdFactory');
+
+// 然后我们先不阅读 具体内容，鉴于 爱metro 和 cli 中反复 跳 我们先理解metro 
+
+
+```
+
+首先我们在metro 官网找到了 相关的 build 构建流程 (<https://facebook.github.io/metro/docs/concepts>)。主要分下面几个阶段
+
+- Resolution （依据入口文件 解析，他于Transformation 是并行的 ）
+- Transformation （转换比如一些es6 的语法）
+- Serialization （序列化，实际上moduleId 就是这个理生成的）组合成单个 JavaScript 文件的模块包。
+
+```js
+// metro 官方文档（https://facebook.github.io/metro/docs/configuration#serializer-options）中提到了 Serialization 时期使用到的几个函数，其中我们要关注的点是“moduleId 如何生成的 ”
+
+// 具体的源代码在  ./node_modules/metro/src/lib/createModuleIdFactory.js 这里是metro 默认 的 moduleId 生成方式
+
+function createModuleIdFactory() {
+  const fileToIdMap = new Map();
+  let nextId = 0;
+  return (path) => {
+    let id = fileToIdMap.get(path);
+
+    if (typeof id !== "number") {
+      id = nextId++;
+      fileToIdMap.set(path, id);
+    }
+
+    return id;
+  };
+}
+
+// 不难看出 非常的简单 就是0 开始的 自增，后面我们分包的时候 需要手动的定制一些 moduleId 要不然 运行的时候 会导致 模块的依赖出现问题 和冲突 导致闪退！
+
+```
+
+顺便说一下 Serialization时期 还有一个重要的函数 processModuleFilter，他可以完成模块 build 阶段的过滤，当他 返回 false 就是不打入，这个特性对我们后续的拆包会很有用。
+
+**到此为止，我们对bundle 和 metro 的浅析接结束了，以上都是前置内容是了解后续拆包方案的 js部分的基础**
+
+1.4 js基础部分我们掰开 说完整了，我们看看 RN 在Android 上的loading 原理
+
+我们先梳理流程
+
+```java
+
+// 创建一个ReactRootView
+ mReactRootView = new ReactRootView(this);
+
+// 增加依赖
+List<ReactPackage> packages = new PackageList(getApplication()).getPackages();
+packages.add(new RNToolPackage());
+
+// 创建 ReactInstanceManager 实例
+mReactInstanceManager = ReactInstanceManager.builder()
+          .setApplication(getApplication())
+          .setCurrentActivity(this)
+          .setBundleAssetName("index.android.bundle")
+          .setJSMainModulePath("index") // 仅dev 下有效
+          .addPackages(packages)
+          .setUseDeveloperSupport(BuildConfig.DEBUG)
+          .setInitialLifecycleState(LifecycleState.RESUMED)
+          .build();
+
+// 组册 js 组件 并挂到ReactRootView 实例上
+mReactRootView.startReactApplication(mReactInstanceManager, "MyReactNativeApp", null);
+
+// 把 mReactRootView 设置到当前的 View 上
+setContentView(mReactRootView);
+```
+
+解析来我们浅析 每个调用链
+
+```java
+// 我们看看这个 ReactRootView 类 还有这个类的 startReactApplication 方法 
+class ReactRootView extends FrameLayout implements RootView, ReactRoot {
+  //..... 省去部分代码
+
+  // 可以看到它继承 FrameLayout ，并且实现了 两个借口，
+    @ThreadConfined("UI")
+    public void startReactApplication(ReactInstanceManager reactInstanceManager, String moduleName, @Nullable Bundle initialProperties, @Nullable String initialUITemplate) {
+        Systrace.beginSection(0L, "startReactApplication");
+
+        try {
+            UiThreadUtil.assertOnUiThread();
+            Assertions.assertCondition(this.mReactInstanceManager == null, "This root view has already been attached to a catalyst instance manager");
+            // 看看 mReactInstanceManager 实例是否正常 加载
+
+            // 赋值 
+            this.mReactInstanceManager = reactInstanceManager;
+            this.mJSModuleName = moduleName; // 用上面的例子来说 这个地方的值 就是 MyReactNativeApp
+            this.mAppProperties = initialProperties;
+            this.mInitialUITemplate = initialUITemplate;
+
+            // 创建 jscore 基础容器 上下午
+            this.mReactInstanceManager.createReactContextInBackground();
+
+            if (ReactFeatureFlags.enableEagerRootViewAttachment) {
+                if (!this.mWasMeasured) {
+                    // 适配屏幕
+                    this.setSurfaceConstraintsToScreenSize();
+                }
+                // 简单的理解就是 让这个RootView 和 reactInstanceManager 关联起来 这一步上是rn 容器的基础
+                // 一些js 通信view 渲染的都在这个里面 由 reactInstanceManager 管理
+                this.attachToReactInstanceManager();
+            }
+
+        } finally {
+            Systrace.endSection(0L);
+        }
+
+    }
+
+
+    private void attachToReactInstanceManager() {
+      Systrace.beginSection(0L, "attachToReactInstanceManager");
+      ReactMarker.logMarker(ReactMarkerConstants，ROOT_VIEW_ATTACH_TO_REACT_INSTANCE_MANAGER_START);
+      if (this.getId() != -1) {
+            ReactSoftExceptionLogger.logSoftException("ReactRootView", new IllegalViewOperationException("Trying to attach a ReactRootView with an explicit id already set to [" + this.getId() + "]. React Native uses the id field to track react tags and will overwrite this field. If that is fine, explicitly overwrite the id field to View.NO_ID."));
+        }
+
+        try {
+            if (!this.mIsAttachedToInstance) {
+                this.mIsAttachedToInstance = true;
+                // 重点 ReactInstanceManager attachRootView 当前view 
+                ((ReactInstanceManager)Assertions.assertNotNull(this.mReactInstanceManager)).attachRootView(this);
+                
+                // 执行 我们自己定义的监听器（详细见RCTDeviceEventEmitter 
+                this.getViewTreeObserver().addOnGlobalLayoutListener(this.
+                getCustomGlobalLayoutListener());
+                return;
+            }
+        } finally {
+            ReactMarker.logMarker(ReactMarkerConstants.ROOT_VIEW_ATTACH_TO_REACT_INSTANCE_MANAGER_END);
+            Systrace.endSection(0L);
+        }
+
+    }
+
+ }
+ 
+
+// 这个内容比较简单 读取当前 application ，然后返回 package List 
+List<ReactPackage> packages = new PackageList(getApplication()).getPackages();
+// 如果还需要其它package 可以接着add 
+packages.add(new RNToolPackage());
+
+// PackageList class 
+public class PackageList {
+  private Application application;
+  private ReactNativeHost reactNativeHost;
+  private MainPackageConfig mConfig;
+
+  ...
+  public PackageList(Application application) {
+    this(application, null);
+  }
+
+  public ArrayList<ReactPackage> getPackages() {
+    return new ArrayList<>(Arrays.<ReactPackage>asList(
+      new MainReactPackage(mConfig),
+      new AsyncStoragePackage(),
+      new RNDeviceInfo()
+    ));
+  }
+}
+
+
+
+//  我们来看这个 
+mReactInstanceManager = ReactInstanceManager.builder()
+          .setApplication(getApplication())
+          .setCurrentActivity(this)
+          .setBundleAssetName("index.android.bundle")
+          .setJSMainModulePath("index") // 仅dev 下有效
+          .addPackages(packages)
+          .setUseDeveloperSupport(BuildConfig.DEBUG)
+          .setInitialLifecycleState(LifecycleState.RESUMED)
+          .build();
+
+
+class ReactInstanceManager  {
+    public static ReactInstanceManagerBuilder builder() {
+        return new ReactInstanceManagerBuilder();
+    }
+
+    // 构造函数
+    ReactInstanceManager(..../* 太多了省去不写 后面有说明 */){
+        // 这两个function 不是我们讨论的重点 省去
+        initializeSoLoaderIfNecessary(applicationContext);// 
+        DisplayMetricsHolder.initDisplayMetricsIfNotInitialized(applicationContext);
+
+        this.mApplicationContext = applicationContext;
+        this.mCurrentActivity = currentActivity;
+        this.mDefaultBackButtonImpl = defaultHardwareBackBtnHandler;
+        this.mJavaScriptExecutorFactory = javaScriptExecutorFactory;
+        this.mBundleLoader = bundleLoader;
+        this.mJSMainModulePath = jsMainModulePath; // 只有在dev 的时候有用
+        this.mPackages = new ArrayList();
+        this.mUseDeveloperSupport = useDeveloperSupport;
+        this.mRequireActivity = requireActivity;
+        Systrace.beginSection(0L, "ReactInstanceManager.initDevSupportManager");
+        
+        // dev 模式下 才使用 mJSMainModulePath
+        this.mDevSupportManager = devSupportManagerFactory.create(applicationContext, this.createDevHelperInterface(), this.mJSMainModulePath, useDeveloperSupport, redBoxHandler, devBundleDownloadListener, minNumShakes, customPackagerCommandHandlers, surfaceDelegateFactory);
+
+        Systrace.endSection(0L);
+        this.mBridgeIdleDebugListener = bridgeIdleDebugListener;
+        this.mLifecycleState = initialLifecycleState;
+        this.mMemoryPressureRouter = new MemoryPressureRouter(applicationContext);
+        this.mJSExceptionHandler = jSExceptionHandler;
+        this.mTMMDelegateBuilder = tmmDelegateBuilder;
+        
+        // 开启线程执行载入 package 
+        synchronized(this.mPackages) {
+            PrinterHolder.getPrinter().logMessage(ReactDebugOverlayTags.RN_CORE, "RNCore: Use Split Packages");
+            this.mPackages.add(new CoreModulesPackage(this, new DefaultHardwareBackBtnHandler() {
+                public void invokeDefaultOnBackPressed() {
+                    ReactInstanceManager.this.invokeDefaultOnBackPressed();
+                }
+            }, mUIImplementationProvider, lazyViewManagersEnabled, minTimeLeftInFrameForNonBatchedOperationMs));
+            if (this.mUseDeveloperSupport) {
+                this.mPackages.add(new DebugCorePackage());
+            }
+
+            this.mPackages.addAll(packages);
+        }
+
+        this.mJSIModulePackage = jsiModulePackage;
+        ReactChoreographer.initialize();
+        if (this.mUseDeveloperSupport) {
+            this.mDevSupportManager.startInspector();
+        }
+
+        this.registerCxxErrorHandlerFunc();
+    }
+
+    // 是否创建 了 InitContext
+    public boolean hasStartedCreatingInitialContext() {
+          return this.mHasStartedCreatingInitialContext;
+    }
+
+    // 加一个监听器 看看 context 容器 实例 是否载入
+    public void addReactInstanceEventListener(com.facebook.react.ReactInstanceEventListener listener) {
+        this.mReactInstanceEventListeners.add(listener);
+    }
+
+
+
+}
+
+class ReactInstanceManagerBuilder {
+    ....
+    ReactInstanceManagerBuilder() { // 指定一个JS 解释器
+        this.jsInterpreter = JSInterpreter.OLD_LOGIC; 
+        // JSInterpreter JS解释器，里面有三种模式 OLD_LOGIC，JSC，HERMES
+    }
+
+    // 为 ReactInstanceManagerBuilder 实例 设置当前 application
+    public ReactInstanceManagerBuilder setApplication(Application application) {
+        this.mApplication = application;
+        return this;
+    }
+
+    // 为 ReactInstanceManagerBuilder 实例 设置当前 activity
+    public ReactInstanceManagerBuilder setCurrentActivity(Activity activity) {
+        this.mCurrentActivity = activity;
+        return this;
+    }
+
+    // 设置当前 mJSBundleAssetUrl，此时 mJSBundleLoader = null 
+    public ReactInstanceManagerBuilder setBundleAssetName(String bundleAssetName) {
+        this.mJSBundleAssetUrl = bundleAssetName == null ? null : "assets://" + bundleAssetName;
+        this.mJSBundleLoader = null;
+        return this;
+    }
+
+   // 设置 mJSMainModulePath 这个只有在 dev 模式下有效，至于为什么 请看后面的一个源代码 --TODO
+    public ReactInstanceManagerBuilder setJSMainModulePath(String jsMainModulePath) {
+        this.mJSMainModulePath = jsMainModulePath;
+        return this;
+    }
+
+   // 把 PackageList 全部添加到自己身上
+    public ReactInstanceManagerBuilder addPackages(List<ReactPackage> reactPackages) {
+        this.mPackages.addAll(reactPackages);
+        return this;
+    }
+
+   // 设置是否dev 模式
+    public ReactInstanceManagerBuilder setUseDeveloperSupport(boolean useDeveloperSupport) {
+        this.mUseDeveloperSupport = useDeveloperSupport;
+        return this;
+    }
+
+    // 设置是否生命周期 他说这些枚举 位于facebook 的包下
+    // BEFORE_CREATE, 创建之前
+    // BEFORE_RESUME, resume 之前
+    // RESUMED;  已经 resume
+    public ReactInstanceManagerBuilder setInitialLifecycleState(LifecycleState initialLifecycleState) {
+        this.mInitialLifecycleState = initialLifecycleState;
+        return this;
+    }
+
+    public ReactInstanceManager build() {
+        Assertions.assertNotNull(this.mApplication, "Application property has not been set with this builder");
+        if (this.mInitialLifecycleState == LifecycleState.RESUMED) {
+            Assertions.assertNotNull(this.mCurrentActivity, "Activity needs to be set if initial lifecycle state is resumed");
+        }
+
+        Assertions.assertCondition(this.mUseDeveloperSupport || this.mJSBundleAssetUrl != null || this.mJSBundleLoader != null, "JS Bundle File or Asset URL has to be provided when dev support is disabled");
+        Assertions.assertCondition(this.mJSMainModulePath != null || this.mJSBundleAssetUrl != null || this.mJSBundleLoader != null, "Either MainModulePath or JS Bundle File needs to be provided");
+        
+        // RN 的UI 提供者 
+        if (this.mUIImplementationProvider == null) {
+            this.mUIImplementationProvider = new UIImplementationProvider();
+        }
+
+        // 获取当前包名
+        String appName = this.mApplication.getPackageName();
+        String deviceName = AndroidInfoHelpers.getFriendlyDeviceName(); // 获取设备名称
+
+        // 创建一个 ReactInstanceManager 
+        return new ReactInstanceManager(
+         this.mApplication,
+         this.mCurrentActivity,
+         this.mDefaultHardwareBackBtnHandler, // android 物理返回键处理程序 
+         this.mJavaScriptExecutorFactory == null ? this.getDefaultJSExecutorFactory(appName, deviceName, this.mApplication.getApplicationContext()) : this.mJavaScriptExecutorFactory, 
+         this.mJSBundleLoader == null && this.mJSBundleAssetUrl != null ? JSBundleLoader.createAssetLoader(this.mApplication, this.mJSBundleAssetUrl, false) : this.mJSBundleLoader, 
+         //  mJSBundleLoader js bundle 捆绑器 详细见下面的类 
+         this.mJSMainModulePath, 
+         this.mPackages, 
+         this.mUseDeveloperSupport,
+          (DevSupportManagerFactory)(this.mDevSupportManagerFactory == null ? new DefaultDevSupportManagerFactory() : this.mDevSupportManagerFactory), 
+         this.mRequireActivity, 
+         this.mBridgeIdleDebugListener, (LifecycleState)Assertions.assertNotNull(this.mInitialLifecycleState, "Initial lifecycle state was not set"), 
+         this.mUIImplementationProvider, 
+         this.mJSExceptionHandler, 
+         this.mRedBoxHandler, 
+         this.mLazyViewManagersEnabled, // boolean 是否开启 lazy 加载
+         this.mDevBundleDownloadListener,  // dev bundle 下载监听器
+         this.mMinNumShakes, 
+         this.mMinTimeLeftInFrameForNonBatchedOperationMs, 
+         this.mJSIModulesPackage,  // ReactInstanceManager 里的 jsiModulePackage  这个 package 还和 rn 的bridge 有关 这里不深入
+         this.mCustomPackagerCommandHandlers, 
+         this.mTMMDelegateBuilder, 
+         this.mSurfaceDelegateFactory);
+    }
+
+    // 工厂函数 js 执行器 看看到底给你的是 JSCExecutorFactory 还是 HermesExecutorFactory 
+    private JavaScriptExecutorFactory getDefaultJSExecutorFactory(String appName, String deviceName, Context applicationContext) {
+        if (this.jsInterpreter == JSInterpreter.OLD_LOGIC) {
+            try {
+                ReactInstanceManager.initializeSoLoaderIfNecessary(applicationContext);
+                JSCExecutor.loadLibrary();
+                return new JSCExecutorFactory(appName, deviceName);
+            } catch (UnsatisfiedLinkError var5) {
+                if (var5.getMessage().contains("__cxa_bad_typeid")) {
+                    throw var5;
+                } else {
+                    HermesExecutor.loadLibrary();
+                    return new HermesExecutorFactory();
+                }
+            }
+        } else if (this.jsInterpreter == JSInterpreter.HERMES) {
+            HermesExecutor.loadLibrary();
+            return new HermesExecutorFactory();
+        } else {
+            JSCExecutor.loadLibrary();
+            return new JSCExecutorFactory(appName, deviceName);
+        }
+    }
+
+}
+
+public abstract class JSBundleLoader {
+    public JSBundleLoader() {
+    }
+    ....
+    public static JSBundleLoader createAssetLoader(final Context context, final String assetUrl, final boolean loadSynchronously) {
+        return new JSBundleLoader() {
+            public String loadScript(JSBundleLoaderDelegate delegate) { // 重点参数 loadScriptFromAssets
+                // 重点 这个就是 loadScriptFromAssets 的方法 。具体实现在 JSCExecutor.cpp 这里不详细扩开了，
+                // 如果我们知道 rn 中谁在调用这个方法 就知道是如何载入js 的了
+                delegate.loadScriptFromAssets(context.getAssets(), assetUrl, loadSynchronously);
+                return assetUrl;
+            }
+        };
+    }
+
+    .....
+    public abstract String loadScript(JSBundleLoaderDelegate var1);
+    ....
+}
+
+// 当我们的步骤执行完之后 mReactInstanceManager 是一个这样的东西
+mReactInstanceManager = {
+  this.mApplication = "当前Application"
+  this.mCurrentActivity   = "当前的Activity"
+  this.mDefaultBackButtonImpl = "当前硬件返回处理程序"
+  this.mJavaScriptExecutorFactory = "JSCExecutorFactory 执行器 appName =myrnApp deviceName 小米2s"
+  this.mBundleLoader= "JSBundleLoader.createAssetLoader(this.mApplication, assets://index.android.bundle, false)  "
+  this.mJSMainModulePath="index"
+  this.mPackages="Packages 里面包含了dev 的一些包 因为UseDeveloperSupport = true"
+  this.mUseDeveloperSupport="true"
+  this.mRequireActivity="false"
+  this.mBridgeIdleDebugListener="null"
+  this.mJSExceptionHandler="null"
+  this.mRedBoxHandler="null"
+  this.mLazyViewManagersEnabled="false"
+  this.mDevBundleDownloadListener="null"
+  this.mMinNumShakes="1"
+  this.mMinTimeLeftInFrameForNonBatchedOperationMs="-1"
+  this.mJSIModulesPackage="null"
+  this.mCustomPackagerCommandHandlers="{}"
+  this.mTMMDelegateBuilder="null"
+  this.mSurfaceDelegateFactory="null"
+}
+
+// 在 RootView 类中有一个 startApplication 方法 里面有一个  createReactContextInBackground 它属于 ReactInstanceManager 里面分治了两类 dev 和 release 的
+class ReactInstanceManager {
+  ....
+
+    // 通过调用链 我们找到了最总的调用方法 recreateReactContextInBackgroundInner 和 runCreateReactContextOnNewThread 以及 createReactContext
+    @ThreadConfined("UI")
+    private void recreateReactContextInBackgroundInner() {
+        FLog.d(TAG, "ReactInstanceManager.recreateReactContextInBackgroundInner()");
+        PrinterHolder.getPrinter().logMessage(ReactDebugOverlayTags.RN_CORE, "RNCore: recreateReactContextInBackground");
+        UiThreadUtil.assertOnUiThread();
+        
+        if (this.mUseDeveloperSupport && this.mJSMainModulePath != null) { //进入dev
+            final DeveloperSettings devSettings = this.mDevSupportManager.getDevSettings();
+            if (!Systrace.isTracing(0L)) {
+                if (this.mBundleLoader == null) {
+                    this.mDevSupportManager.handleReloadJS(); // reload js 
+                } else {
+                    this.mDevSupportManager.isPackagerRunning(new PackagerStatusCallback() {
+                        public void onPackagerStatusFetched(final boolean packagerIsRunning) {
+                            UiThreadUtil.runOnUiThread(new Runnable() {
+                                public void run() {
+                                    if (packagerIsRunning) {
+                                        ReactInstanceManager.this.mDevSupportManager.handleReloadJS();
+                                    } else if (ReactInstanceManager.this.mDevSupportManager.hasUpToDateJSBundleInCache() && !devSettings.isRemoteJSDebugEnabled() && !ReactInstanceManager.this.mUseFallbackBundle) {
+                                        ReactInstanceManager.this.onJSBundleLoadedFromServer();
+                                    } else {
+                                        devSettings.setRemoteJSDebugEnabled(false);
+                                        ReactInstanceManager.this.recreateReactContextInBackgroundFromBundleLoader();
+                                    }
+
+                                }
+                            });
+                        }
+                    });
+                }
+
+                return;
+            }
+        }
+
+      // 正常 release 如何 loader 呢？依据调用链 查找到 runCreateReactContextOnNewThread 函数
+        this.recreateReactContextInBackgroundFromBundleLoader();
+    }
+
+    // 开启线程 执行 CreateReactContext 这里有很多的线程代码 我们不深入 
+    @ThreadConfined("UI")
+    private void runCreateReactContextOnNewThread(final ReactInstanceManager.ReactContextInitParams initParams) {
+      ....
+      reactApplicationContext = ReactInstanceManager.this.createReactContext(initParams.getJsExecutorFactory().create(), initParams.getJsBundleLoader());
+      .....
+      ReactInstanceManager.this.setupReactContext(reactApplicationContext); // 更新上去 
+    }
+
+    // 找到 createReactContext 函数 我们先 理解一下 他的参数 jsExecutor，jsBundleLoader
+    // jsExecutor 这个是之前我们找到的 执行器 ，jsBundleLoader就是上述说明的Loader 这个需要重点看看，因为从上述的类来看 最总的加载在它 
+    private ReactApplicationContext createReactContext(JavaScriptExecutor jsExecutor, JSBundleLoader jsBundleLoader) {
+      ....
+      // 关键代码 
+      com.facebook.react.bridge.CatalystInstanceImpl.Builder catalystInstanceBuilder = (
+        new com.facebook.react.bridge.CatalystInstanceImpl.Builder()).setReactQueueConfigurationSpec(ReactQueueConfigurationSpec.createDefault()).setJSExecutor(jsExecutor).setRegistry(nativeModuleRegistry).setJSBundleLoader(jsBundleLoader).setJSExceptionHandler((JSExceptionHandler)exceptionHandler);
+      // catalystInstanceBuilder 主要做的事情 是 设置 队列（因为涉及到线程），->设置JS执行器 -> 设置 nativeModuleRegistry -> 设置 jsBundleLoader-> 设置异常捕获器
+
+      // catalystInstanceBuilder 这个类身上就有我们的jsbundle 了
+      CatalystInstanceImpl catalystInstance = catalystInstanceBuilder.build();
+      // build 就是依据传如的参数 返回一个 CatalystInstanceImpl 实例
+      // 最后一行就跑去了
+      catalystInstance.runJSBundle() 
+      // 我们分析一下  catalystInstanceBuilder 类的build 返回了什么。以及它 返回的类上的 runJSBundle 在干什么
+      ....
+    }
+  
+}
+
+    public static class Builder {
+        @Nullable
+        private ReactQueueConfigurationSpec mReactQueueConfigurationSpec;
+        @Nullable
+        private JSBundleLoader mJSBundleLoader;
+        @Nullable
+        private NativeModuleRegistry mRegistry;
+        @Nullable
+        private JavaScriptExecutor mJSExecutor;
+        @Nullable
+        private JSExceptionHandler mJSExceptionHandler;
+
+        public Builder() {
+        }
+
+        public CatalystInstanceImpl.Builder setReactQueueConfigurationSpec(ReactQueueConfigurationSpec ReactQueueConfigurationSpec) {
+            this.mReactQueueConfigurationSpec = ReactQueueConfigurationSpec;
+            return this;
+        }
+
+        public CatalystInstanceImpl.Builder setRegistry(NativeModuleRegistry registry) {
+            this.mRegistry = registry;
+            return this;
+        }
+
+        public CatalystInstanceImpl.Builder setJSBundleLoader(JSBundleLoader jsBundleLoader) {
+            this.mJSBundleLoader = jsBundleLoader;
+            return this;
+        }
+
+        public CatalystInstanceImpl.Builder setJSExecutor(JavaScriptExecutor jsExecutor) {
+            this.mJSExecutor = jsExecutor;
+            return this;
+        }
+
+        public CatalystInstanceImpl.Builder setJSExceptionHandler(JSExceptionHandler handler) {
+            this.mJSExceptionHandler = handler;
+            return this;
+        }
+
+        public CatalystInstanceImpl build() {
+            return new CatalystInstanceImpl((ReactQueueConfigurationSpec)Assertions.assertNotNull(this.mReactQueueConfigurationSpec), (JavaScriptExecutor)Assertions.assertNotNull(this.mJSExecutor), (NativeModuleRegistry)Assertions.assertNotNull(this.mRegistry), (JSBundleLoader)Assertions.assertNotNull(this.mJSBundleLoader), (JSExceptionHandler)Assertions.assertNotNull(this.mJSExceptionHandler));
+        }
+    }
+
+public class CatalystInstanceImpl implements CatalystInstance { 
+    public void runJSBundle() {
+            FLog.d("ReactNative", "CatalystInstanceImpl.runJSBundle()");
+            Assertions.assertCondition(!this.mJSBundleHasLoaded, "JS bundle was already loaded!");
+
+            this.mJSBundleLoader.loadScript(this); // 运行load loadScript这个不深入了，他和一部分的C++代码有关系
+            // loadScript -> 实际上就是  loadScriptFromAssets(context.getAssets(), assetUrl, loadSynchronously); 返回 assetUrl string
+            
+            synchronized(this.mJSCallsPendingInitLock) {
+                this.mAcceptCalls = true;
+                Iterator var2 = this.mJSCallsPendingInit.iterator();
+
+                while(true) {
+                    if (!var2.hasNext()) {
+                        this.mJSCallsPendingInit.clear();
+                        this.mJSBundleHasLoaded = true;
+                        break;
+                    }
+
+                    CatalystInstanceImpl.PendingJSCall function = (CatalystInstanceImpl.PendingJSCall)var2.next();
+                    function.call(this);
+                }
+            }
+
+            Systrace.registerListener(this.mTraceListener);
+        }
+}
+
+```
+
+**到此为止，我们的前置知识都搞定了！**
 
 1. 首先我们来看看第一版方案（ 直接丢到不同的 acitvy 中运行）
 
@@ -198,18 +1185,18 @@ yarn react-native bundle --platform android --dev false --entry-file ./RNDemo.js
 
    由于metro build 的末日目录在根目录 ，我们的需要在root 根目录下进行 （我是指每个module 的入口要在根目录 ）要不然会有路径问题，metro 实际上是一个 static 文件托管service 它默认监听的是项目根目录， 譬如你请求的是 index.bundle.好，默认就是根目录下的index ，如果你请求的是 a.bundle,那么加载和编译的就是 根目录下的 a.js 文件，这些就是所谓的“入口文件”，这些文件里 有一个 registerComponent 方法，这个就是runtime 的时候 rn 触发的 view 试图绑定的关键代码，在RN 引擎中 ，它的加载顺序是 ：**js端先运行js代码注册组件---->原生端找到这个组件并关联**
   
-- 需要注意我们的这个参数  
+- 需要注意我们的这个参数
 
   ```java
-          mReactInstanceManager = ReactInstanceManager.builder()
-                .setApplication(getApplication())
-                .setCurrentActivity(this)
-                .setBundleAssetName("index.android.bundle")  // 对应的release 包名称，如果多个业务就是 bu1.android.bundle, bu2.android.bundle ......
-                .setJSMainModulePath("index") // 根目录下 index.js . 如果同的文件 就是 Bu1.js  Bu2.js xxxxx 依次类推 不一定都叫这个名字哈 只在dev 模式下生效 setJSMainModulePath
-                .addPackages(packages)
-                .setUseDeveloperSupport(BuildConfig.DEBUG)
-                .setInitialLifecycleState(LifecycleState.RESUMED)
-                .build();
+        mReactInstanceManager = ReactInstanceManager.builder()
+              .setApplication(getApplication())
+              .setCurrentActivity(this)
+              .setBundleAssetName("index.android.bundle")  // 对应的release 包名称，如果多个业务就是 bu1.android.bundle, bu2.android.bundle ......
+              .setJSMainModulePath("index") // 根目录下 index.js . 如果同的文件 就是 Bu1.js  Bu2.js xxxxx 依次类推 不一定都叫这个名字哈 只在dev 模式下生效 setJSMainModulePath
+              .addPackages(packages)
+              .setUseDeveloperSupport(BuildConfig.DEBUG)
+              .setInitialLifecycleState(LifecycleState.RESUMED)
+              .build();
         mReactRootView.startReactApplication(mReactInstanceManager, "MyReactNativeApp", null); // js 端 的registerComponent name MyReactNativeApp
         setContentView(mReactRootView);
   ```
@@ -217,6 +1204,12 @@ yarn react-native bundle --platform android --dev false --entry-file ./RNDemo.js
 2. 第二版方案 （基础包 common + bu 业务包 = 运行时的 全量包 ）
 
   我们先开看一个问题：“Android 中 RN 引擎到底是如何工作的？”，然后我们得处这样的结论：“上述的拆包方案的弊端”，最后我们的方案：“基础包+业务包 = runtimeBundle”
+
+# 重要的细节 （IOS）
+
+## 按照官方的教程踩坑的地方
+
+## 重点 拆包方案
 
 # Todo
 

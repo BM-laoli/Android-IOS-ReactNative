@@ -1,15 +1,8 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  ScrollView,
-  NativeModules,
-} from "react-native";
+import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import Imgx from "./assets/img/test.png";
 import TestNativeInfo from "./TestNativeInfo";
-import { navigation } from '../../../common/utils';
+import { navigation } from "../../../common/utils";
 
 // 整个App 的骨架，基础包 更新要严格控制
 class Frame extends React.Component {
@@ -23,15 +16,12 @@ class Frame extends React.Component {
         <Text
           style={styles.hello}
           onPress={() => {
-            
-            navigation.pushToActivity("Bu1Activity" ,{
-              value :"1111"
+            navigation.pushToActivity("Bu1Activity", {
+              value: "1111",
             });
-
           }}
         >
-          {" "}
-          去BU2{" "}
+          去BU2
         </Text>
         <ScrollView style={styles.flatContainer}>
           <View style={styles.imgView}>

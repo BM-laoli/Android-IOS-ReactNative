@@ -136,3 +136,7 @@ module.exports = {
     "build:bu2": "react-native bundle --platform android --dev false --entry-file ./src/modules/Business2/main.js --bundle-output ./android/app/src/main/assets/bu2.android.bundle --assets-dest ./android/app/src/main/res/ --config ./metro.main.config.js --minify false"
   },
 ```
+
+yarn react-native bundle --platform android --dev false --entry-file ./common.js --bundle-output ./android/app/src/main/assets/common.android.bundle --assets-dest ./android/app/src/main/res --config ./metro.common.config.js --reset-cache --minify false
+
+yarn react-native bundle --platform android --dev false --entry-file ./index.js --bundle-output ./android/app/src/main/assets/index.android.bundle --assets-dest ./android/app/src/main/res --config ./metro.main.config.js --reset-cache --minify false
