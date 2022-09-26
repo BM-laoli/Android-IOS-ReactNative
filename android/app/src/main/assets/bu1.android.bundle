@@ -1,13 +1,897 @@
-__d(function(g,r,i,a,m,e,d){var n=r(d[0]),t=(n(r(d[1])),r(d[2])),u=n(r(d[3])),o=r(d[4]);t.AppRegistry.registerComponent(o.bu1.name,function(){return u.default})},20000000,[7,1,3,20000001,20000010]);
-__d(function(g,r,i,a,m,e,d){var t=r(d[0]);Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0;var n=t(r(d[1])),o=(function(t,n){if(!n&&t&&t.__esModule)return t;if(null===t||"object"!=typeof t&&"function"!=typeof t)return{default:t};var o=s(n);if(o&&o.has(t))return o.get(t);var l={},u=Object.defineProperty&&Object.getOwnPropertyDescriptor;for(var c in t)if("default"!==c&&Object.prototype.hasOwnProperty.call(t,c)){var f=u?Object.getOwnPropertyDescriptor(t,c):null;f&&(f.get||f.set)?Object.defineProperty(l,c,f):l[c]=t[c]}l.default=t,o&&o.set(t,l);return l})(r(d[2])),l=r(d[3]),u=t(r(d[4])),c=r(d[5]),f=r(d[6]);function s(t){if("function"!=typeof WeakMap)return null;var n=new WeakMap,o=new WeakMap;return(s=function(t){return t?o:n})(t)}var y=l.StyleSheet.create({container:{flex:1,justifyContent:"center",height:100},hello:{fontSize:20,textAlign:"center",margin:10},imgView:{width:"100%"},img:{width:"100%",height:600},flatContainer:{flex:1},btn:{width:30,height:30}}),h=function(t){(0,o.useEffect)(function(){h()},[]);var s,h=(s=(0,n.default)(function*(){var t=yield c.navigation.getFromActivity();console.log('params',t)}),function(){return s.apply(this,arguments)});return(0,f.jsxs)(l.View,{style:y.container,children:[(0,f.jsx)(l.Text,{style:y.hello,children:"BU1 "}),(0,f.jsx)(l.Button,{title:"\u524d\u5f80BU2",onPress:function(){c.navigation.pushToActivity("Bu2Activity",{value:111})},style:y.btn}),(0,f.jsx)(l.ScrollView,{style:y.flatContainer,children:(0,f.jsx)(l.View,{style:y.imgView,children:(0,f.jsx)(l.Image,{resizeMethod:"resize",resizeMode:"contain",source:u.default,style:y.img})})})]})};e.default=h},20000001,[7,268,1,3,20000002,20000004,179]);
-__d(function(g,r,i,a,m,e,d){m.exports=r(d[0]).registerAsset({__packager_asset:!0,httpServerLocation:"/assets/src/modules/Business1/assets/img",width:1024,height:500,scales:[1],hash:"938f55d05f70c75063d310be556059e4",name:"1024_500",type:"png"})},20000002,[20000003]);
-__d(function(g,r,i,a,m,e,d){'use strict';m.exports=r(d[0])},20000003,[150]);
-__d(function(g,r,i,a,m,e,d){var t=r(d[0]);Object.defineProperty(e,"__esModule",{value:!0}),e.navigation=void 0,Object.defineProperty(e,"storageApp",{enumerable:!0,get:function(){return n.default}});var n=t(r(d[1])),o=(function(t,n){if(!n&&t&&t.__esModule)return t;if(null===t||"object"!=typeof t&&"function"!=typeof t)return{default:t};var o=u(n);if(o&&o.has(t))return o.get(t);var f={},p=Object.defineProperty&&Object.getOwnPropertyDescriptor;for(var c in t)if("default"!==c&&Object.prototype.hasOwnProperty.call(t,c)){var l=p?Object.getOwnPropertyDescriptor(t,c):null;l&&(l.get||l.set)?Object.defineProperty(f,c,l):f[c]=t[c]}f.default=t,o&&o.set(t,f);return f})(r(d[2]));function u(t){if("function"!=typeof WeakMap)return null;var n=new WeakMap,o=new WeakMap;return(u=function(t){return t?o:n})(t)}e.navigation=o},20000004,[7,20000005,20000008]);
-__d(function(g,r,i,a,m,e,d){var t=r(d[0]);Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0;var l=r(d[1]),n=new(t(r(d[2])).default)({size:1e3,storageBackend:l.AsyncStorage,defaultExpires:864e5,enableCache:!0});e.default=n},20000005,[7,3,20000006]);
-__d(function(g,r,i,a,_m,_e,d){var e=r(d[0]);Object.defineProperty(_e,"__esModule",{value:!0}),_e.default=void 0;var t=e(r(d[1])),n=e(r(d[2])),s=e(r(d[3])),o=r(d[4]),c=(function(){function e(){var t=this,s=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};if((0,n.default)(this,e),this._SIZE=s.size||1e3,this.sync=s.sync||{},this.defaultExpires=void 0!==s.defaultExpires?s.defaultExpires:864e5,this.enableCache=!1!==s.enableCache,this._s=s.storageBackend||null,this._innerVersion=11,this.cache={},this._s&&this._s.setItem)try{var o=this._s.setItem('__react_native_storage_test','test');this.isPromise=!(!o||!o.then)}catch(e){throw console.warn(e),delete this._s,e}else console.warn("Data would be lost after reload cause there is no storageBackend specified!\n      \nEither use localStorage(for web) or AsyncStorage(for React Native) as a storageBackend.");this._mapPromise=this.getItem('map').then(function(e){t._m=t._checkMap(e&&JSON.parse(e)||{})})}return(0,s.default)(e,[{key:"getItem",value:function(e){return this._s?this.isPromise?this._s.getItem(e):Promise.resolve(this._s.getItem(e)):Promise.resolve()}},{key:"setItem",value:function(e,t){return this._s?this.isPromise?this._s.setItem(e,t):Promise.resolve(this._s.setItem(e,t)):Promise.resolve()}},{key:"removeItem",value:function(e){return this._s?this.isPromise?this._s.removeItem(e):Promise.resolve(this._s.removeItem(e)):Promise.resolve()}},{key:"_initMap",value:function(){return{innerVersion:this._innerVersion,index:0,__keys__:{}}}},{key:"_checkMap",value:function(e){return e&&e.innerVersion&&e.innerVersion===this._innerVersion?e:this._initMap()}},{key:"_getId",value:function(e,t){return e+'_'+t}},{key:"_saveToMap",value:function(e){var t=e.key,n=e.id,s=e.data,o=this._getId(t,n),c=this._m;if(void 0!==c[o])return this.enableCache&&(this.cache[o]=JSON.parse(s)),this.setItem('map_'+c[o],s);if(void 0!==c[c.index]){var h=c[c.index],u=h.split('_');delete c[h],this._removeIdInKey(u[0],u[1]),this.enableCache&&delete this.cache[h]}if(c[o]=c.index,c[c.index]=o,c.__keys__[t]=c.__keys__[t]||[],c.__keys__[t].push(n),this.enableCache){var l=JSON.parse(s);this.cache[o]=l}var y=c.index;++c.index===this._SIZE&&(c.index=0),this.setItem('map_'+y,s),this.setItem('map',JSON.stringify(c))}},{key:"save",value:function(e){var t=this,n=e.key,s=e.id,o=e.data,c=e.rawData,h=e.expires,u=void 0===h?this.defaultExpires:h;-1!==n.toString().indexOf('_')&&console.error('Please do not use "_" in key!');var l={rawData:o};if(void 0===o){if(void 0===c)return void console.error('"data" is required in save()!');console.warn('"rawData" is deprecated, please use "data" instead!'),l.rawData=c}var y=Date.now();if(null!==u&&(l.expires=y+u),l=JSON.stringify(l),void 0===s){if(this.enableCache){var _=JSON.parse(l);this.cache[n]=_}return this.setItem(n,l)}return-1!==s.toString().indexOf('_')&&console.error('Please do not use "_" in id!'),this._mapPromise.then(function(){return t._saveToMap({key:n,id:s,data:l})})}},{key:"getBatchData",value:function(e){var t=this;return Promise.all(e.map(function(e){return t.load(e)}))}},{key:"getBatchDataWithIds",value:(function(){var e=(0,t.default)(function*(e){var t=this,n=e.key,s=e.ids,o=e.syncInBackground,c=e.syncParams,h=s.map(function(e){return t.load({key:n,id:e,syncInBackground:o,autoSync:!1,batched:!0})}),u=yield Promise.all(h),l=[];if(u.forEach(function(e){void 0!==e.syncId&&l.push(e.syncId)}),l.length){var y=yield this.sync[n]({id:l,syncParams:c});return u.map(function(e){return e.syncId?y.shift():e})}return u});return function(t){return e.apply(this,arguments)}})()},{key:"_lookupGlobalItem",value:function(e){var t=this,n=e.key;return this.enableCache&&void 0!==this.cache[n]?this._loadGlobalItem(Object.assign({ret:this.cache[n]},e)):this.getItem(n).then(function(n){return t._loadGlobalItem(Object.assign({ret:n},e))})}},{key:"_loadGlobalItem",value:function(e){var t=e.key,n=e.ret,s=e.autoSync,c=e.syncInBackground,h=e.syncParams;if(null===n||void 0===n){if(s&&this.sync[t])return this.sync[t]({syncParams:h});throw new o.NotFoundError(JSON.stringify(e))}'string'==typeof n&&(n=JSON.parse(n),this.enableCache&&(this.cache[t]=n));var u=Date.now();if(n.expires<u){if(s&&this.sync[t]){if(c){try{this.sync[t]({syncParams:h,syncInBackground:c})}catch(e){}return n.rawData}return this.sync[t]({syncParams:h,syncInBackground:c})}throw new o.ExpiredError(JSON.stringify(e))}return n.rawData}},{key:"_noItemFound",value:function(e){var t=e.key,n=e.id,s=e.autoSync,c=e.syncParams;if(this.sync[t])return s?this.sync[t]({id:n,syncParams:c}):{syncId:n};throw new o.NotFoundError(JSON.stringify(e))}},{key:"_loadMapItem",value:function(e){var t=e.ret,n=e.key,s=e.id,c=e.autoSync,h=e.batched,u=e.syncInBackground,l=e.syncParams;if(null===t||void 0===t)return this._noItemFound(e);if('string'==typeof t){t=JSON.parse(t);var y=e.key,_=e.id,m=this._getId(y,_);this.enableCache&&(this.cache[m]=t)}var v=Date.now();if(t.expires<v){if(c&&this.sync[n]){if(u){try{this.sync[n]({id:s,syncParams:l,syncInBackground:u})}catch(e){}return t.rawData}return this.sync[n]({id:s,syncParams:l,syncInBackground:u})}if(h)return{syncId:s};throw new o.ExpiredError(JSON.stringify(e))}return t.rawData}},{key:"_lookUpInMap",value:function(e){var t,n=this,s=this._m,o=e.key,c=e.id,h=this._getId(o,c);return this.enableCache&&this.cache[h]?(t=this.cache[h],this._loadMapItem(Object.assign({ret:t},e))):void 0!==s[h]?this.getItem('map_'+s[h]).then(function(t){return n._loadMapItem(Object.assign({ret:t},e))}):this._noItemFound(Object.assign({ret:t},e))}},{key:"remove",value:function(e){var t=this;return this._mapPromise.then(function(){var n=t._m,s=e.key,o=e.id;if(void 0===o)return t.enableCache&&t.cache[s]&&delete t.cache[s],t.removeItem(s);var c=t._getId(s,o);if(void 0!==n[c]){t.enableCache&&t.cache[c]&&delete t.cache[c],t._removeIdInKey(s,o);var h=n[c];return delete n[c],t.setItem('map',JSON.stringify(n)),t.removeItem('map_'+h)}})}},{key:"_removeIdInKey",value:function(e,t){var n=(this._m.__keys__[e]||[]).indexOf(t);-1!==n&&this._m.__keys__[e].splice(n,1)}},{key:"load",value:function(e){var t=this,n=e.key,s=e.id,o=e.autoSync,c=void 0===o||o,h=e.syncInBackground,u=void 0===h||h,l=e.syncParams,y=e.batched;return this._mapPromise.then(function(){return void 0===s?t._lookupGlobalItem({key:n,autoSync:c,syncInBackground:u,syncParams:l}):t._lookUpInMap({key:n,id:s,autoSync:c,syncInBackground:u,batched:y,syncParams:l})})}},{key:"clearAll",value:function(){this._s.clear&&this._s.clear(),this._m=this._initMap()}},{key:"clearMap",value:function(){var e=this;return this.removeItem('map').then(function(){e.cache={},e._m=e._initMap()})}},{key:"clearMapForKey",value:function(e){var t=this;return this._mapPromise.then(function(){var n=(t._m.__keys__[e]||[]).map(function(n){return t.remove({key:e,id:n})});return Promise.all(n)})}},{key:"getIdsForKey",value:function(e){var t=this;return this._mapPromise.then(function(){return t._m.__keys__[e]||[]})}},{key:"getAllDataForKey",value:function(e,t){var n=this;return t=Object.assign({syncInBackground:!0},t),this.getIdsForKey(e).then(function(s){var o=s.map(function(n){return{key:e,id:n,syncInBackground:t.syncInBackground}});return n.getBatchData(o)})}}]),e})();_e.default=c},20000006,[7,268,16,17,20000007]);
-__d(function(g,r,i,a,m,_e,d){var t=r(d[0]);Object.defineProperty(_e,"__esModule",{value:!0}),_e.NotFoundError=_e.ExpiredError=void 0;var e=t(r(d[1])),n=t(r(d[2])),o=t(r(d[3])),u=t(r(d[4])),c=t(r(d[5])),f=t(r(d[6]));function l(t){var e=s();return function(){var n,o=(0,c.default)(t);if(e){var f=(0,c.default)(this).constructor;n=Reflect.construct(o,arguments,f)}else n=o.apply(this,arguments);return(0,u.default)(this,n)}}function s(){if("undefined"==typeof Reflect||!Reflect.construct)return!1;if(Reflect.construct.sham)return!1;if("function"==typeof Proxy)return!0;try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],function(){})),!0}catch(t){return!1}}var v=(function(t){(0,o.default)(c,t);var u=l(c);function c(t){var e;return(0,n.default)(this,c),(e=u.call(this,"Not Found! Params: "+t)).name='NotFoundError',e.stack=(new Error).stack,e}return(0,e.default)(c)})((0,f.default)(Error));_e.NotFoundError=v;var E=(function(t){(0,o.default)(c,t);var u=l(c);function c(t){var e;return(0,n.default)(this,c),(e=u.call(this,"Expired! Params: "+t)).name='ExpiredError',e.stack=(new Error).stack,e}return(0,e.default)(c)})((0,f.default)(Error));_e.ExpiredError=E},20000007,[7,17,16,28,30,33,34]);
-__d(function(g,r,i,a,m,e,d){var t=r(d[0]);Object.defineProperty(e,"__esModule",{value:!0}),e.pushToActivity=e.getFromActivity=void 0;var n=t(r(d[1])),c=t(r(d[2]));e.pushToActivity=function(t,o){n.default.save({key:"MessageActivity",data:o,expires:36e5});c.default.changeActivity("com.example.myapprnn."+t)};e.getFromActivity=function(){return new Promise(function(t,c){n.default.load({key:"MessageActivity",autoSync:!0}).then(function(n){t(n)}).catch(function(){c("error")}).finally(function(){})})}},20000008,[7,20000005,20000009]);
-__d(function(g,r,i,a,m,e,d){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0;var t=r(d[0]);if(!t.NativeModules.RNToolsManager)throw new Error('native\u6a21\u5757\u52a0\u8f7d\u5931\u8d25');var n={changeActivity:function(n){return t.NativeModules.RNToolsManager.changeActivity(n,null)}};e.default=n},20000009,[3]);
-__d(function(a,e,n,u,b,m,t){b.exports={main:{name:"MyReactNativeApp"},bu1:{name:"bu1"},bu2:{name:"bu2"}}},20000010,[]);
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
+
+  var _react = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1]));
+
+  var _reactNative = _$$_REQUIRE(_dependencyMap[2]);
+
+  var _Business = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3]));
+
+  var _app = _$$_REQUIRE(_dependencyMap[4]);
+
+  _reactNative.AppRegistry.registerComponent(_app.bu1.name, function () {
+    return _Business.default;
+  });
+},20000000,[7,1,3,20000001,20000010]);
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = undefined;
+
+  var _asyncToGenerator2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1]));
+
+  var _react = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[2]));
+
+  var _reactNative = _$$_REQUIRE(_dependencyMap[3]);
+
+  var _ = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4]));
+
+  var _utils = _$$_REQUIRE(_dependencyMap[5]);
+
+  var _jsxRuntime = _$$_REQUIRE(_dependencyMap[6]);
+
+  function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+  function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+  var Frame = function Frame(props) {
+    (0, _react.useEffect)(function () {
+      init();
+      console.log("初始化");
+      return function () {
+        console.log("销毁");
+      };
+    }, []);
+
+    var init = function () {
+      var _ref = (0, _asyncToGenerator2.default)(function* () {
+        var params = yield _utils.navigation.getFromActivity();
+        console.log("params", params);
+      });
+
+      return function init() {
+        return _ref.apply(this, arguments);
+      };
+    }();
+
+    return (0, _jsxRuntime.jsxs)(_reactNative.View, {
+      style: styles.container,
+      children: [(0, _jsxRuntime.jsx)(_reactNative.Text, {
+        style: styles.hello,
+        children: "BU1 "
+      }), (0, _jsxRuntime.jsx)(_reactNative.Button, {
+        title: "\u524D\u5F80BU2",
+        onPress: function onPress() {
+          _utils.navigation.pushToActivity("Bu2Activity", {
+            value: 111
+          });
+        },
+        style: styles.btn
+      }), (0, _jsxRuntime.jsx)(_reactNative.ScrollView, {
+        style: styles.flatContainer,
+        children: (0, _jsxRuntime.jsx)(_reactNative.View, {
+          style: styles.imgView,
+          children: (0, _jsxRuntime.jsx)(_reactNative.Image, {
+            resizeMethod: "resize",
+            resizeMode: "contain",
+            source: _.default,
+            style: styles.img
+          })
+        })
+      })]
+    });
+  };
+
+  var styles = _reactNative.StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: "center",
+      height: 100
+    },
+    hello: {
+      fontSize: 20,
+      textAlign: "center",
+      margin: 10
+    },
+    imgView: {
+      width: "100%"
+    },
+    img: {
+      width: "100%",
+      height: 600
+    },
+    flatContainer: {
+      flex: 1
+    },
+    btn: {
+      width: 30,
+      height: 30
+    }
+  });
+
+  var _default = Frame;
+  exports.default = _default;
+},20000001,[7,268,1,3,20000002,20000004,179]);
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  module.exports = _$$_REQUIRE(_dependencyMap[0]).registerAsset({
+    "__packager_asset": true,
+    "httpServerLocation": "/assets/src/modules/Business1/assets/img",
+    "width": 1024,
+    "height": 500,
+    "scales": [1],
+    "hash": "938f55d05f70c75063d310be556059e4",
+    "name": "1024_500",
+    "type": "png"
+  });
+},20000002,[20000003]);
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  'use strict';
+
+  module.exports = _$$_REQUIRE(_dependencyMap[0]);
+},20000003,[150]);
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.navigation = undefined;
+  Object.defineProperty(exports, "storageApp", {
+    enumerable: true,
+    get: function get() {
+      return _storage.default;
+    }
+  });
+
+  var _storage = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1]));
+
+  var navigation = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[2]));
+
+  exports.navigation = navigation;
+
+  function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+  function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+},20000004,[7,20000005,20000008]);
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = undefined;
+
+  var _reactNative = _$$_REQUIRE(_dependencyMap[1]);
+
+  var _reactNativeStorage = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2]));
+
+  var storageApp = new _reactNativeStorage.default({
+    size: 1000,
+    storageBackend: _reactNative.AsyncStorage,
+    defaultExpires: 86400000,
+    enableCache: true
+  });
+  var _default = storageApp;
+  exports.default = _default;
+},20000005,[7,3,20000006]);
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = undefined;
+
+  var _asyncToGenerator2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1]));
+
+  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2]));
+
+  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3]));
+
+  var _error = _$$_REQUIRE(_dependencyMap[4]);
+
+  var Storage = function () {
+    function Storage() {
+      var _this = this;
+
+      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      (0, _classCallCheck2.default)(this, Storage);
+      this._SIZE = options.size || 1000;
+      this.sync = options.sync || {};
+      this.defaultExpires = options.defaultExpires !== undefined ? options.defaultExpires : 86400000;
+      this.enableCache = options.enableCache !== false;
+      this._s = options.storageBackend || null;
+      this._innerVersion = 11;
+      this.cache = {};
+
+      if (this._s && this._s.setItem) {
+        try {
+          var promiseTest = this._s.setItem('__react_native_storage_test', 'test');
+
+          this.isPromise = !!(promiseTest && promiseTest.then);
+        } catch (e) {
+          console.warn(e);
+          delete this._s;
+          throw e;
+        }
+      } else {
+        console.warn("Data would be lost after reload cause there is no storageBackend specified!\n      \nEither use localStorage(for web) or AsyncStorage(for React Native) as a storageBackend.");
+      }
+
+      this._mapPromise = this.getItem('map').then(function (map) {
+        _this._m = _this._checkMap(map && JSON.parse(map) || {});
+      });
+    }
+
+    (0, _createClass2.default)(Storage, [{
+      key: "getItem",
+      value: function getItem(key) {
+        return this._s ? this.isPromise ? this._s.getItem(key) : Promise.resolve(this._s.getItem(key)) : Promise.resolve();
+      }
+    }, {
+      key: "setItem",
+      value: function setItem(key, value) {
+        return this._s ? this.isPromise ? this._s.setItem(key, value) : Promise.resolve(this._s.setItem(key, value)) : Promise.resolve();
+      }
+    }, {
+      key: "removeItem",
+      value: function removeItem(key) {
+        return this._s ? this.isPromise ? this._s.removeItem(key) : Promise.resolve(this._s.removeItem(key)) : Promise.resolve();
+      }
+    }, {
+      key: "_initMap",
+      value: function _initMap() {
+        return {
+          innerVersion: this._innerVersion,
+          index: 0,
+          __keys__: {}
+        };
+      }
+    }, {
+      key: "_checkMap",
+      value: function _checkMap(map) {
+        if (map && map.innerVersion && map.innerVersion === this._innerVersion) {
+          return map;
+        } else {
+          return this._initMap();
+        }
+      }
+    }, {
+      key: "_getId",
+      value: function _getId(key, id) {
+        return key + '_' + id;
+      }
+    }, {
+      key: "_saveToMap",
+      value: function _saveToMap(params) {
+        var key = params.key,
+            id = params.id,
+            data = params.data,
+            newId = this._getId(key, id),
+            m = this._m;
+
+        if (m[newId] !== undefined) {
+          if (this.enableCache) this.cache[newId] = JSON.parse(data);
+          return this.setItem('map_' + m[newId], data);
+        }
+
+        if (m[m.index] !== undefined) {
+          var oldId = m[m.index];
+          var splitOldId = oldId.split('_');
+          delete m[oldId];
+
+          this._removeIdInKey(splitOldId[0], splitOldId[1]);
+
+          if (this.enableCache) {
+            delete this.cache[oldId];
+          }
+        }
+
+        m[newId] = m.index;
+        m[m.index] = newId;
+        m.__keys__[key] = m.__keys__[key] || [];
+
+        m.__keys__[key].push(id);
+
+        if (this.enableCache) {
+          var cacheData = JSON.parse(data);
+          this.cache[newId] = cacheData;
+        }
+
+        var currentIndex = m.index;
+
+        if (++m.index === this._SIZE) {
+          m.index = 0;
+        }
+
+        this.setItem('map_' + currentIndex, data);
+        this.setItem('map', JSON.stringify(m));
+      }
+    }, {
+      key: "save",
+      value: function save(params) {
+        var _this2 = this;
+
+        var key = params.key,
+            id = params.id,
+            data = params.data,
+            rawData = params.rawData,
+            _params$expires = params.expires,
+            expires = _params$expires === undefined ? this.defaultExpires : _params$expires;
+
+        if (key.toString().indexOf('_') !== -1) {
+          console.error('Please do not use "_" in key!');
+        }
+
+        var dataToSave = {
+          rawData: data
+        };
+
+        if (data === undefined) {
+          if (rawData !== undefined) {
+            console.warn('"rawData" is deprecated, please use "data" instead!');
+            dataToSave.rawData = rawData;
+          } else {
+            console.error('"data" is required in save()!');
+            return;
+          }
+        }
+
+        var now = Date.now();
+
+        if (expires !== null) {
+          dataToSave.expires = now + expires;
+        }
+
+        dataToSave = JSON.stringify(dataToSave);
+
+        if (id === undefined) {
+          if (this.enableCache) {
+            var cacheData = JSON.parse(dataToSave);
+            this.cache[key] = cacheData;
+          }
+
+          return this.setItem(key, dataToSave);
+        } else {
+          if (id.toString().indexOf('_') !== -1) {
+            console.error('Please do not use "_" in id!');
+          }
+
+          return this._mapPromise.then(function () {
+            return _this2._saveToMap({
+              key: key,
+              id: id,
+              data: dataToSave
+            });
+          });
+        }
+      }
+    }, {
+      key: "getBatchData",
+      value: function getBatchData(querys) {
+        var _this3 = this;
+
+        return Promise.all(querys.map(function (query) {
+          return _this3.load(query);
+        }));
+      }
+    }, {
+      key: "getBatchDataWithIds",
+      value: function () {
+        var _getBatchDataWithIds = (0, _asyncToGenerator2.default)(function* (params) {
+          var _this4 = this;
+
+          var key = params.key,
+              ids = params.ids,
+              syncInBackground = params.syncInBackground,
+              syncParams = params.syncParams;
+          var tasks = ids.map(function (id) {
+            return _this4.load({
+              key: key,
+              id: id,
+              syncInBackground: syncInBackground,
+              autoSync: false,
+              batched: true
+            });
+          });
+          var results = yield Promise.all(tasks);
+          var missingIds = [];
+          results.forEach(function (value) {
+            if (value.syncId !== undefined) {
+              missingIds.push(value.syncId);
+            }
+          });
+
+          if (missingIds.length) {
+            var syncData = yield this.sync[key]({
+              id: missingIds,
+              syncParams: syncParams
+            });
+            return results.map(function (value) {
+              return value.syncId ? syncData.shift() : value;
+            });
+          } else {
+            return results;
+          }
+        });
+
+        function getBatchDataWithIds(_x) {
+          return _getBatchDataWithIds.apply(this, arguments);
+        }
+
+        return getBatchDataWithIds;
+      }()
+    }, {
+      key: "_lookupGlobalItem",
+      value: function _lookupGlobalItem(params) {
+        var _this5 = this;
+
+        var key = params.key;
+
+        if (this.enableCache && this.cache[key] !== undefined) {
+          return this._loadGlobalItem(Object.assign({
+            ret: this.cache[key]
+          }, params));
+        }
+
+        return this.getItem(key).then(function (ret) {
+          return _this5._loadGlobalItem(Object.assign({
+            ret: ret
+          }, params));
+        });
+      }
+    }, {
+      key: "_loadGlobalItem",
+      value: function _loadGlobalItem(params) {
+        var key = params.key,
+            ret = params.ret,
+            autoSync = params.autoSync,
+            syncInBackground = params.syncInBackground,
+            syncParams = params.syncParams;
+
+        if (ret === null || ret === undefined) {
+          if (autoSync && this.sync[key]) {
+            return this.sync[key]({
+              syncParams: syncParams
+            });
+          }
+
+          throw new _error.NotFoundError(JSON.stringify(params));
+        }
+
+        if (typeof ret === 'string') {
+          ret = JSON.parse(ret);
+
+          if (this.enableCache) {
+            this.cache[key] = ret;
+          }
+        }
+
+        var now = Date.now();
+
+        if (ret.expires < now) {
+          if (autoSync && this.sync[key]) {
+            if (syncInBackground) {
+              try {
+                this.sync[key]({
+                  syncParams: syncParams,
+                  syncInBackground: syncInBackground
+                });
+              } catch (e) {}
+
+              return ret.rawData;
+            }
+
+            return this.sync[key]({
+              syncParams: syncParams,
+              syncInBackground: syncInBackground
+            });
+          }
+
+          throw new _error.ExpiredError(JSON.stringify(params));
+        }
+
+        return ret.rawData;
+      }
+    }, {
+      key: "_noItemFound",
+      value: function _noItemFound(params) {
+        var key = params.key,
+            id = params.id,
+            autoSync = params.autoSync,
+            syncParams = params.syncParams;
+
+        if (this.sync[key]) {
+          if (autoSync) {
+            return this.sync[key]({
+              id: id,
+              syncParams: syncParams
+            });
+          }
+
+          return {
+            syncId: id
+          };
+        }
+
+        throw new _error.NotFoundError(JSON.stringify(params));
+      }
+    }, {
+      key: "_loadMapItem",
+      value: function _loadMapItem(params) {
+        var ret = params.ret,
+            key = params.key,
+            id = params.id,
+            autoSync = params.autoSync,
+            batched = params.batched,
+            syncInBackground = params.syncInBackground,
+            syncParams = params.syncParams;
+
+        if (ret === null || ret === undefined) {
+          return this._noItemFound(params);
+        }
+
+        if (typeof ret === 'string') {
+          ret = JSON.parse(ret);
+          var _key = params.key,
+              _id = params.id;
+
+          var newId = this._getId(_key, _id);
+
+          if (this.enableCache) {
+            this.cache[newId] = ret;
+          }
+        }
+
+        var now = Date.now();
+
+        if (ret.expires < now) {
+          if (autoSync && this.sync[key]) {
+            if (syncInBackground) {
+              try {
+                this.sync[key]({
+                  id: id,
+                  syncParams: syncParams,
+                  syncInBackground: syncInBackground
+                });
+              } catch (e) {}
+
+              return ret.rawData;
+            }
+
+            return this.sync[key]({
+              id: id,
+              syncParams: syncParams,
+              syncInBackground: syncInBackground
+            });
+          }
+
+          if (batched) {
+            return {
+              syncId: id
+            };
+          }
+
+          throw new _error.ExpiredError(JSON.stringify(params));
+        }
+
+        return ret.rawData;
+      }
+    }, {
+      key: "_lookUpInMap",
+      value: function _lookUpInMap(params) {
+        var _this6 = this;
+
+        var ret;
+        var m = this._m;
+        var key = params.key,
+            id = params.id;
+
+        var newId = this._getId(key, id);
+
+        if (this.enableCache && this.cache[newId]) {
+          ret = this.cache[newId];
+          return this._loadMapItem(Object.assign({
+            ret: ret
+          }, params));
+        }
+
+        if (m[newId] !== undefined) {
+          return this.getItem('map_' + m[newId]).then(function (ret) {
+            return _this6._loadMapItem(Object.assign({
+              ret: ret
+            }, params));
+          });
+        }
+
+        return this._noItemFound(Object.assign({
+          ret: ret
+        }, params));
+      }
+    }, {
+      key: "remove",
+      value: function remove(params) {
+        var _this7 = this;
+
+        return this._mapPromise.then(function () {
+          var m = _this7._m;
+          var key = params.key,
+              id = params.id;
+
+          if (id === undefined) {
+            if (_this7.enableCache && _this7.cache[key]) {
+              delete _this7.cache[key];
+            }
+
+            return _this7.removeItem(key);
+          }
+
+          var newId = _this7._getId(key, id);
+
+          if (m[newId] !== undefined) {
+            if (_this7.enableCache && _this7.cache[newId]) {
+              delete _this7.cache[newId];
+            }
+
+            _this7._removeIdInKey(key, id);
+
+            var idTobeDeleted = m[newId];
+            delete m[newId];
+
+            _this7.setItem('map', JSON.stringify(m));
+
+            return _this7.removeItem('map_' + idTobeDeleted);
+          }
+        });
+      }
+    }, {
+      key: "_removeIdInKey",
+      value: function _removeIdInKey(key, id) {
+        var indexTobeRemoved = (this._m.__keys__[key] || []).indexOf(id);
+
+        if (indexTobeRemoved !== -1) {
+          this._m.__keys__[key].splice(indexTobeRemoved, 1);
+        }
+      }
+    }, {
+      key: "load",
+      value: function load(params) {
+        var _this8 = this;
+
+        var key = params.key,
+            id = params.id,
+            _params$autoSync = params.autoSync,
+            autoSync = _params$autoSync === undefined ? true : _params$autoSync,
+            _params$syncInBackgro = params.syncInBackground,
+            syncInBackground = _params$syncInBackgro === undefined ? true : _params$syncInBackgro,
+            syncParams = params.syncParams,
+            batched = params.batched;
+        return this._mapPromise.then(function () {
+          if (id === undefined) {
+            return _this8._lookupGlobalItem({
+              key: key,
+              autoSync: autoSync,
+              syncInBackground: syncInBackground,
+              syncParams: syncParams
+            });
+          } else {
+            return _this8._lookUpInMap({
+              key: key,
+              id: id,
+              autoSync: autoSync,
+              syncInBackground: syncInBackground,
+              batched: batched,
+              syncParams: syncParams
+            });
+          }
+        });
+      }
+    }, {
+      key: "clearAll",
+      value: function clearAll() {
+        this._s.clear && this._s.clear();
+        this._m = this._initMap();
+      }
+    }, {
+      key: "clearMap",
+      value: function clearMap() {
+        var _this9 = this;
+
+        return this.removeItem('map').then(function () {
+          _this9.cache = {};
+          _this9._m = _this9._initMap();
+        });
+      }
+    }, {
+      key: "clearMapForKey",
+      value: function clearMapForKey(key) {
+        var _this10 = this;
+
+        return this._mapPromise.then(function () {
+          var tasks = (_this10._m.__keys__[key] || []).map(function (id) {
+            return _this10.remove({
+              key: key,
+              id: id
+            });
+          });
+          return Promise.all(tasks);
+        });
+      }
+    }, {
+      key: "getIdsForKey",
+      value: function getIdsForKey(key) {
+        var _this11 = this;
+
+        return this._mapPromise.then(function () {
+          return _this11._m.__keys__[key] || [];
+        });
+      }
+    }, {
+      key: "getAllDataForKey",
+      value: function getAllDataForKey(key, options) {
+        var _this12 = this;
+
+        options = Object.assign({
+          syncInBackground: true
+        }, options);
+        return this.getIdsForKey(key).then(function (ids) {
+          var querys = ids.map(function (id) {
+            return {
+              key: key,
+              id: id,
+              syncInBackground: options.syncInBackground
+            };
+          });
+          return _this12.getBatchData(querys);
+        });
+      }
+    }]);
+    return Storage;
+  }();
+
+  exports.default = Storage;
+},20000006,[7,268,16,17,20000007]);
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.NotFoundError = exports.ExpiredError = undefined;
+
+  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1]));
+
+  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2]));
+
+  var _inherits2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3]));
+
+  var _possibleConstructorReturn2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4]));
+
+  var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5]));
+
+  var _wrapNativeSuper2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6]));
+
+  function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
+
+  function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+  var NotFoundError = function (_Error) {
+    (0, _inherits2.default)(NotFoundError, _Error);
+
+    var _super = _createSuper(NotFoundError);
+
+    function NotFoundError(message) {
+      var _this;
+
+      (0, _classCallCheck2.default)(this, NotFoundError);
+      _this = _super.call(this, "Not Found! Params: " + message);
+      _this.name = 'NotFoundError';
+      _this.stack = new Error().stack;
+      return _this;
+    }
+
+    return (0, _createClass2.default)(NotFoundError);
+  }((0, _wrapNativeSuper2.default)(Error));
+
+  exports.NotFoundError = NotFoundError;
+
+  var ExpiredError = function (_Error2) {
+    (0, _inherits2.default)(ExpiredError, _Error2);
+
+    var _super2 = _createSuper(ExpiredError);
+
+    function ExpiredError(message) {
+      var _this2;
+
+      (0, _classCallCheck2.default)(this, ExpiredError);
+      _this2 = _super2.call(this, "Expired! Params: " + message);
+      _this2.name = 'ExpiredError';
+      _this2.stack = new Error().stack;
+      return _this2;
+    }
+
+    return (0, _createClass2.default)(ExpiredError);
+  }((0, _wrapNativeSuper2.default)(Error));
+
+  exports.ExpiredError = ExpiredError;
+},20000007,[7,17,16,28,30,33,34]);
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.pushToActivity = exports.getFromActivity = undefined;
+
+  var _storage = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1]));
+
+  var _native = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2]));
+
+  var pushToActivity = function pushToActivity(activity, params) {
+    _storage.default.save({
+      key: "MessageActivity",
+      data: params,
+      expires: 3600000
+    });
+
+    var _pre_fix = "com.example.myapprnn.";
+
+    _native.default.changeActivity(_pre_fix + activity);
+  };
+
+  exports.pushToActivity = pushToActivity;
+
+  var getFromActivity = function getFromActivity() {
+    return new Promise(function (resolve, reject) {
+      _storage.default.load({
+        key: "MessageActivity",
+        autoSync: true
+      }).then(function (data) {
+        resolve(data);
+      }).catch(function () {
+        reject("error");
+      }).finally(function () {});
+    });
+  };
+
+  exports.getFromActivity = getFromActivity;
+},20000008,[7,20000005,20000009]);
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = undefined;
+
+  var _reactNative = _$$_REQUIRE(_dependencyMap[0]);
+
+  if (!_reactNative.NativeModules.RNToolsManager) {
+    throw new Error('native模块加载失败');
+  }
+
+  var RNToolsManager = {
+    changeActivity: function changeActivity(value) {
+      return _reactNative.NativeModules.RNToolsManager.changeActivity(value, null);
+    }
+  };
+  var _default = RNToolsManager;
+  exports.default = _default;
+},20000009,[3]);
+__d(function(global, require, _importDefaultUnused, _importAllUnused, module, exports, _dependencyMapUnused) {
+  module.exports = {
+  "main": {
+    "name": "MyReactNativeApp"
+  },
+  "bu1": {
+    "name": "bu1"
+  },
+  "bu2": {
+    "name": "bu2"
+  }
+}
+;
+},20000010,[]);
 __r(21);
 __r(20000000);

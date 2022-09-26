@@ -1172,6 +1172,7 @@ public class CatalystInstanceImpl implements CatalystInstance {
         }
 }
 
+// 从上述我们可以看到，执行runjs 的 实际上是 CatalystInstance ，这点请你记住
 ```
 
 **到此为止，我们的前置知识都搞定了！**
@@ -1203,7 +1204,371 @@ public class CatalystInstanceImpl implements CatalystInstance {
 
 2. 第二版方案 （基础包 common + bu 业务包 = 运行时的 全量包 ）
 
-  我们先开看一个问题：“Android 中 RN 引擎到底是如何工作的？”，然后我们得处这样的结论：“上述的拆包方案的弊端”，最后我们的方案：“基础包+业务包 = runtimeBundle”
+  我们的发现上述的分包方案有明显的不足：“每个独立的包 都包含RN 的公共部分”，它会让我们的包体积变大，加载的时候白屏实际也会变长，基于此和市面上主流的方案，我们可以这样玩 ：把公共的包提取出来，bu包只包含业务，在实际运行的时候，把它们合成一个  runtime 的bundle 去执行，于是我们就有了这样的东西： common + bu 业务包 = 运行时的 全量包
+
+- 首先我们就要处理 “拆开” 这一个问题，在上述的 cli 源码分析中，我可以所需要用到的东西，只有两个函数 metro 提供的配置 createModuleIdFactory 和 processModuleFilter，前者处理模块命名，后者处理过滤（哪些需要打入bundle 哪些不需要），主要的内容前问已经描述过了，这里不在赘述
+
+  我们先看看moduleId 的处理，首先啊，我们还是使用 number 做为 id （而不是使用string string 太大了），为了区分基础包和 bu 包，我们规定 10000000 为业务包的开始自增的 moduleId 初值（每个BU的值不一样，main->10000000 -> bu1 20000000-> bu2 -> 30000000） ，基础包的id 还是从0 -> 开始递增。还需要注意的是，由于我们的moduleId 之间是有相互依赖的 ，所以为了确保，依赖关系的正确性，我们需要为基础包做一个映射（做法是 把基础包的 路径 存到一个json 中，业务包遇到这个路径的时候 去找这个映射中的moduleId 就好了）如果你不这样做，那么你的模块依赖 会乱掉. 而在 bu 打包的时候 只需要过滤掉 基础包映射中的js module就好了
+
+  build.js
+
+  ```js
+  const fs = require("fs");
+
+  const clean = function (file) {
+    fs.writeFileSync(file, JSON.stringify({}));
+  };
+
+  const hasBuildInfo = function (file, path) {
+    const cacheFile = require(file);
+    return Boolean(cacheFile[path]);
+  };
+
+  const writeBuildInfo = function (file, path, id) {
+    const cacheFile = require(file);
+    cacheFile[path] = id;
+    fs.writeFileSync(file, JSON.stringify(cacheFile));
+  };
+
+  const getCacheFile = function (file, path) {
+    const cacheFile = require(file);
+    return cacheFile[path] || 0;
+  };
+
+  const isPwdFile = (path) => {
+    const cwd = __dirname.split("/").splice(-1, 1).toString();
+
+    const pathArray = path.split("/");
+    const map = new Map();
+    const reverseMap = new Map();
+
+    pathArray.forEach((it, indx) => {
+      map.set(it, indx);
+      reverseMap.set(indx, it);
+    });
+
+    if (pathArray.length - 2 == map.get(cwd)) {
+      return reverseMap.get(pathArray.length - 1).replace(/\.js/, "");
+    }
+
+    return "";
+  };
+
+  module.exports = {
+    hasBuildInfo,
+    writeBuildInfo,
+    getCacheFile,
+    clean,
+    isPwdFile,
+  };
+
+  ```
+  
+  common.metro.js
+
+  ```js
+  const { hasBuildInfo, writeBuildInfo, clean } = require("./build");
+
+  function createModuleIdFactory() {
+    const fileToIdMap = new Map();
+    let nextId = 0;
+    clean("./config/bundleCommonInfo.json");
+
+    // 如果是业务 模块请以 10000000 来自增命名
+    return (path) => {
+      let id = fileToIdMap.get(path);
+
+      if (typeof id !== "number") {
+        id = nextId++;
+        fileToIdMap.set(path, id);
+
+        !hasBuildInfo("./config/bundleCommonInfo.json", path) &&
+          writeBuildInfo(
+            "./config/bundleCommonInfo.json",
+            path,
+            fileToIdMap.get(path)
+          );
+      }
+
+      return id;
+    };
+  }
+
+  module.exports = {
+    serializer: {
+      createModuleIdFactory: createModuleIdFactory, // 给 bundle 一个id 避免冲突 cli 源码中这个id 是从1 开始 自增的
+    },
+  };
+
+  ```
+
+  mian.metro.js
+
+  ```js
+  const { hasBuildInfo, getCacheFile, isPwdFile } = require("./build");
+  const bundleBuInfo = require("./config/bundleBuInfo.json");
+  function postProcessModulesFilter(module) {
+    if (
+      module["path"].indexOf("__prelude__") >= 0 ||
+      module["path"].indexOf("polyfills") >= 0
+    ) {
+      return false;
+    }
+
+    if (hasBuildInfo("./config/bundleCommonInfo.json", module.path)) {
+      return false;
+    }
+
+    return true;
+  }
+
+  // 不要使用 string 会导致 bundle 体积陡增
+  function createModuleIdFactory() {
+    // 如果是业务 模块请以 10000000 来自增命名
+    const fileToIdMap = new Map();
+    let nextId = 10000000;
+    let isFirst = false;
+
+    return (path) => {
+      if (Boolean(getCacheFile("./config/bundleCommonInfo.json", path))) {
+        return getCacheFile("./config/bundleCommonInfo.json", path);
+      }
+
+      if (!isFirst && isPwdFile(path)) {
+        nextId = bundleBuInfo[isPwdFile(path)];
+        isFirst = true;
+      }
+
+      let id = fileToIdMap.get(path);
+      if (typeof id !== "number") {
+        id = nextId++;
+        fileToIdMap.set(path, id);
+      }
+      return id;
+    };
+  }
+
+  module.exports = {
+    serializer: {
+      createModuleIdFactory: createModuleIdFactory, // 给 bundle 一个id 避免冲突 cli 源码中这个id 是从1 开始 自增的
+      processModuleFilter: postProcessModulesFilter, // 返回false 就不会build 进去
+    },
+  };
+
+  ```
+
+  config/bundleBuInfo.json
+
+  ```json
+    {
+      "index": 10000000,
+      "Bu1": 20000000,
+      "Bu2": 30000000
+    }
+  ```
+
+- 执行build 命令就好了, 当然你可以把它们都编如一个shell 中去 打包简化的目的, 我这里没有怎么做，因为我们后续还需针对热更新做优化
+  
+  ```shell
+  # common
+  yarn react-native bundle --platform android --dev false --entry-file ./common.js --bundle-output ./android/app/src/main/assets/common.android.bundle --assets-dest ./android/app/src/main/res --config ./metro.common.config.js --reset-cache
+
+  # BU
+  yarn react-native bundle --platform android --dev false --entry-file ./Bu2.js --bundle-output ./android/app/src/main/assets/bu2.android.bundle --assets-dest ./android/app/src/main/res --config ./metro.main.config.js --reset-cache
+  ```
+
+  打包之前（假设我们没有 进行压缩🗜️ 参数 --minify false  ）我们发现，如果不拆包 每个bundle 也得有 将近2.3M的大小，
+  
+  打包之后（假设我们不对代码 进行压缩🗜️ 参数 --minify false ）我们发现common 1.9MB （比较大 因为包含了公共依赖），其余的包 基本不到 50kb
+
+  可以看到 效果显著啊，如果进行压缩 处理 common 将不足1kb 每个 bu将不会超过 20kb
+
+  **特别说明，上述的大小对比仅仅是我的这个项目来说，实际情况还是要以项目实际情况为主**
+  
+  - 好了现在我们把js 的拆分已经完成了，然后重点来了“如何在Android native”，合并这两个包形成一个runtime 的 bundle呢？
+
+  ```java
+  // 前文中我们就提到过 android code 执行的流程，现在我们来change 一下啊 ，主要的核心代码是：（具体的完整代码请看 源码）
+  // 我这里把它们抽象 一个公共的类，每个 Activity 加载的时候 重写 getJSBundleAssetName，getJsModulePathPath，getResName 就 可以很方便的加载指定 的 Activity 了 ，
+  
+      @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.canDrawOverlays(this)) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                        Uri.parse("package:" + getPackageName()));
+                startActivityForResult(intent, OVERLAY_PERMISSION_REQ_CODE);
+            }
+        }
+        SoLoader.init(this, false);
+
+        // root 容器
+        mReactRootView = new ReactRootView(this);
+
+        if( BuildConfig.DEBUG ){
+            mReactInstanceManager = ReactInstanceManager.builder()
+                    .setApplication(getApplication())
+                    .setCurrentActivity(this)
+                    .setBundleAssetName(getJSBundleAssetName())
+                    .setJSMainModulePath(getJsModulePathPath())
+                    .addPackages(MainApplication.getInstance().packages)
+                    .setUseDeveloperSupport(true)
+                    .setInitialLifecycleState(LifecycleState.RESUMED)
+                    .build();
+
+            mReactRootView.startReactApplication(mReactInstanceManager, getResName(), null);
+            setContentView(mReactRootView);
+            return;
+        }
+
+
+        mReactInstanceManager = MainApplication.getInstance().builder.setCurrentActivity(this).build();
+
+        if (!mReactInstanceManager.hasStartedCreatingInitialContext()) {
+            mReactInstanceManager.addReactInstanceEventListener(new ReactInstanceManager.ReactInstanceEventListener() {
+                @Override
+                public void onReactContextInitialized(ReactContext context) {
+                    //加载业务包
+                    ReactContext mContext = mReactInstanceManager.getCurrentReactContext();
+                    CatalystInstance instance = mContext.getCatalystInstance();
+                    ((CatalystInstanceImpl)instance).loadScriptFromAssets(context.getAssets(), "assets://" + getJSBundleAssetName(),false);
+
+                    mReactRootView.startReactApplication(mReactInstanceManager, getResName(), null);
+                    setContentView(mReactRootView);
+
+                    mReactInstanceManager.removeReactInstanceEventListener(this);
+                }
+            });
+            mReactInstanceManager.createReactContextInBackground();
+        }
+
+        return;
+    }
+
+  ```
+
+  - 但光这样就结束了？远远没有，如果像上述这样做的话，会导致 每个 Activity 都会全量载入 一次 bundle ，如果有一种方法，能够把基础的common 缓存起来，每次 Activity 只加载 bu 包就好了。
+
+  市面上对于这一块有不同的做法，网上能搜到的就是 腾讯某团队的 一篇文章了 （<https://cloud.tencent.com/developer/article/1005382>），但是这....是有局限的 直接缓存 RootView 要仔细处理 Native 的生命周期 和 RN 的生命周期，要不然会导致 缓存的RootView 无法执行 componnetDid 等，因为他执行过一次就不在执行js 了你没有reload js 只是缓存绘制好的View 而且 ，在 native 的 onDestroy 中也要处理，要不然缓存的view 无法相应JS。
+
+  基于此我换了一种思路去实现呢它，我把common 缓存起来，动态加载不同的bundle ，目前我现在的做法基本上 是妙进的！
+  
+  ```java
+  // MainApplication
+  public class MainApplication extends Application   {
+      public ReactInstanceManagerBuilder builder;
+      public  List<ReactPackage> packages;
+      private  ReactInstanceManager cacheReactInstanceManager;
+      private Boolean isload = false;
+
+      private static MainApplication mApp;
+
+      @Override
+      public void onCreate() {
+          super.onCreate();
+          SoLoader.init(this, /* native exopackage */ false);
+          mApp = this;
+
+          packages = new PackageList(this).getPackages();
+          packages.add(new RNToolPackage());
+
+          cacheReactInstanceManager = ReactInstanceManager.builder()
+                  .setApplication(this)
+                  .addPackages(packages)
+                  .setJSBundleFile("assets://common.android.bundle")
+                  .setInitialLifecycleState(LifecycleState.BEFORE_CREATE).build();
+
+      }
+
+      public static MainApplication getInstance(){
+          return mApp;
+      }
+
+      // 获取 已经缓存过的 rcInstanceManager
+      public ReactInstanceManager getRcInstanceManager () {
+          return this.cacheReactInstanceManager;
+      }
+
+
+      public void setIsLoad(Boolean isload) {
+          this.isload = isload;
+      }
+
+      public boolean getIsLoad(){
+          return this.isload;
+      }
+
+  // PreBaseInit （只列出 核心的代码 ） 完整代码请到仓库 自行查看
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.canDrawOverlays(this)) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                        Uri.parse("package:" + getPackageName()));
+                startActivityForResult(intent, OVERLAY_PERMISSION_REQ_CODE);
+            }
+        }
+        SoLoader.init(this, false);
+
+        if( BuildConfig.DEBUG ){
+            mReactRootView = new ReactRootView(this);
+            mReactInstanceManager = ReactInstanceManager.builder()
+                    .setApplication(getApplication())
+                    .setCurrentActivity(this)
+                    .setBundleAssetName(getJSBundleAssetName())
+                    .setJSMainModulePath(getJsModulePathPath())
+                    .addPackages(MainApplication.getInstance().packages)
+                    .setUseDeveloperSupport(true)
+                    .setInitialLifecycleState(LifecycleState.RESUMED)
+                    .build();
+
+            mReactRootView.startReactApplication(mReactInstanceManager, getResName(), null);
+            setContentView(mReactRootView);
+            return;
+        }
+
+        // 重新设置 Activity 和 files
+        mReactInstanceManager = MainApplication.getInstance().getRcInstanceManager();
+        mReactInstanceManager.onHostResume(this, this);
+        mReactRootView = new ReactRootView(this);
+
+        mReactInstanceManager.addReactInstanceEventListener(new ReactInstanceManager.ReactInstanceEventListener() {
+            @Override
+            public void onReactContextInitialized(ReactContext context) {
+                MainApplication.getInstance().setIsLoad(true);
+
+                //加载业务包
+                ReactContext mContext = mReactInstanceManager.getCurrentReactContext();
+                CatalystInstance instance = mContext.getCatalystInstance();
+                ((CatalystInstanceImpl)instance).loadScriptFromAssets(context.getAssets(), "assets://" + getJSBundleAssetName(),false);
+
+                mReactRootView.startReactApplication(mReactInstanceManager, getResName(), null);
+                setContentView(mReactRootView);
+
+                mReactInstanceManager.removeReactInstanceEventListener(this);
+            }
+        });
+
+        if(MainApplication.getInstance().getIsLoad()){
+            ReactContext mContext = mReactInstanceManager.getCurrentReactContext();
+            CatalystInstance instance = mContext.getCatalystInstance();
+            ((CatalystInstanceImpl)instance).loadScriptFromAssets(mContext.getAssets(), "assets://" + getJSBundleAssetName(),false);
+
+            mReactRootView.startReactApplication(mReactInstanceManager, getResName(), null);
+            setContentView(mReactRootView);
+
+        }
+
+        mReactInstanceManager.createReactContextInBackground();
+        return;
+    }
+  ```
+
+  **至此 基于RN 的拆包 JS 和 Android 端已经完美实现**
+
+  3. 关于热更新 和版本管理
 
 # 重要的细节 （IOS）
 
@@ -1222,6 +1587,6 @@ public class CatalystInstanceImpl implements CatalystInstance {
 | native版本的包管理   |    ✅ 完成     |  /      |
 | 初步的拆包方案   |    ✅ 完成     |  /      |
 | 优化拆包方案 common + bu = runtime    |    ✅ 完成     |  /      |
-| 容器的缓存复用    |    ✅ 完成     |  /      |
+| 容器的缓存复用    |    ✅ 完成      |  /      |
 | 热更新的实现   |    /     |  /      |
 | WebView 的实现   |    /     |  /      |

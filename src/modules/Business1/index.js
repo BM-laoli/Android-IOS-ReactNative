@@ -1,39 +1,54 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Text, View, Image, ScrollView, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ScrollView,
+  Button,
+} from "react-native";
 import Imgx from "./assets/img/1024_500.png";
-import  { navigation  } from '../../../common/utils'
+import { navigation } from "../../../common/utils";
 // 整个App 的骨架，基础包 更新要严格控制
-const  Frame = (props) =>   {
+const Frame = (props) => {
   useEffect(() => {
-    init()
+    init();
+    console.log("初始化");
+    return () => {
+      console.log("销毁");
+    };
   }, []);
 
   const init = async () => {
-    const params =  await navigation.getFromActivity()
-    console.log('params', params);
-  }
+    const params = await navigation.getFromActivity();
+    console.log("params", params);
+  };
 
   return (
-      <View style={styles.container}>
-        <Text style={styles.hello}>BU1 </Text>
-       <Button title="前往BU2" onPress={() => {
-         navigation.pushToActivity( "Bu2Activity" , { value:111 } );
-       }}  style={styles.btn}  />
+    <View style={styles.container}>
+      <Text style={styles.hello}>BU1 </Text>
+      <Button
+        title="前往BU2"
+        onPress={() => {
+          navigation.pushToActivity("Bu2Activity", { value: 111 });
+        }}
+        style={styles.btn}
+      />
 
-        <ScrollView style={styles.flatContainer}>
-          <View style={styles.imgView}>
-            <Image
-              resizeMethod="resize"
-              resizeMode="contain"
-              source={Imgx}
-              // source={imgICON}
-              style={styles.img}
-            />
-          </View>
-        </ScrollView>
-      </View>
-    );
-}
+      <ScrollView style={styles.flatContainer}>
+        <View style={styles.imgView}>
+          <Image
+            resizeMethod="resize"
+            resizeMode="contain"
+            source={Imgx}
+            // source={imgICON}
+            style={styles.img}
+          />
+        </View>
+      </ScrollView>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -59,7 +74,7 @@ const styles = StyleSheet.create({
   btn: {
     width: 30,
     height: 30,
-  }
+  },
 });
 
 export default Frame;

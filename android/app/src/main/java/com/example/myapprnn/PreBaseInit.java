@@ -48,46 +48,57 @@ public class PreBaseInit extends AppCompatActivity implements DefaultHardwareBac
         }
         SoLoader.init(this, false);
 
-        // root 容器
-        mReactRootView = new ReactRootView(this);
+        if( BuildConfig.DEBUG ){
+            mReactRootView = new ReactRootView(this);
+            mReactInstanceManager = ReactInstanceManager.builder()
+                    .setApplication(getApplication())
+                    .setCurrentActivity(this)
+                    .setBundleAssetName(getJSBundleAssetName())
+                    .setJSMainModulePath(getJsModulePathPath())
+                    .addPackages(MainApplication.getInstance().packages)
+                    .setUseDeveloperSupport(true)
+                    .setInitialLifecycleState(LifecycleState.RESUMED)
+                    .build();
 
-//        if( BuildConfig.DEBUG ){
-//            mReactInstanceManager = ReactInstanceManager.builder()
-//                    .setApplication(getApplication())
-//                    .setCurrentActivity(this)
-//                    .setBundleAssetName(getJSBundleAssetName())
-//                    .setJSMainModulePath(getJsModulePathPath())
-//                    .addPackages(MainApplication.getInstance().packages)
-//                    .setUseDeveloperSupport(true)
-//                    .setInitialLifecycleState(LifecycleState.RESUMED)
-//                    .build();
-//
-//            mReactRootView.startReactApplication(mReactInstanceManager, getResName(), null);
-//            setContentView(mReactRootView);
-//            return;
-//        }
-
-
-        mReactInstanceManager = MainApplication.getInstance().builder.setCurrentActivity(this).build();
-
-        if (!mReactInstanceManager.hasStartedCreatingInitialContext()) {
-            mReactInstanceManager.addReactInstanceEventListener(new ReactInstanceManager.ReactInstanceEventListener() {
-                @Override
-                public void onReactContextInitialized(ReactContext context) {
-                    //加载业务包
-                    ReactContext mContext = mReactInstanceManager.getCurrentReactContext();
-                    CatalystInstance instance = mContext.getCatalystInstance();
-                    ((CatalystInstanceImpl)instance).loadScriptFromAssets(context.getAssets(), "assets://" + getJSBundleAssetName(),false);
-
-                    mReactRootView.startReactApplication(mReactInstanceManager, getResName(), null);
-                    setContentView(mReactRootView);
-
-                    mReactInstanceManager.removeReactInstanceEventListener(this);
-                }
-            });
-            mReactInstanceManager.createReactContextInBackground();
+            mReactRootView.startReactApplication(mReactInstanceManager, getResName(), null);
+            setContentView(mReactRootView);
+            return;
         }
 
+        // 重新设置 Activity 和 files
+
+        mReactInstanceManager = MainApplication.getInstance().getRcInstanceManager();
+        mReactInstanceManager.onHostResume(this, this);
+        mReactRootView = new ReactRootView(this);
+
+        mReactInstanceManager.addReactInstanceEventListener(new ReactInstanceManager.ReactInstanceEventListener() {
+            @Override
+            public void onReactContextInitialized(ReactContext context) {
+                MainApplication.getInstance().setIsLoad(true);
+
+                //加载业务包
+                ReactContext mContext = mReactInstanceManager.getCurrentReactContext();
+                CatalystInstance instance = mContext.getCatalystInstance();
+                ((CatalystInstanceImpl)instance).loadScriptFromAssets(context.getAssets(), "assets://" + getJSBundleAssetName(),false);
+
+                mReactRootView.startReactApplication(mReactInstanceManager, getResName(), null);
+                setContentView(mReactRootView);
+
+                mReactInstanceManager.removeReactInstanceEventListener(this);
+            }
+        });
+
+        if(MainApplication.getInstance().getIsLoad()){
+            ReactContext mContext = mReactInstanceManager.getCurrentReactContext();
+            CatalystInstance instance = mContext.getCatalystInstance();
+            ((CatalystInstanceImpl)instance).loadScriptFromAssets(mContext.getAssets(), "assets://" + getJSBundleAssetName(),false);
+
+            mReactRootView.startReactApplication(mReactInstanceManager, getResName(), null);
+            setContentView(mReactRootView);
+
+        }
+
+        mReactInstanceManager.createReactContextInBackground();
         return;
     }
 
@@ -157,5 +168,7 @@ public class PreBaseInit extends AppCompatActivity implements DefaultHardwareBac
         }
         return super.onKeyUp(keyCode, event);
     }
+
+
 
 }
