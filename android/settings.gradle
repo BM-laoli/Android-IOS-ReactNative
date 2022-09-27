@@ -25,8 +25,13 @@ dependencyResolutionManagement {
 rootProject.name = "myappRNN"
 
 // 在新版本中 （@react-native-community/cli ）它把 link 给删除了, 会自动进行link 不需要你手动加
-
 // 添加自动link 库
-apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
+apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle");
+applyNativeModulesSettingsGradle(settings)
 include ':app'
+
+// 详见 https://github.com/microsoft/react-native-code-push/issues/2336 这条 issues
+include ':app', ':react-native-code-push'
+project(':react-native-code-push').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-code-push/android/app')
+
 

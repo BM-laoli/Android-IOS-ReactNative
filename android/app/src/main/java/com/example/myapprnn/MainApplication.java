@@ -8,8 +8,8 @@ import com.facebook.react.ReactInstanceManagerBuilder;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.common.LifecycleState;
 import com.facebook.soloader.SoLoader;
-
 import java.util.List;
+
 
 public class MainApplication extends Application   {
     public  List<ReactPackage> packages;

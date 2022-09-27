@@ -10,7 +10,7 @@ android {
         minSdk 21
         targetSdk 32
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0" // CodePush 要求使用三位数 而非默认的两位数
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -29,7 +29,15 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
+            resValue "string", "CodePushDeploymentKey", '"WV5vQA4rjoc4rBzf_-gFwGVYPoRg5dFd_aamJ"'
         }
+
+        releaseStaging.initWith(release)
+        releaseStaging {
+            resValue "string", "CodePushDeploymentKey", '"HC3Eqd1PRRmYRC767EPegzIyIbxLeATX_nIDw"'
+            matchingFallbacks = ['release']
+        }
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -50,4 +58,6 @@ dependencies {
     implementation "org.webkit:android-jsc:+"
 }
 
+
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
+apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"

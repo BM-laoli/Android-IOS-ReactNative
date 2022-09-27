@@ -19,6 +19,8 @@ import com.facebook.react.common.LifecycleState;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.soloader.SoLoader;
 
+import com.microsoft.codepush.react.CodePush;
+
 public class PreBaseInit extends AppCompatActivity implements DefaultHardwareBackBtnHandler {
     private final int OVERLAY_PERMISSION_REQ_CODE = 1;
     private ReactRootView mReactRootView;
@@ -79,7 +81,13 @@ public class PreBaseInit extends AppCompatActivity implements DefaultHardwareBac
                 //加载业务包
                 ReactContext mContext = mReactInstanceManager.getCurrentReactContext();
                 CatalystInstance instance = mContext.getCatalystInstance();
-                ((CatalystInstanceImpl)instance).loadScriptFromAssets(context.getAssets(), "assets://" + getJSBundleAssetName(),false);
+
+//                CodePush.getJSBundleFile();
+
+                String bundleFile =  "assets://" + getJSBundleAssetName();
+                bundleFile =  CodePush.getJSBundleFile();
+
+                ((CatalystInstanceImpl)instance).loadScriptFromAssets(context.getAssets(), bundleFile,false);
 
                 mReactRootView.startReactApplication(mReactInstanceManager, getResName(), null);
                 setContentView(mReactRootView);

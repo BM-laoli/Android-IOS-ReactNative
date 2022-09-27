@@ -2,3 +2,4 @@
 import "react";
 import "react-native";
 import "react-native-device-info";
+import  'react-native-code-push'
