@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.KeyEvent;
 
 import androidx.annotation.Nullable;
@@ -14,6 +15,7 @@ import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactRootView;
 import com.facebook.react.bridge.CatalystInstance;
 import com.facebook.react.bridge.CatalystInstanceImpl;
+import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.common.LifecycleState;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
@@ -41,7 +43,6 @@ public class PreBaseInit extends AppCompatActivity implements DefaultHardwareBac
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.preInit();
-
         super.onCreate(savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!Settings.canDrawOverlays(this)) {
@@ -75,6 +76,9 @@ public class PreBaseInit extends AppCompatActivity implements DefaultHardwareBac
         mReactInstanceManager.onHostResume(this, this);
         mReactRootView = new ReactRootView(this);
 
+        // 测试加载 assets 之外的文件
+//        String filePath$Name = getApplicationContext().getExternalFilesDir(null).getAbsolutePath() + "/Bundle/staging/" + getJSBundleAssetName();
+        String filePath$Name = "assets://" + getJSBundleAssetName();
         mReactInstanceManager.addReactInstanceEventListener(new ReactInstanceManager.ReactInstanceEventListener() {
             @Override
             public void onReactContextInitialized(ReactContext context) {
@@ -84,7 +88,14 @@ public class PreBaseInit extends AppCompatActivity implements DefaultHardwareBac
                 ReactContext mContext = mReactInstanceManager.getCurrentReactContext();
                 CatalystInstance instance = mContext.getCatalystInstance();
 
-                ((CatalystInstanceImpl)instance).loadScriptFromAssets(context.getAssets(), "assets://" + getJSBundleAssetName(),false);
+                // loadScriptFromAssets FromAssets 不再适用
+                  ((CatalystInstanceImpl)instance).loadScriptFromAssets(context.getAssets(),filePath$Name ,false);
+
+
+                // 不要用这个 因为会导致 你的 图片资源路径丢失
+//                 ((CatalystInstanceImpl)instance).loadScriptFromFile(filePath$Name,filePath$Name ,false);
+//                  ((CatalystInstanceImpl)instance).loadSplitBundleFromFile( filePath$Name, filePath$Name);
+
 
                 mReactRootView.startReactApplication(mReactInstanceManager, getResName(), null);
                 setContentView(mReactRootView);
@@ -96,7 +107,11 @@ public class PreBaseInit extends AppCompatActivity implements DefaultHardwareBac
         if(MainApplication.getInstance().getIsLoad()){
             ReactContext mContext = mReactInstanceManager.getCurrentReactContext();
             CatalystInstance instance = mContext.getCatalystInstance();
-            ((CatalystInstanceImpl)instance).loadScriptFromAssets(mContext.getAssets(), "assets://" + getJSBundleAssetName(),false);
+
+            // loadScriptFromAssets FromAssets 不再适用
+            //  ((CatalystInstanceImpl)instance).loadScriptFromAssets(context.getAssets(),filePath$Name ,false);
+
+            ((CatalystInstanceImpl)instance).loadSplitBundleFromFile( filePath$Name, filePath$Name);
 
             mReactRootView.startReactApplication(mReactInstanceManager, getResName(), null);
             setContentView(mReactRootView);

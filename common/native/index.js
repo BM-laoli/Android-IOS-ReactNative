@@ -11,6 +11,9 @@ const RNToolsManager = {
   writeFileFoRC: () => {
     return NativeModules.RNToolsManager.writeFileFoRC();
   },
+  cleanFileByPath: () => {
+    return NativeModules.RNToolsManager.cleanFileByPath();
+  },
 };
 
 export default RNToolsManager;

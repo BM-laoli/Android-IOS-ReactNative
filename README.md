@@ -1570,10 +1570,45 @@ public class CatalystInstanceImpl implements CatalystInstance {
 
   3. 关于热更新 和版本管理
 
+  特别注意common 包为方便管理 我们不进行热更新
+
   目前我使用codepush 遇到了问题，code push 适合 使用 rn 创建的新项目，如果使用 Android 项目开始的 那么，code push 集成 将会是一个棘手的问题。于是我自己作了一个 简单的热更新
+
+```md
+1. 预先调研 （删除问文件夹操作）  是否可以 创建文件夹  + CV文件  + 删除文件 - ✅
+
+2. 预先调研  是否可以载入 fileSystem 的包 - ✅
+
+3. common开头独立执行嘛 - ✅
+
+3. RN 下载 zip 并解包 - 下载包并且对比是否包版本一致
+```js
+// 我们做一个假的功能
+
+```
+
+```
+
+  它的大概逻辑如下：（当然我只是简单实现一下）
+
+- App 载入， 看看 data 下是否有 bundle 如果没有则创建文件夹 且把 bundle bu包 cv 进去（注意要创建两个 staging/release)
   
-  - assets 下的目录是否能获取 在runtime 的时候
-  - assets 下的目录是否能写入 在runtime 的时候
+- 从RN 读配置Version.json（注意段业务要写在common中）cv 到 data/bundle 中，同时让RN fetch API 如果版本不对 请把RN下的zip包下载，然后清楚版本不正确的 bu 文件，把zip 解压出来 （达到替换目的），重启App
+
+- 如果有这份文件 在bu bundle 加载的时候 直接返回其路径，具体是 staging/release 哪个文件夹下 就要看 前面第一步写的 version isStaging 信息啦
+
+  ```json
+  {
+    "key":"myrnApp",
+    "isStaging":false,
+    "versionInfo": {
+      "staging":"1.0.0", // 如果和远程 包 不一致  请更新 往小的改就是回退，往大的改就是更新
+      "release":"1.0.0",
+    }
+  }
+  ```
+
+   一个重要的问题 在rn 源码中 有这样的东西
 
 # 重要的细节 （IOS）
 
@@ -1595,3 +1630,9 @@ public class CatalystInstanceImpl implements CatalystInstance {
 | 容器的缓存复用    |    ✅ 完成      |  /      |
 | 热更新的实现   |    /     |  /      |
 | WebView 的实现   |    /     |  /      |
+
+# 参考和感谢
+
+[RN 的Android 端执行过程](https://fsilence.github.io/2018/01/09/react-native-load-jsbundle/)
+
+[一种RN的分包策略](https://cloud.tencent.com/developer/article/1005382)

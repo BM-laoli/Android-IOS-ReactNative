@@ -4,6 +4,7 @@ import Imgx from "./assets/img/test.png";
 import TestNativeInfo from "./TestNativeInfo";
 import { navigation } from "../../../common/utils";
 import NativeModule from "../../../common/native";
+import {} from 'reac'
 
 // 整个App 的骨架，基础包 更新要严格控制
 class Frame extends React.Component {
@@ -33,6 +34,25 @@ class Frame extends React.Component {
           }}
         >
           写入文件
+        </Text>
+
+        <Text
+          style={styles.hello}
+          onPress={() => {
+            NativeModule.cleanFileByPath();
+          }}
+        >
+         删除BU2 for fileSystem
+        </Text>
+
+
+        <Text
+          style={styles.hello}
+          onPress={() => {
+            
+          }}
+        >
+          获取文件
         </Text>
 
         <ScrollView style={styles.flatContainer}>
