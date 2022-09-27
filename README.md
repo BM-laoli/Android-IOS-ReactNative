@@ -1570,6 +1570,11 @@ public class CatalystInstanceImpl implements CatalystInstance {
 
   3. 关于热更新 和版本管理
 
+  目前我使用codepush 遇到了问题，code push 适合 使用 rn 创建的新项目，如果使用 Android 项目开始的 那么，code push 集成 将会是一个棘手的问题。于是我自己作了一个 简单的热更新
+  
+  - assets 下的目录是否能获取 在runtime 的时候
+  - assets 下的目录是否能写入 在runtime 的时候
+
 # 重要的细节 （IOS）
 
 ## 按照官方的教程踩坑的地方

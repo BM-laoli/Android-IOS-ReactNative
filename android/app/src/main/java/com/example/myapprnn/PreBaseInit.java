@@ -19,8 +19,6 @@ import com.facebook.react.common.LifecycleState;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.soloader.SoLoader;
 
-import com.microsoft.codepush.react.CodePush;
-
 public class PreBaseInit extends AppCompatActivity implements DefaultHardwareBackBtnHandler {
     private final int OVERLAY_PERMISSION_REQ_CODE = 1;
     private ReactRootView mReactRootView;
@@ -38,8 +36,12 @@ public class PreBaseInit extends AppCompatActivity implements DefaultHardwareBac
         return "MyReactNativeApp";
     };
 
+    public void preInit () {}
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.preInit();
+
         super.onCreate(savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!Settings.canDrawOverlays(this)) {
@@ -50,22 +52,22 @@ public class PreBaseInit extends AppCompatActivity implements DefaultHardwareBac
         }
         SoLoader.init(this, false);
 
-        if( BuildConfig.DEBUG ){
-            mReactRootView = new ReactRootView(this);
-            mReactInstanceManager = ReactInstanceManager.builder()
-                    .setApplication(getApplication())
-                    .setCurrentActivity(this)
-                    .setBundleAssetName(getJSBundleAssetName())
-                    .setJSMainModulePath(getJsModulePathPath())
-                    .addPackages(MainApplication.getInstance().packages)
-                    .setUseDeveloperSupport(true)
-                    .setInitialLifecycleState(LifecycleState.RESUMED)
-                    .build();
-
-            mReactRootView.startReactApplication(mReactInstanceManager, getResName(), null);
-            setContentView(mReactRootView);
-            return;
-        }
+//        if( BuildConfig.DEBUG ){
+//            mReactRootView = new ReactRootView(this);
+//            mReactInstanceManager = ReactInstanceManager.builder()
+//                    .setApplication(getApplication())
+//                    .setCurrentActivity(this)
+//                    .setBundleAssetName(getJSBundleAssetName())
+//                    .setJSMainModulePath(getJsModulePathPath())
+//                    .addPackages(MainApplication.getInstance().packages)
+//                    .setUseDeveloperSupport(true)
+//                    .setInitialLifecycleState(LifecycleState.RESUMED)
+//                    .build();
+//
+//            mReactRootView.startReactApplication(mReactInstanceManager, getResName(), null);
+//            setContentView(mReactRootView);
+//            return;
+//        }
 
         // 重新设置 Activity 和 files
 
@@ -82,12 +84,7 @@ public class PreBaseInit extends AppCompatActivity implements DefaultHardwareBac
                 ReactContext mContext = mReactInstanceManager.getCurrentReactContext();
                 CatalystInstance instance = mContext.getCatalystInstance();
 
-//                CodePush.getJSBundleFile();
-
-                String bundleFile =  "assets://" + getJSBundleAssetName();
-                bundleFile =  CodePush.getJSBundleFile();
-
-                ((CatalystInstanceImpl)instance).loadScriptFromAssets(context.getAssets(), bundleFile,false);
+                ((CatalystInstanceImpl)instance).loadScriptFromAssets(context.getAssets(), "assets://" + getJSBundleAssetName(),false);
 
                 mReactRootView.startReactApplication(mReactInstanceManager, getResName(), null);
                 setContentView(mReactRootView);

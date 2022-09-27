@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import Imgx from "./assets/img/test.png";
 import TestNativeInfo from "./TestNativeInfo";
 import { navigation } from "../../../common/utils";
+import NativeModule from "../../../common/native";
 
 // 整个App 的骨架，基础包 更新要严格控制
 class Frame extends React.Component {
@@ -13,6 +14,7 @@ class Frame extends React.Component {
         <Text style={styles.hello}>应用的设置非常好</Text>
         <Text style={styles.hello}>这是我的第一个非常不错的项目</Text>
         <Text style={styles.hello}>Android + RN</Text>
+
         <Text
           style={styles.hello}
           onPress={() => {
@@ -23,6 +25,16 @@ class Frame extends React.Component {
         >
           去BU2
         </Text>
+
+        <Text
+          style={styles.hello}
+          onPress={() => {
+            NativeModule.writeFileFoRC();
+          }}
+        >
+          写入文件
+        </Text>
+
         <ScrollView style={styles.flatContainer}>
           <View style={styles.imgView}>
             <Image

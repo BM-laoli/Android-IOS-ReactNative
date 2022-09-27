@@ -2,12 +2,22 @@ package com.example.myapprnn;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 
 
 import com.facebook.react.bridge.JSApplicationIllegalArgumentException;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.io.Reader;
 
 public class RNToolsManager extends ReactContextBaseJavaModule {
     public static final String EXTRA_MESSAGE = "MESSAGE";
@@ -44,4 +54,28 @@ public class RNToolsManager extends ReactContextBaseJavaModule {
                     "不能打开Activity : "+e.getMessage());
         }
     }
+
+    // 尝试写文件
+    @ReactMethod
+    public void writeFileFoRC () {
+        try {
+            // 不要尝试写assets ，第一次在assets 中，如果有更新后续的包 从 内部存储中加载 和更新
+            this.writeStringToFile("2222","/assets/read.txt");
+
+        }catch (IOException e){
+            Log.e("EEEE", "writeFileFoRC: ", e);
+        }
+
+    }
+
+    public static void writeStringToFile(String content, String filePath) throws IOException {
+        PrintWriter out = null;
+        try {
+            out = new PrintWriter(filePath);
+            out.print(content);
+        } finally {
+            if (out != null) out.close();
+        }
+    }
+
 }
