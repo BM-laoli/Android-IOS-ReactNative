@@ -126,6 +126,8 @@ router_api.delete('/cleanInfo', (req,res) => {
   
 })
 
+// 看看什么模块需要更新？
+// 参数: 当前手机的VERSION，文件名(模块名)， 放回：服务器最新的包 版本，
 router_api.get('/version_info', ( req, res ) => {
   // res.json(767);
 });
