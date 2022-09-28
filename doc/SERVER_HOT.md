@@ -1,0 +1,69 @@
+# 说明
+
+> 这里是SERVER_HOT 的设计 说明，希望可以帮助到你
+
+## 数据库设计
+
+> 我们使用 sqlite3 它足够小型和简单，且可以随时移动
+
+1. 创建数据库和表
+
+```sql
+CREATE TABLE APP_INFO(
+  id INT PRIMARY KEY     NOT NULL,
+  APP_NAME           CHAR(255)    NOT NULL,
+  APP_DES            CHAR(255)     NOT NULL,
+  CURRENT_VERSION        CHAR(255),
+  APP_KEY         CHAR(255),
+  NATIVE_VERSION         CHAR(255)
+);
+
+CREATE TABLE VERSION_INFO(
+  ID INT PRIMARY KEY     NOT NULL,
+  VERSION           CHAR(255)    NOT NULL,
+  FILE_PATH            CHAR(255)     NOT NULL,
+  DES        CHAR(255),
+  NATIVE_VERSION         CHAR(255),
+  TYPE         CHAR(255),
+  APP_INFO_ID    INT NOT NULL,
+  FILENAME     CHAR(255)
+);
+
+```
+
+2. INSET 数据
+
+```sql
+INSERT INTO APP_INFO (ID,APP_NAME,APP_DES,CURRENT_VERSION,APP_KEY, NATIVE_VERSION )
+VALUES (1, 'APP1', "我是一个APP", 'V1.0.0', "SHBISBOSD_*^&@SD_!@23", "V1.0.0" );
+
+INSERT INTO VERSION_INFO (ID,VERSION, FILE_PATH, DES, NATIVE_VERSION, TYPE, APP_INFO_ID  )
+VALUES (1, 'V1.0.0', "/bu1.zip", 'DESDES_VERSION', "V1.0.0", "Staging", 1 )
+
+INSERT INTO VERSION_INFO (ID,VERSION, FILE_PATH, DES, NATIVE_VERSION, TYPE, APP_INFO_ID  )
+VALUES (2, 'V1.0.1', "/bu1.zip", 'DESDES_VERSION', "V1.0.0", "Staging", 1 )
+
+INSERT INTO VERSION_INFO (ID,VERSION, FILE_PATH, DES, NATIVE_VERSION, TYPE, APP_INFO_ID  )
+VALUES (3, 'V1.0.2', "/bu1.zip", 'DESDES_VERSION', "V1.0.0", "Staging", 1 )
+
+INSERT INTO VERSION_INFO (ID, VERSION, FILE_PATH, DES, NATIVE_VERSION, TYPE, APP_INFO_ID, FILENAME  )
+VALUES (2, 'v1.0.0,', "/file/v1.0.0-bu1.android.bundle.zip", '更新222', "v1.0.0", "Staging", 1, 'v1.0.0-bu1.android.bundle.zip' )
+```
+
+3. 查询 和 删除数据
+
+```sql
+SELECT * FROM APP_INFO;
+
+SELECT VERSION, APP_NAME, FILE_PATH, DES, TYPE FROM APP_INFO INNER JOIN VERSION_INFO ON APP_INFO.ID = VERSION_INFO.APP_INFO_ID;
+
+DELETE FROM APP_INFO
+```
+
+## API设计  
+
+> 我们采用一个 十分简单的 NodeServer 来完成
+
+## Android
+
+## RN
