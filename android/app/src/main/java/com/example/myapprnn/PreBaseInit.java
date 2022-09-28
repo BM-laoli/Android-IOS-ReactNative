@@ -109,9 +109,9 @@ public class PreBaseInit extends AppCompatActivity implements DefaultHardwareBac
             CatalystInstance instance = mContext.getCatalystInstance();
 
             // loadScriptFromAssets FromAssets 不再适用
-            //  ((CatalystInstanceImpl)instance).loadScriptFromAssets(context.getAssets(),filePath$Name ,false);
+              ((CatalystInstanceImpl)instance).loadScriptFromAssets(mContext.getAssets(),filePath$Name ,false);
 
-            ((CatalystInstanceImpl)instance).loadSplitBundleFromFile( filePath$Name, filePath$Name);
+//            ((CatalystInstanceImpl)instance).loadSplitBundleFromFile( filePath$Name, filePath$Name);
 
             mReactRootView.startReactApplication(mReactInstanceManager, getResName(), null);
             setContentView(mReactRootView);

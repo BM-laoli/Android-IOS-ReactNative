@@ -14,6 +14,12 @@ const RNToolsManager = {
   cleanFileByPath: () => {
     return NativeModules.RNToolsManager.cleanFileByPath();
   },
+  downloadFiles: () => {
+    return NativeModules.RNToolsManager.downloadFiles();
+  },
+  touchZip: () => {
+    return NativeModules.RNToolsManager.touchZip();
+  },
 };
 
 export default RNToolsManager;

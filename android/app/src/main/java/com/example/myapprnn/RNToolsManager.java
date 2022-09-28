@@ -3,6 +3,7 @@ package com.example.myapprnn;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Environment;
 import android.util.Log;
 
 
@@ -12,19 +13,26 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.Reader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 public class RNToolsManager extends ReactContextBaseJavaModule {
     public static final String EXTRA_MESSAGE = "MESSAGE";
     public static final String TAG = "INFO__JONEY";
+    private static final int WRITE_BUFFER_SIZE = 1024 * 8;
 
     private ReactApplicationContext reactContext;
 
@@ -79,6 +87,7 @@ public class RNToolsManager extends ReactContextBaseJavaModule {
     // 删除某路径下的所有文件 String path 先不传
     @ReactMethod
     public void cleanFileByPath () {
+
         String filePath$Name = reactContext.getExternalFilesDir(null).getAbsolutePath() + "/Bundle/staging/bu2.android.bundle";
             File file = new File(filePath$Name);
             // 如果文件路径所对应的文件存在，并且是一个文件，则直接删除
@@ -91,6 +100,149 @@ public class RNToolsManager extends ReactContextBaseJavaModule {
             } else {
                 Log.i(TAG, "cleanFileByPath: 文件不存在 " + filePath$Name);
             }
+    }
+
+    // 自己下载文件并且解压且替换
+    @ReactMethod
+    public void downloadFiles () {
+        try{
+            //下载路径，如果路径无效了，可换成你的下载路径
+            String url = "http://192.168.7.211:8085/bu1.zip";
+            String path = reactContext.getExternalFilesDir(null).getAbsolutePath();
+
+            final long startTime = System.currentTimeMillis();
+            Log.i("DOWNLOAD","startTime="+startTime);
+            //下载函数
+            String filename=url.substring(url.lastIndexOf("/") + 1);
+            //获取文件名
+            URL myURL = new URL(url);
+            URLConnection conn = myURL.openConnection();
+            conn.connect();
+            InputStream is = conn.getInputStream();
+            int fileSize = conn.getContentLength();//根据响应获取文件大小
+            if (fileSize <= 0) throw new RuntimeException("无法获知文件大小 ");
+            if (is == null) throw new RuntimeException("stream is null");
+            File file1 = new File(path);
+            if(!file1.exists()){
+                file1.mkdirs();
+            }
+            //把数据存入路径+文件名
+            FileOutputStream fos = new FileOutputStream(path+"/"+filename);
+            byte buf[] = new byte[1024];
+            int downLoadFileSize = 0;
+            do{
+                //循环读取
+                int numread = is.read(buf);
+                if (numread == -1)
+                {
+                    break;
+                }
+                fos.write(buf, 0, numread);
+                downLoadFileSize += numread;
+                //更新进度条
+            } while (true);
+
+            Log.i("DOWNLOAD","download success");
+            Log.i("DOWNLOAD","totalTime="+ (System.currentTimeMillis() - startTime));
+
+            is.close();
+        } catch (Exception ex) {
+            Log.e("DOWNLOAD", "error: " + ex.getMessage(), ex);
+        }
+    }
+
+
+    public static void deleteFileOrFolderSilently(File file) {
+        if (file.isDirectory()) {
+            File[] files = file.listFiles();
+            for (File fileEntry : files) {
+                if (fileEntry.isDirectory()) {
+                    deleteFileOrFolderSilently(fileEntry);
+                } else {
+                    fileEntry.delete();
+                }
+            }
+        }
+
+        if (!file.delete()) {
+            Log.e(TAG, "deleteFileOrFolderSilently: ");
+        }
+    }
+
+    private static String validateFileName(String fileName, File destinationFolder) throws IOException {
+        String destinationFolderCanonicalPath = destinationFolder.getCanonicalPath() + File.separator;
+
+        File file = new File(destinationFolderCanonicalPath, fileName);
+        String canonicalPath = file.getCanonicalPath();
+
+        if (!canonicalPath.startsWith(destinationFolderCanonicalPath)) {
+            throw new IllegalStateException("File is outside extraction target directory.");
+        }
+
+        return canonicalPath;
+    }
+
+    // 解压缩
+    @ReactMethod
+    public void touchZip () {
+        String path = reactContext.getExternalFilesDir(null).getAbsolutePath();
+        // zip地址
+        File zipFile = new File(path+"/bu1.zip");
+        // 解压缩目标地址
+        String destination = path + "/";
+
+
+
+        FileInputStream fileStream = null;
+        BufferedInputStream bufferedStream = null;
+        ZipInputStream zipStream = null;
+        try {
+            fileStream = new FileInputStream(zipFile);
+            bufferedStream = new BufferedInputStream(fileStream);
+            zipStream = new ZipInputStream(bufferedStream);
+            ZipEntry entry;
+
+            File destinationFolder = new File(destination);
+            if (destinationFolder.exists()) {
+                deleteFileOrFolderSilently(destinationFolder);
+            }
+
+            destinationFolder.mkdirs();
+
+            byte[] buffer = new byte[WRITE_BUFFER_SIZE];
+            while ((entry = zipStream.getNextEntry()) != null) {
+                String fileName = validateFileName(entry.getName(), destinationFolder);
+                File file = new File(fileName);
+                if (entry.isDirectory()) {
+                    file.mkdirs();
+                } else {
+                    File parent = file.getParentFile();
+                    if (!parent.exists()) {
+                        parent.mkdirs();
+                    }
+
+                    FileOutputStream fout = new FileOutputStream(file);
+                    try {
+                        int numBytesRead;
+                        while ((numBytesRead = zipStream.read(buffer)) != -1) {
+                            fout.write(buffer, 0, numBytesRead);
+                        }
+                    } finally {
+                        fout.close();
+                    }
+                }
+                long time = entry.getTime();
+                if (time > 0) {
+                    file.setLastModified(time);
+                }
+            }
+            if (zipStream != null) zipStream.close();
+            if (bufferedStream != null) bufferedStream.close();
+            if (fileStream != null) fileStream.close();
+
+        } catch (IOException ioe){
+            Log.i(TAG, "touchZip: ioe"+ ioe);
+        }
     }
 
     public void createDir(String filePath) {

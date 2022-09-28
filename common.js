@@ -2,4 +2,3 @@
 import "react";
 import "react-native";
 import "react-native-device-info";
-console.log("我可以独立运行嘛？？？？");
