@@ -7,11 +7,16 @@ import android.os.Environment;
 import android.util.Log;
 
 
+import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.JSApplicationIllegalArgumentException;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.WritableMap;
+
+import org.json.JSONObject;
+import org.json.JSONStringer;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -19,6 +24,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -26,6 +32,9 @@ import java.io.PrintWriter;
 import java.io.Reader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -67,20 +76,114 @@ public class RNToolsManager extends ReactContextBaseJavaModule {
         }
     }
 
-    // 尝试写文件 完成✅
     @ReactMethod
-    public void writeFileFoRC () {
+    public void getAndroidDEV (Promise promise) {
+        promise.resolve(BuildConfig.DEBUG);
+    };
 
+    public void createVersionInfo(String jversion){
+            String path = reactContext.getExternalFilesDir(null).getAbsolutePath();
+            File files = new File(path);
+
+            if (!files.exists()) {
+                files.mkdirs();
+            }
+            if (files.exists()) {
+                try {
+                    FileWriter fw = new FileWriter(path + File.separator
+                            +"version.json");
+                    fw.write(jversion);
+                    Log.i(TAG, "createVersionInfo: jversion" + jversion);
+                    fw.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+    };
+
+    // CV 文件 和创建初试文件
+    @ReactMethod
+    public void writeFileFoRC (String jversion) {
         String path = reactContext.getExternalFilesDir(null).getAbsolutePath();
-        Log.i(TAG, "writeFileFoRC: " + path);
 
-        // 读区 此app 目录下是否有 bundle 文件夹 没有就创建且 把bu bundle 都丢进去
-        // 目录结构是 file-> bundle -> release/releaseStaging
-        // 新建文件夹 /Bundle/staging 和/Bundle/release
+        // 创建version.json
+        createVersionInfo(jversion);
+
+        // 新建文件夹 /Bundle/staging 和/Bundle/release 并且完成CV
         createDir(path + "/Bundle/staging/");
-        CopyAssets(reactContext,"index.android.bundle", path + "/Bundle/staging/index.android.bundle");
-        CopyAssets(reactContext,"bu2.android.bundle", path + "/Bundle/staging/bu2.android.bundle");
-        CopyAssets(reactContext,"bu1.android.bundle", path + "/Bundle/staging/bu1.android.bundle");
+        createDir(path + "/Bundle/release/");
+        try {
+            String fileNames[] = reactContext.getAssets().list("");
+            for(String fileName: fileNames) {
+                if(fileName.indexOf(".bundle") > 0) {
+                    CopyAssets(reactContext,fileName, path + "/Bundle/staging/" + fileName);
+                    CopyAssets(reactContext,fileName, path + "/Bundle/release/" + fileName);
+                }
+            }
+
+        }catch (IOException ioe) {
+            Log.i(TAG, "writeFileFoRC: "+ioe);
+        }
+    }
+
+    // 配置文件是否完成创建
+    @ReactMethod
+    public void isInited (Promise promise){
+        String path = reactContext.getExternalFilesDir(null).getAbsolutePath();
+        File file = new File(path + "/version.json");
+        // 如果有值 就不要重复创建了
+        if(  file.exists()  ){
+            promise.resolve(true);
+        }else{
+            promise.resolve(false);
+        }
+    }
+
+    // 返回 最新 本地的info信息
+    @ReactMethod
+    public  void getCurrentVersion (String module,String type, Promise promise) {
+        Map<String,String> versionInfo = currentVersionByBundleName(reactContext,module,type);
+        WritableMap map = Arguments.createMap();
+
+        map.putString("module", module);
+        map.putString("version",versionInfo.get("version") );
+        map.putString("type",versionInfo.get("type") );
+        map.putString("key", versionInfo.get("key") );
+
+        promise.resolve(map);
+        return;
+    }
+
+    // 更新本地INFO for JSONFILE 信息
+    @ReactMethod
+    public void setFileVersion (String module,String type,String newVersion ) {
+        String path = reactContext.getExternalFilesDir(null).getAbsolutePath() + "/version.json";
+        StringBuilder sb = new StringBuilder();
+        try {
+            File file = new File(path);
+            InputStream in = null;
+            in = new FileInputStream(file);
+            int tempbyte;
+            while ((tempbyte = in.read()) != -1) {
+                sb.append((char) tempbyte);
+            }
+            in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            JSONObject versionJSON = new JSONObject(sb.toString());
+            JSONObject typeVersionJObject = versionJSON.getJSONObject(type);
+            typeVersionJObject.put(module,newVersion);
+
+            // 重新创建
+            createVersionInfo(versionJSON.toString());
+
+        }catch (Exception e) {
+
+        }
+
 
     }
 
@@ -104,14 +207,19 @@ public class RNToolsManager extends ReactContextBaseJavaModule {
 
     // 自己下载文件并且解压且替换
     @ReactMethod
-    public void downloadFiles () {
+    public void downloadFiles (String downloadUrl, String type,String module, Promise promise) {
         try{
             //下载路径，如果路径无效了，可换成你的下载路径
-            String url = "http://192.168.7.211:8085/bu1.zip";
+            String url = downloadUrl;
             String path = reactContext.getExternalFilesDir(null).getAbsolutePath();
 
+            // 要下载到的路径
+            String downPath = path +"/Bundle/" + type + "/";
+            String modulePath = path +"/Bundle/" + type + "/" + module;
+
+
             final long startTime = System.currentTimeMillis();
-            Log.i("DOWNLOAD","startTime="+startTime);
+
             //下载函数
             String filename=url.substring(url.lastIndexOf("/") + 1);
             //获取文件名
@@ -127,7 +235,7 @@ public class RNToolsManager extends ReactContextBaseJavaModule {
                 file1.mkdirs();
             }
             //把数据存入路径+文件名
-            FileOutputStream fos = new FileOutputStream(path+"/"+filename);
+            FileOutputStream fos = new FileOutputStream(downPath+filename);
             byte buf[] = new byte[1024];
             int downLoadFileSize = 0;
             do{
@@ -145,12 +253,14 @@ public class RNToolsManager extends ReactContextBaseJavaModule {
             Log.i("DOWNLOAD","download success");
             Log.i("DOWNLOAD","totalTime="+ (System.currentTimeMillis() - startTime));
 
+            promise.resolve("成功");
+            touchZip(downPath+filename, downPath,modulePath);
+
             is.close();
         } catch (Exception ex) {
             Log.e("DOWNLOAD", "error: " + ex.getMessage(), ex);
         }
     }
-
 
     public static void deleteFileOrFolderSilently(File file) {
         if (file.isDirectory()) {
@@ -169,29 +279,16 @@ public class RNToolsManager extends ReactContextBaseJavaModule {
         }
     }
 
-    private static String validateFileName(String fileName, File destinationFolder) throws IOException {
-        String destinationFolderCanonicalPath = destinationFolder.getCanonicalPath() + File.separator;
-
-        File file = new File(destinationFolderCanonicalPath, fileName);
-        String canonicalPath = file.getCanonicalPath();
-
-        if (!canonicalPath.startsWith(destinationFolderCanonicalPath)) {
-            throw new IllegalStateException("File is outside extraction target directory.");
-        }
-
-        return canonicalPath;
-    }
-
-    // 解压缩
-    @ReactMethod
-    public void touchZip () {
-        String path = reactContext.getExternalFilesDir(null).getAbsolutePath();
+    public void touchZip (String filePath, String downPath, String modulePath) {
         // zip地址
-        File zipFile = new File(path+"/bu1.zip");
+        File zipFile = new File(filePath);
+        File oldModuleFile = new File(modulePath);
+
         // 解压缩目标地址
-        String destination = path + "/";
+        String destination = downPath;
 
-
+        // 删除旧的版本
+        deleteFileOrFolderSilently(oldModuleFile);
 
         FileInputStream fileStream = null;
         BufferedInputStream bufferedStream = null;
@@ -203,16 +300,14 @@ public class RNToolsManager extends ReactContextBaseJavaModule {
             ZipEntry entry;
 
             File destinationFolder = new File(destination);
-            if (destinationFolder.exists()) {
-                deleteFileOrFolderSilently(destinationFolder);
-            }
 
             destinationFolder.mkdirs();
 
             byte[] buffer = new byte[WRITE_BUFFER_SIZE];
             while ((entry = zipStream.getNextEntry()) != null) {
-                String fileName = validateFileName(entry.getName(), destinationFolder);
-                File file = new File(fileName);
+//                String fileName = validateFileName(entry.getName(), destinationFolder);
+
+                File file = new File(modulePath);
                 if (entry.isDirectory()) {
                     file.mkdirs();
                 } else {
@@ -240,6 +335,11 @@ public class RNToolsManager extends ReactContextBaseJavaModule {
             if (bufferedStream != null) bufferedStream.close();
             if (fileStream != null) fileStream.close();
 
+            if (destinationFolder.exists()) {
+                //  删除你下载的zip
+                deleteFileOrFolderSilently(zipFile);
+            }
+
         } catch (IOException ioe){
             Log.i(TAG, "touchZip: ioe"+ ioe);
         }
@@ -255,12 +355,8 @@ public class RNToolsManager extends ReactContextBaseJavaModule {
             Log.i(TAG, "文件夹以及存在");
         }
 
-        //判断父目录是否存在
-        if (!file.getParentFile().exists()) {
-            //父目录不存在 创建父目录
-            if (!file.mkdirs()) {
-                Log.i(TAG, "创建成功");
-            }
+        if (!file.mkdirs()) {
+            Log.i(TAG, "创建成功");
         }
     }
 
@@ -288,6 +384,90 @@ public class RNToolsManager extends ReactContextBaseJavaModule {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    static Map<String,String> currentVersionByBundleName (Context reactContext, String module, String type) {
+        String path = reactContext.getExternalFilesDir(null).getAbsolutePath() + "/version.json";
+
+        StringBuilder sb = new StringBuilder();
+        try {
+            File file = new File(path);
+            InputStream in = null;
+            in = new FileInputStream(file);
+            int tempbyte;
+            while ((tempbyte = in.read()) != -1) {
+                sb.append((char) tempbyte);
+            }
+            in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        final Map<String, String> constants = new HashMap<>();
+
+        try {
+            JSONObject versionJSON = new  JSONObject(sb.toString());
+            String version = versionJSON.getJSONObject(type).getString(module);
+            String moduleType = versionJSON.getBoolean("isStaging") ? "staging": "release";
+            String key = versionJSON.getString("key");
+
+            // 放回当前的 bundle Version
+            constants.put("version",version);
+            constants.put("type",moduleType);
+            constants.put("key",key);
+
+            return constants;
+
+        }catch (Exception e) {
+            Log.i(TAG, "currentVersionByBundleName: ",e);
+            return constants;
+        }
+
+    };
+
+    static Map<String,String> currentVersionByBundleName (Context reactContext) {
+        String path = reactContext.getExternalFilesDir(null).getAbsolutePath() + "/version.json";
+
+        StringBuilder sb = new StringBuilder();
+        try {
+            File file = new File(path);
+            InputStream in = null;
+            in = new FileInputStream(file);
+            int tempbyte;
+            while ((tempbyte = in.read()) != -1) {
+                sb.append((char) tempbyte);
+            }
+            in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        final Map<String, String> constants = new HashMap<>();
+
+        try {
+            JSONObject versionJSON = new  JSONObject(sb.toString());
+
+            String moduleType = versionJSON.getBoolean("isStaging") ? "staging": "release";
+            constants.put("moduleType",moduleType);
+
+            return constants;
+
+        }catch (Exception e) {
+            Log.i(TAG, "currentVersionByBundleName: ",e);
+            return constants;
+        }
+
+    };
+
+
+
+    static Boolean hasCache (Context context) {
+        String path = context.getExternalFilesDir(null).getAbsolutePath();
+        File file = new File(path + "/version.json");
+        // 如果有值 就不要重复创建了
+        if(  file.exists()  ){
+            return  true;
+        }else{
+            return  false;
         }
     }
 

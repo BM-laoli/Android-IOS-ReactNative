@@ -17,9 +17,7 @@ public class MainApplication extends Application   {
     private  ReactInstanceManager cacheReactInstanceManager;
     private Boolean isload = false;
 
-    private static MainApplication mApp;
-
-    @Override
+    private static MainApplication mApp;    @Override
     public void onCreate() {
         super.onCreate();
         SoLoader.init(this, /* native exopackage */ false);
@@ -35,6 +33,8 @@ public class MainApplication extends Application   {
                 .setInitialLifecycleState(LifecycleState.BEFORE_CREATE).build();
 
     }
+
+
 
     public static MainApplication getInstance(){
         return mApp;

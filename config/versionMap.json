@@ -1,1 +1,14 @@
-{}
+{
+  "staging": {
+    "bu1.android.bundle": "v1.0.0",
+    "bu2.android.bundle": "v1.0.0",
+    "index.android.bundle": "v1.0.0"
+  },
+  "release": {
+    "bu1.android.bundle": "v1.0.0",
+    "bu2.android.bundle": "v1.0.0",
+    "index.android.bundle": "v1.0.0"
+  },
+  "key": "AAAA",
+  "isStaging": true
+}
