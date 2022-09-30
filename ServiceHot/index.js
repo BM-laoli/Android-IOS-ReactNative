@@ -31,6 +31,7 @@ const toZip = async (filename, filePath) => {
   );
 };
 
+// 创建
 router_api.post("/create_app", async (req, res) => {
   const body = {
     appName: "",
@@ -41,7 +42,7 @@ router_api.post("/create_app", async (req, res) => {
     ...req.body,
   };
 
-  const oldData = await promiseQuery("select * from  APP_INFO");
+  const oldData = await promiseQuery("SELECT * from  APP_INFO");
 
   db.run(
     `INSERT INTO APP_INFO ( ID, APP_NAME, APP_DES, CURRENT_VERSION, APP_KEY, NATIVE_VERSION)
@@ -58,24 +59,49 @@ router_api.post("/create_app", async (req, res) => {
   );
 });
 
+router_api.post("/create_module", async (req, res) => {
+  const body = {
+    module: "",
+    platform: "",
+    app_id: "",
+    ...req.body,
+  };
+
+  const oldData = await promiseQuery("SELECT * from  MODULE_INFO");
+
+  db.run(
+    `INSERT INTO MODULE_INFO ( ID, MODULE, PLATFORM, APP_INFO_ID)
+      VALUES (${oldData.length + 1}, '${body.module}','${body.platform}', '${
+      body.app_id
+    }')`,
+    (err, row) => {
+      res.json({
+        data: null,
+        success: true,
+        message: "创建成功",
+      });
+    }
+  );
+});
+
 router_api.post("/create_version_info", async (req, res) => {
   const body = {
     version: "",
     file_path: "",
     des: "",
-    native_version: "",
     type: "",
-    app_info_id: "",
+    module_id: "",
+    is_active: "",
     file_name: "",
     ...req.body,
   };
 
-  const oldData = await promiseQuery("select * from  VERSION_INFO");
+  const oldData = await promiseQuery("SELECT * from  VERSION_INFO");
   db.run(
-    `INSERT INTO VERSION_INFO (ID, VERSION, FILE_PATH, DES, NATIVE_VERSION, TYPE, APP_INFO_ID, FILENAME  )
+    `INSERT INTO VERSION_INFO (ID, VERSION, FILE_PATH, DES, TYPE, MODULE_ID, IS_ACTIVE, FILENAME  )
     VALUES (${oldData.length + 1}, '${body.version}', '${body.file_path}', '${
       body.des
-    }', '${body.native_version}', '${body.type}', ${body.app_info_id}, '${
+    }', '${body.type}', '${body.module_id}', ${body.is_active}, '${
       body.file_name
     }' )`,
     (err, row) => {
@@ -83,6 +109,61 @@ router_api.post("/create_version_info", async (req, res) => {
         data: null,
         success: true,
         message: "创建成功",
+      });
+    }
+  );
+});
+
+// 获取
+router_api.get("/app_list", async (req, res) => {
+  const data = await promiseQuery("SELECT * from  APP_INFO");
+  res.json({
+    data: data,
+    success: true,
+    message: "",
+  });
+});
+
+router_api.get("/module_list", async (req, res) => {
+  const data = await promiseQuery(
+    `SELECT * from  MODULE_INFO WHERE ID = ${req.query.id}`
+  );
+  res.json({
+    data: data,
+    success: true,
+    message: "",
+  });
+});
+
+router_api.get("/version_list", async (req, res) => {
+  const data = await promiseQuery(
+    `SELECT  * FROM 
+     MODULE_INFO INNER JOIN VERSION_INFO 
+     ON MODULE_INFO.ID = VERSION_INFO.MODULE_ID WHERE MODULE_ID = ${req.query.id};`
+  );
+  res.json({
+    data: data,
+    success: true,
+    message: "",
+  });
+});
+
+// 修改 成当前活动的模块
+router_api.put("/update_active_bundle", async (req, res) => {
+  // 清空其它的  其实这个做法不好，有机会你们可以优化优化
+  db.run(
+    `
+    UPDATE VERSION_INFO SET IS_ACTIVE = 0 WHERE ID=${req.body.old_id}
+  `,
+    (err, it) => {
+      // 设置自己的
+      db.run(`
+UPDATE VERSION_INFO SET IS_ACTIVE = 1 WHERE ID=${req.body.id}
+`);
+      res.json({
+        data: null,
+        success: true,
+        message: "修改成功",
       });
     }
   );
@@ -118,22 +199,11 @@ router_api.post("/update_bundle", async (req, res) => {
   });
 });
 
-router_api.get("/app_list", async (req, res) => {
-  const data = await promiseQuery("select * from  APP_INFO");
-  res.json(data);
-});
-
-router_api.get("/version_list", async (req, res) => {
-  const data = await promiseQuery(
-    `SELECT * FROM APP_INFO INNER JOIN VERSION_INFO ON APP_INFO.ID = VERSION_INFO.APP_INFO_ID WHERE APP_INFO.ID = ${req.query.id};`
-  );
-  res.json(data);
-});
-
-// 方便测试 删除清空表数据
+// 方便清除测试数据
 router_api.delete("/cleanInfo", (req, res) => {
   db.run("DELETE FROM APP_INFO");
   db.run("DELETE FROM VERSION_INFO");
+  db.run("DELETE FROM MODULE_INFO");
   res.json({
     data: null,
     success: true,
@@ -141,15 +211,7 @@ router_api.delete("/cleanInfo", (req, res) => {
   });
 });
 
-// 更改当前 版本
-router_api.get("/changer_version", async (req, res) => {
-  const data = await promiseQuery(
-    `UPDATE APP_INFO SET  CURRENT_VERSION = ${req.query.version} WHERE ID = ${req.query.id};`
-  );
-  res.json(data);
-});
-
-// 看看什么模块需要更新？ 这里有一个 优化点，目前要求所有模块的版本 都和 主模块版本保持一致 可以优化
+// 给APP 的 API 用于判断 是否需要升级 ......todo
 router_api.get("/version_info", async (req, res) => {
   const params = {
     oldVersion: "",
@@ -187,6 +249,8 @@ router_api.get("/version_info", async (req, res) => {
   }
   // 如果当前版本和服务器上 最新版本不正确 请返回最新版本-- end
 
+  // log(params);
+  log("params", params);
   // 如果版本不正确 就返回对应的 文件
   const findVersionInfo = await promiseQuery(
     `SELECT * FROM VERSION_INFO WHERE APP_INFO_ID=${appInfo[0].ID} AND VERSION_INFO.VERSION = '${appInfo[0].CURRENT_VERSION}' AND VERSION_INFO.TYPE = '${params.type}'`
@@ -207,6 +271,6 @@ router_api.get("/version_info", async (req, res) => {
 
 app.use("/api", router_api);
 
-app.use("/files", express.static(path.join(__dirname, "public")));
+app.use("/file", express.static(path.join(__dirname, "public")));
 
 app.listen(8085);

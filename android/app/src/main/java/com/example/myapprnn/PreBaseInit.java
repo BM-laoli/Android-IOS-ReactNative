@@ -53,32 +53,26 @@ public class PreBaseInit extends AppCompatActivity implements DefaultHardwareBac
         }
         SoLoader.init(this, false);
 
-        if( BuildConfig.DEBUG ){
-            mReactRootView = new ReactRootView(this);
-            mReactInstanceManager = ReactInstanceManager.builder()
-                    .setApplication(getApplication())
-                    .setCurrentActivity(this)
-                    .setBundleAssetName(getJSBundleAssetName())
-                    .setJSMainModulePath(getJsModulePathPath())
-                    .addPackages(MainApplication.getInstance().packages)
-                    .setUseDeveloperSupport(true)
-                    .setInitialLifecycleState(LifecycleState.RESUMED)
-                    .build();
-
-            mReactRootView.startReactApplication(mReactInstanceManager, getResName(), null);
-            setContentView(mReactRootView);
-            return;
-        }
-
-        // 重新设置 Activity 和 files
+//        if( BuildConfig.DEBUG ){
+//            mReactRootView = new ReactRootView(this);
+//            mReactInstanceManager = ReactInstanceManager.builder()
+//                    .setApplication(getApplication())
+//                    .setCurrentActivity(this)
+//                    .setBundleAssetName(getJSBundleAssetName())
+//                    .setJSMainModulePath(getJsModulePathPath())
+//                    .addPackages(MainApplication.getInstance().packages)
+//                    .setUseDeveloperSupport(true)
+//                    .setInitialLifecycleState(LifecycleState.RESUMED)
+//                    .build();
+//
+//            mReactRootView.startReactApplication(mReactInstanceManager, getResName(), null);
+//            setContentView(mReactRootView);
+//            return;
+//        }
 
         mReactInstanceManager = MainApplication.getInstance().getRcInstanceManager();
         mReactInstanceManager.onHostResume(this, this);
         mReactRootView = new ReactRootView(this);
-
-
-        // 测试加载 assets 之外的文件
-
 
         mReactInstanceManager.addReactInstanceEventListener(new ReactInstanceManager.ReactInstanceEventListener() {
             @Override

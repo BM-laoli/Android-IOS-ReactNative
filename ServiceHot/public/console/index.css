@@ -1,0 +1,74 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+iframe {
+  display: none;
+}
+
+.app-container {
+    margin: 0 auto;
+    height: 400px;
+    padding: 12px;
+    overflow: auto;
+    width: 1500px;
+    background-color: aqua;
+}
+
+.app-header {
+  padding-left: 12px;
+  font-size: 18px;
+
+}
+.app-center {
+  margin-top: 12px;
+  background-color: skyblue;
+  padding: 12px;
+}
+
+.list-container {
+  background-color: skyblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 8px;
+}
+
+.list-item {
+  background-color: pink;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 8px;
+  margin-bottom: 8px;
+}
+
+.item-span{
+  font-size: 14px;
+
+}
+
+.item-btn {
+  font-size: 18px;
+}
+
+.form-example {
+  width: 268px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.form-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 22px;
+  background-color: #fff;
+  padding: 12px;
+}

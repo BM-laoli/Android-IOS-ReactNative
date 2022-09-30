@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Image, ScrollView, Alert } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ScrollView,
+  Alert,
+  Button,
+} from "react-native";
 import Imgx from "./assets/img/test.png";
 import TestNativeInfo from "./TestNativeInfo";
 import { navigation } from "../../../common/utils";
@@ -21,15 +29,19 @@ const Frame = () => {
   const CodePush = async () => {
     // 直接全部一次性 把需要更新的bundle 都更新了
 
+    const isDebug = await NativeModule.getAndroidDEV();
+    const isInited = await NativeModule.isInited();
+
+    console.log("isInited", isInited);
     // 是否dev 包
-    // if (NativeModule.getAndroidDEV) {
+    // if (isDebug) {
     //   return;
     // }
 
-    // 是否完成文件夹的创建
-    if (!NativeModule.isInited()) {
+    // // 是否完成文件夹的创建
+    if (!isInited) {
       // cv 文件夹
-      NativeModule.writeFileFoRC();
+      await NativeModule.writeFileFoRC(JSON.stringify(versionInfo));
     }
 
     const promiseAllVersionInfo = [];
@@ -45,36 +57,24 @@ const Frame = () => {
     const promiseAllIsLoadUpdate = [];
 
     Promise.all(promiseAllVersionInfo).then((res) => {
-      console.log(res);
       res.forEach((it) => {
-        promiseAllIsLoadUpdate.push(getData("it.version", it.module, it.key));
+        promiseAllIsLoadUpdate.push(getData(it.version, it.module, it.key));
       });
 
       Promise.all(promiseAllIsLoadUpdate).then((res) => {
         // 看看返回的数据 如果需要更新 就更新 并且重新写入新的数据
 
-        console.log(res);
-        setData(res);
+        const value = res
+          .filter((data) => data.data?.isNeedRefresh)
+          .map((r) => r.data);
+
+        setData(value);
         // 只有有一个人 isNeedRefresh = true 请弹窗 提示更新
         if (res.some((it) => it.data.isNeedRefresh)) {
           Alert.alert("有版本更新", "", [
             {
               text: "更新",
-              onPress: async () => {
-                const str = "v1.0.0-Staging-bu1.android.bundle.zip"
-                  .split("-")[2]
-                  .split(".");
-                str.pop();
-
-                // 先试一下一个的 正常
-                NativeModule.downloadFiles(
-                  "http://192.168.7.211:8085/files/v1.0.0-Staging-bu1.android.bundle.zip",
-                  "staging",
-                  str.join(".")
-                );
-                // 写回版本信息
-                //  NativeModule.setFileVersion("index.android.bundle", "staging", "3.0.0");
-              },
+              onPress: updateVersion,
             },
           ]);
         }
@@ -82,7 +82,45 @@ const Frame = () => {
     });
   };
 
-  const updateVersion = async () => {};
+  const updateVersion = async () => {
+    // 获取全部的 当前版本信息
+    const allDownloadTask = [];
+    const type = versionInfo.isStaging ? "staging" : "release";
+    const str = "v1.0.0-Staging-bu1.android.bundle.zip"
+      .split("-")[2]
+      .split(".");
+    str.pop();
+
+    console.log("str", str);
+
+    data.forEach((it) => {
+      const str = it.fileName.split("-")[2].split(".");
+      str.pop();
+
+      allDownloadTask.push(
+        NativeModule.downloadFiles(
+          `http://192.168.7.211:8085${it.downloadPathL}`,
+          type,
+          str.join(".")
+        )
+      );
+    });
+
+    // 执行
+    // 先试一下一个的 正常
+    Promise.all(allDownloadTask).then(() => {
+      // 有多少更新 就重写多少次
+      data.forEach((it) => {
+        const str = it.fileName.split("-")[2].split(".");
+        str.pop();
+
+        console.log("===>", it);
+
+        NativeModule.setFileVersion(str.join("."), type, it.newVersion);
+      });
+      // 写回版本信息
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -102,44 +140,8 @@ const Frame = () => {
         去BU2
       </Text>
 
-      <Text
-        style={styles.hello}
-        onPress={() => {
-          NativeModule.writeFileFoRC(JSON.stringify(versionInfo));
-        }}
-      >
-        写入文件
-      </Text>
-
-      <Text
-        style={styles.hello}
-        onPress={() => {
-          NativeModule.cleanFileByPath();
-        }}
-      >
-        删除BU2 for fileSystem
-      </Text>
-
-      <Text
-        style={styles.hello}
-        onPress={() => {
-          NativeModule.downloadFiles();
-        }}
-      >
-        获取文件 和下载
-      </Text>
-
-      <Text
-        style={styles.hello}
-        onPress={() => {
-          NativeModule.touchZip();
-        }}
-      >
-        解压缩
-      </Text>
-
       <Text style={styles.hello} onPress={CodePush}>
-        获取当前Version 信息
+        检查版本是否需要更新
       </Text>
 
       <ScrollView style={styles.flatContainer}>
@@ -177,6 +179,10 @@ const styles = StyleSheet.create({
   },
   flatContainer: {
     flex: 1,
+  },
+  btn: {
+    width: 30,
+    height: 30,
   },
 });
 

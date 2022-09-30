@@ -16,16 +16,24 @@ CREATE TABLE APP_INFO(
   CURRENT_VERSION        CHAR(255),
   APP_KEY         CHAR(255),
   NATIVE_VERSION         CHAR(255)
+
+);
+
+CREATE TABLE MODULE_INFO(
+  ID INT PRIMARY KEY     NOT NULL,
+  VERSION           CHAR(255)    NOT NULL,
+  MODULE     CHAR(255),
+  PLATFORM     CHAR(255),
+  APP_INFO_ID    INT NOT NULL
 );
 
 CREATE TABLE VERSION_INFO(
-  ID INT PRIMARY KEY     NOT NULL,
+  ID  INT PRIMARY KEY     NOT NULL,
   VERSION           CHAR(255)    NOT NULL,
   FILE_PATH            CHAR(255)     NOT NULL,
   DES        CHAR(255),
-  NATIVE_VERSION         CHAR(255),
   TYPE         CHAR(255),
-  APP_INFO_ID    INT NOT NULL,
+  MODULE_ID    INT NOT NULL,
   FILENAME     CHAR(255)
 );
 
@@ -196,6 +204,7 @@ router_api.get("/version_info", async (req, res) => {
 ## 使用前的重要说明
 
 1. 一定一定，在发native 包之前 把 所有的bu业务包都上传的平台  并且 创建好了所有的版本信息
+2. 本次主要采取的全量更新的方式 （增量更新 有机会再完善吧 主要是调整一下接口就好了 ，当然表设计也得改
 
 ```java
 
