@@ -458,8 +458,6 @@ public class RNToolsManager extends ReactContextBaseJavaModule {
 
     };
 
-
-
     static Boolean hasCache (Context context) {
         String path = context.getExternalFilesDir(null).getAbsolutePath();
         File file = new File(path + "/version.json");

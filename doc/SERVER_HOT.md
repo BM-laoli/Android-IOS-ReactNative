@@ -2,7 +2,7 @@
 
 > 这里是SERVER_HOT 的设计 说明，希望可以帮助到你, 我知道这里的设计可能存在一些缺陷 ，但不要担心, 我后续会持续优化, 待优化的问题 (没有区分 不同模块的版本)
 
-## 数据库设计
+## 数据库设计(SQLite)
 
 > 我们使用 sqlite3 它足够小型和简单，且可以随时移动
 
@@ -10,13 +10,12 @@
 
 ```sql
 CREATE TABLE APP_INFO(
-  id INT PRIMARY KEY     NOT NULL,
+  ID INT PRIMARY KEY     NOT NULL,
   APP_NAME           CHAR(255)    NOT NULL,
   APP_DES            CHAR(255)     NOT NULL,
   CURRENT_VERSION        CHAR(255),
   APP_KEY         CHAR(255),
   NATIVE_VERSION         CHAR(255)
-
 );
 
 CREATE TABLE MODULE_INFO(
@@ -42,20 +41,8 @@ CREATE TABLE VERSION_INFO(
 2. INSET 数据
 
 ```sql
-INSERT INTO APP_INFO (ID,APP_NAME,APP_DES,CURRENT_VERSION,APP_KEY, NATIVE_VERSION )
-VALUES (1, 'APP1', "我是一个APP", 'V1.0.0', "SHBISBOSD_*^&@SD_!@23", "V1.0.0" );
-
-INSERT INTO VERSION_INFO (ID,VERSION, FILE_PATH, DES, NATIVE_VERSION, TYPE, APP_INFO_ID  )
-VALUES (1, 'V1.0.0', "/bu1.zip", 'DESDES_VERSION', "V1.0.0", "Staging", 1 )
-
-INSERT INTO VERSION_INFO (ID,VERSION, FILE_PATH, DES, NATIVE_VERSION, TYPE, APP_INFO_ID  )
-VALUES (2, 'V1.0.1', "/bu1.zip", 'DESDES_VERSION', "V1.0.0", "Staging", 1 )
-
-INSERT INTO VERSION_INFO (ID,VERSION, FILE_PATH, DES, NATIVE_VERSION, TYPE, APP_INFO_ID  )
-VALUES (3, 'V1.0.2', "/bu1.zip", 'DESDES_VERSION', "V1.0.0", "Staging", 1 )
-
-INSERT INTO VERSION_INFO (ID, VERSION, FILE_PATH, DES, NATIVE_VERSION, TYPE, APP_INFO_ID, FILENAME  )
-VALUES (2, 'v1.0.0,', "/file/v1.0.0-bu1.android.bundle.zip", '更新222', "v1.0.0", "Staging", 1, 'v1.0.0-bu1.android.bundle.zip' )
+INSERT INTO APP_INFO ( ID, APP_NAME, APP_DES, CURRENT_VERSION, APP_KEY, NATIVE_VERSION) VALUE (1, 'app1', 'des', '1.0.0','aaaa', '1.0.0')
+-- 后续不一一列举了
 ```
 
 3. 查询 和 删除数据
@@ -66,6 +53,8 @@ SELECT * FROM APP_INFO;
 SELECT VERSION, APP_NAME, FILE_PATH, DES, TYPE FROM APP_INFO INNER JOIN VERSION_INFO ON APP_INFO.ID = VERSION_INFO.APP_INFO_ID;
 
 DELETE FROM APP_INFO
+
+-- 后续不一一列举了
 ```
 
 ## API设计  
@@ -169,53 +158,692 @@ router_api.get("/version_info", async (req, res) => {
 
 ## Android
 
-1. 首先是加载的时候 判断是否 dev
-2. 在判断有没有本地数据
-   2.1 创建文件夹
-   2.2 cv 嗯就
-   2.3 创建version.JSON
+> 有些操作 需要依赖Android 客户端 ，其中有下面的几个函数, 其中有一部分的代码是从 codePush 那边抄来的，然后做了点小修改
 
-```json
-  {
-    "staging":{
-      "bu1.android.bundle":"v1.0.0",
-      "bu2.android.bundle":"v1.0.0",
-      "index.android.bundle":"v1.0.0",
-    },
-    "release":{
-      "bu1.android.bundle":"v1.0.0",
-      "bu2.android.bundle":"v1.0.0",
-      "index.android.bundle":"v1.0.0",
-    },
-    "key":"AAAA",
-    "isStaging": true
-  }
+// utils 工具
+
+```java
+ /**
+     * 实现rn -> 切换Activity 注意 参数我们使用json string 虽然提供了 方法让你 传数据，但是不建议 业务是不同Bu业务
+     * @param name
+     * @param params
+     */
+    @ReactMethod
+    public void changeActivity (String name,String params) {
+        try{
+            Activity currentActivity = getCurrentActivity();
+            if(currentActivity != null){
+                Class toActivity = Class.forName(name);
+                Intent intent = new Intent(currentActivity,toActivity);
+                intent.putExtra(EXTRA_MESSAGE, params);
+                currentActivity.startActivity(intent);
+            }
+        }catch (Exception e) {
+            throw new JSApplicationIllegalArgumentException(
+                    "不能打开Activity : "+e.getMessage());
+        }
+    }
+
+    @ReactMethod
+    public void getAndroidDEV (Promise promise) {
+        promise.resolve(!BuildConfig.DEBUG);
+    };
+
+    public void createVersionInfo(String jversion){
+            String path = reactContext.getExternalFilesDir(null).getAbsolutePath();
+            File files = new File(path);
+
+            if (!files.exists()) {
+                files.mkdirs();
+            }
+            if (files.exists()) {
+                try {
+                    FileWriter fw = new FileWriter(path + File.separator
+                            +"version.json");
+                    fw.write(jversion);
+                    Log.i(TAG, "createVersionInfo: jversion" + jversion);
+                    fw.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+    };
+
+    // CV 文件 和创建初试文件
+    @ReactMethod
+    public void writeFileFoRC (String jversion) {
+        String path = reactContext.getExternalFilesDir(null).getAbsolutePath();
+
+        // 创建version.json
+        createVersionInfo(jversion);
+
+        // 新建文件夹 /Bundle/staging 和/Bundle/release 并且完成CV
+        createDir(path + "/Bundle/staging/");
+        createDir(path + "/Bundle/release/");
+        try {
+            String fileNames[] = reactContext.getAssets().list("");
+            for(String fileName: fileNames) {
+                if(fileName.indexOf(".bundle") > 0) {
+                    CopyAssets(reactContext,fileName, path + "/Bundle/staging/" + fileName);
+                    CopyAssets(reactContext,fileName, path + "/Bundle/release/" + fileName);
+                }
+            }
+
+        }catch (IOException ioe) {
+            Log.i(TAG, "writeFileFoRC: "+ioe);
+        }
+    }
+
+    // 配置文件是否完成创建
+    @ReactMethod
+    public void isInited (Promise promise){
+        String path = reactContext.getExternalFilesDir(null).getAbsolutePath();
+        File file = new File(path + "/version.json");
+        // 如果有值 就不要重复创建了
+        if(  file.exists()  ){
+            promise.resolve(true);
+        }else{
+            promise.resolve(false);
+        }
+    }
+
+    // 返回 最新 本地的info信息
+    @ReactMethod
+    public  void getCurrentVersion (String module,String type, Promise promise) {
+        Map<String,String> versionInfo = currentVersionByBundleName(reactContext,module,type);
+        WritableMap map = Arguments.createMap();
+
+        map.putString("module", module);
+        map.putString("version",versionInfo.get("version") );
+        map.putString("type",versionInfo.get("type") );
+        map.putString("key", versionInfo.get("key") );
+
+        promise.resolve(map);
+        return;
+    }
+
+    // 更新本地INFO for JSONFILE 信息
+    @ReactMethod
+    public void setFileVersion (String module,String type,String newVersion ) {
+        String path = reactContext.getExternalFilesDir(null).getAbsolutePath() + "/version.json";
+        StringBuilder sb = new StringBuilder();
+        try {
+            File file = new File(path);
+            InputStream in = null;
+            in = new FileInputStream(file);
+            int tempbyte;
+            while ((tempbyte = in.read()) != -1) {
+                sb.append((char) tempbyte);
+            }
+            in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            JSONObject versionJSON = new JSONObject(sb.toString());
+            JSONObject typeVersionJObject = versionJSON.getJSONObject(type);
+            typeVersionJObject.put(module,newVersion);
+
+            // 重新创建
+            createVersionInfo(versionJSON.toString());
+
+        }catch (Exception e) {
+
+        }
+
+
+    }
+
+    // 删除某路径下的所有文件 String path 先不传
+    @ReactMethod
+    public void cleanFileByPath () {
+
+        String filePath$Name = reactContext.getExternalFilesDir(null).getAbsolutePath() + "/Bundle/staging/bu2.android.bundle";
+            File file = new File(filePath$Name);
+            // 如果文件路径所对应的文件存在，并且是一个文件，则直接删除
+            if (file.exists() && file.isFile()) {
+                if (file.delete()) {
+                    Log.i(TAG, "cleanFileByPath: 删除成功 " + filePath$Name);
+                } else {
+                    Log.i(TAG, "cleanFileByPath: 删除失败 " + filePath$Name);
+                }
+            } else {
+                Log.i(TAG, "cleanFileByPath: 文件不存在 " + filePath$Name);
+            }
+    }
+
+    // 自己下载文件并且解压且替换
+    @ReactMethod
+    public void downloadFiles (String downloadUrl, String type,String module, Promise promise) {
+        try{
+            //下载路径，如果路径无效了，可换成你的下载路径
+            String url = downloadUrl;
+            String path = reactContext.getExternalFilesDir(null).getAbsolutePath();
+
+            // 要下载到的路径
+            String downPath = path +"/Bundle/" + type + "/";
+            String modulePath = path +"/Bundle/" + type + "/" + module;
+
+
+            final long startTime = System.currentTimeMillis();
+
+            //下载函数
+            String filename=url.substring(url.lastIndexOf("/") + 1);
+            //获取文件名
+            URL myURL = new URL(url);
+            URLConnection conn = myURL.openConnection();
+            conn.connect();
+            InputStream is = conn.getInputStream();
+            int fileSize = conn.getContentLength();//根据响应获取文件大小
+            if (fileSize <= 0) throw new RuntimeException("无法获知文件大小 ");
+            if (is == null) throw new RuntimeException("stream is null");
+            File file1 = new File(path);
+            if(!file1.exists()){
+                file1.mkdirs();
+            }
+            //把数据存入路径+文件名
+            FileOutputStream fos = new FileOutputStream(downPath+filename);
+            byte buf[] = new byte[1024];
+            int downLoadFileSize = 0;
+            do{
+                //循环读取
+                int numread = is.read(buf);
+                if (numread == -1)
+                {
+                    break;
+                }
+                fos.write(buf, 0, numread);
+                downLoadFileSize += numread;
+                //更新进度条
+            } while (true);
+
+            Log.i("DOWNLOAD","download success");
+            Log.i("DOWNLOAD","totalTime="+ (System.currentTimeMillis() - startTime));
+
+            promise.resolve("成功");
+            touchZip(downPath+filename, downPath,modulePath);
+
+            is.close();
+        } catch (Exception ex) {
+            Log.e("DOWNLOAD", "error: " + ex.getMessage(), ex);
+        }
+    }
+
+    public static void deleteFileOrFolderSilently(File file) {
+        if (file.isDirectory()) {
+            File[] files = file.listFiles();
+            for (File fileEntry : files) {
+                if (fileEntry.isDirectory()) {
+                    deleteFileOrFolderSilently(fileEntry);
+                } else {
+                    fileEntry.delete();
+                }
+            }
+        }
+
+        if (!file.delete()) {
+            Log.e(TAG, "deleteFileOrFolderSilently: ");
+        }
+    }
+
+    public void touchZip (String filePath, String downPath, String modulePath) {
+        // zip地址
+        File zipFile = new File(filePath);
+        File oldModuleFile = new File(modulePath);
+
+        // 解压缩目标地址
+        String destination = downPath;
+
+        // 删除旧的版本
+        deleteFileOrFolderSilently(oldModuleFile);
+
+        FileInputStream fileStream = null;
+        BufferedInputStream bufferedStream = null;
+        ZipInputStream zipStream = null;
+        try {
+            fileStream = new FileInputStream(zipFile);
+            bufferedStream = new BufferedInputStream(fileStream);
+            zipStream = new ZipInputStream(bufferedStream);
+            ZipEntry entry;
+
+            File destinationFolder = new File(destination);
+
+            destinationFolder.mkdirs();
+
+            byte[] buffer = new byte[WRITE_BUFFER_SIZE];
+            while ((entry = zipStream.getNextEntry()) != null) {
+//                String fileName = validateFileName(entry.getName(), destinationFolder);
+
+                File file = new File(modulePath);
+                if (entry.isDirectory()) {
+                    file.mkdirs();
+                } else {
+                    File parent = file.getParentFile();
+                    if (!parent.exists()) {
+                        parent.mkdirs();
+                    }
+
+                    FileOutputStream fout = new FileOutputStream(file);
+                    try {
+                        int numBytesRead;
+                        while ((numBytesRead = zipStream.read(buffer)) != -1) {
+                            fout.write(buffer, 0, numBytesRead);
+                        }
+                    } finally {
+                        fout.close();
+                    }
+                }
+                long time = entry.getTime();
+                if (time > 0) {
+                    file.setLastModified(time);
+                }
+            }
+            if (zipStream != null) zipStream.close();
+            if (bufferedStream != null) bufferedStream.close();
+            if (fileStream != null) fileStream.close();
+
+            if (destinationFolder.exists()) {
+                //  删除你下载的zip
+                deleteFileOrFolderSilently(zipFile);
+            }
+
+        } catch (IOException ioe){
+            Log.i(TAG, "touchZip: ioe"+ ioe);
+        }
+    }
+
+    public void createDir(String filePath) {
+        File file = new File(filePath);
+
+        if (file.exists()) {
+            Log.i(TAG, "文件夹以及存在");
+        }
+        if (filePath.endsWith(File.separator)) {// 以 路径分隔符 结束，说明是文件夹
+            Log.i(TAG, "文件夹以及存在");
+        }
+
+        if (!file.mkdirs()) {
+            Log.i(TAG, "创建成功");
+        }
+    }
+
+    public static void CopyAssets(Context context, String oldPath, String newPath) {
+        try {
+            String fileNames[] = context.getAssets().list(oldPath);// 获取assets目录下的所有文件及目录名
+            if (fileNames.length > 0) {// 如果是目录
+                File file = new File(newPath);
+                file.mkdirs();// 如果文件夹不存在，则递归
+                for (String fileName : fileNames) {
+                    CopyAssets(context, oldPath + "/" + fileName, newPath + "/" + fileName);
+                }
+            } else {// 如果是文件
+                InputStream is = context.getAssets().open(oldPath);
+                FileOutputStream fos = new FileOutputStream(new File(newPath));
+                byte[] buffer = new byte[1024];
+                int byteCount;
+                while ((byteCount = is.read(buffer)) != -1) {// 循环从输入流读取
+                    // buffer字节
+                    fos.write(buffer, 0, byteCount);// 将读取的输入流写入到输出流
+                }
+                fos.flush();// 刷新缓冲区
+                is.close();
+                fos.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    static Map<String,String> currentVersionByBundleName (Context reactContext, String module, String type) {
+        String path = reactContext.getExternalFilesDir(null).getAbsolutePath() + "/version.json";
+
+        StringBuilder sb = new StringBuilder();
+        try {
+            File file = new File(path);
+            InputStream in = null;
+            in = new FileInputStream(file);
+            int tempbyte;
+            while ((tempbyte = in.read()) != -1) {
+                sb.append((char) tempbyte);
+            }
+            in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        final Map<String, String> constants = new HashMap<>();
+
+        try {
+            JSONObject versionJSON = new  JSONObject(sb.toString());
+            String version = versionJSON.getJSONObject(type).getString(module);
+            String moduleType = versionJSON.getBoolean("isStaging") ? "staging": "release";
+            String key = versionJSON.getString("key");
+
+            // 放回当前的 bundle Version
+            constants.put("version",version);
+            constants.put("type",moduleType);
+            constants.put("key",key);
+
+            return constants;
+
+        }catch (Exception e) {
+            Log.i(TAG, "currentVersionByBundleName: ",e);
+            return constants;
+        }
+
+    };
+
+    static Map<String,String> currentVersionByBundleName (Context reactContext) {
+        String path = reactContext.getExternalFilesDir(null).getAbsolutePath() + "/version.json";
+
+        StringBuilder sb = new StringBuilder();
+        try {
+            File file = new File(path);
+            InputStream in = null;
+            in = new FileInputStream(file);
+            int tempbyte;
+            while ((tempbyte = in.read()) != -1) {
+                sb.append((char) tempbyte);
+            }
+            in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        final Map<String, String> constants = new HashMap<>();
+
+        try {
+            JSONObject versionJSON = new  JSONObject(sb.toString());
+
+            String moduleType = versionJSON.getBoolean("isStaging") ? "staging": "release";
+            constants.put("moduleType",moduleType);
+
+            return constants;
+
+        }catch (Exception e) {
+            Log.i(TAG, "currentVersionByBundleName: ",e);
+            return constants;
+        }
+
+    };
+
+    static Boolean hasCache (Context context) {
+        String path = context.getExternalFilesDir(null).getAbsolutePath();
+        File file = new File(path + "/version.json");
+        // 如果有值 就不要重复创建了
+        if(  file.exists()  ){
+            return  true;
+        }else{
+            return  false;
+        }
+    }
 ```
 
-3. 请求看看 是否需要更新
-  3.1 下载最新文件
-  3.2 解压和替换
-  3.3 更新替换 version.json
-  3.4 重启APP
-4. 依据staging 载入data bundle
+// 加载器
+
+```java
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        this.preInit();
+        super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.canDrawOverlays(this)) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                        Uri.parse("package:" + getPackageName()));
+                startActivityForResult(intent, OVERLAY_PERMISSION_REQ_CODE);
+            }
+        }
+        SoLoader.init(this, false);
+
+        if( BuildConfig.DEBUG ){
+            mReactRootView = new ReactRootView(this);
+            mReactInstanceManager = ReactInstanceManager.builder()
+                    .setApplication(getApplication())
+                    .setCurrentActivity(this)
+                    .setBundleAssetName(getJSBundleAssetName())
+                    .setJSMainModulePath(getJsModulePathPath())
+                    .addPackages(MainApplication.getInstance().packages)
+                    .setUseDeveloperSupport(true)
+                    .setInitialLifecycleState(LifecycleState.RESUMED)
+                    .build();
+
+            mReactRootView.startReactApplication(mReactInstanceManager, getResName(), null);
+            setContentView(mReactRootView);
+            return;
+        }
+
+        mReactInstanceManager = MainApplication.getInstance().getRcInstanceManager();
+        mReactInstanceManager.onHostResume(this, this);
+        mReactRootView = new ReactRootView(this);
+
+        mReactInstanceManager.addReactInstanceEventListener(new ReactInstanceManager.ReactInstanceEventListener() {
+            @Override
+            public void onReactContextInitialized(ReactContext context) {
+                MainApplication.getInstance().setIsLoad(true);
+
+                //加载业务包
+                ReactContext mContext = mReactInstanceManager.getCurrentReactContext();
+                CatalystInstance instance = mContext.getCatalystInstance();
+
+                loadForSystemOrAssets(instance,context);
+
+                mReactRootView.startReactApplication(mReactInstanceManager, getResName(), null);
+                setContentView(mReactRootView);
+
+                mReactInstanceManager.removeReactInstanceEventListener(this);
+            }
+        });
+
+        if(MainApplication.getInstance().getIsLoad()){
+            ReactContext mContext = mReactInstanceManager.getCurrentReactContext();
+            CatalystInstance instance = mContext.getCatalystInstance();
+
+            loadForSystemOrAssets(instance,mContext);
+
+            mReactRootView.startReactApplication(mReactInstanceManager, getResName(), null);
+            setContentView(mReactRootView);
+
+        }
+
+        mReactInstanceManager.createReactContextInBackground();
+        return;
+    }
+
+    private void loadForSystemOrAssets ( CatalystInstance instance, ReactContext context  ) {
+        String filePath$Name = "";
+        // 是否有本地存储？
+        Boolean hasCache = RNToolsManager.hasCache(getApplicationContext());
+        String basePhat = RNToolsManager.currentVersionByBundleName(getApplicationContext()).get("moduleType");
+
+        // 加载对应的 load
+        if(hasCache){
+            filePath$Name = getApplicationContext().getExternalFilesDir(null).getAbsolutePath() + "/Bundle/"+ basePhat + "/" + getJSBundleAssetName();
+        }else{
+            filePath$Name = "assets://" + getJSBundleAssetName();
+        }
+
+
+        if(!hasCache) {
+            // loadScriptFromAssets FromAssets 不再适用
+            ((CatalystInstanceImpl)instance).loadScriptFromAssets(context.getAssets(),filePath$Name ,false);
+            return;
+        }
+
+            ((CatalystInstanceImpl)instance).loadSplitBundleFromFile( filePath$Name, filePath$Name);
+
+    }
+
+```
 
 ## RN
 
-## 使用前的重要说明
+> RN 负责 主要的逻辑聚合 主要有下面的函数
 
-1. 一定一定，在发native 包之前 把 所有的bu业务包都上传的平台  并且 创建好了所有的版本信息
-2. 本次主要采取的全量更新的方式 （增量更新 有机会再完善吧 主要是调整一下接口就好了 ，当然表设计也得改
+// 首先是 这个 配置
+
+```json
+{
+  "staging": {
+    "bu1.android.bundle": "1.0.0",
+    "bu2.android.bundle": "1.0.0",
+    "index.android.bundle": "1.0.0"
+  },
+  "release": {
+    "bu1.android.bundle": "1.0.0",
+    "bu2.android.bundle": "1.0.0",
+    "index.android.bundle": "1.0.0"
+  },
+  "key": "AAAA",
+  "isStaging": true
+}
+
+```
+
+// 然后是 自定义的工具函数
+
+```js
+import { useState } from 'react'
+import { Platform, Alert, ToastAndroid  } from 'react-native'
+import NativeModule from '../native'
+
+// url and config
+const useServerHot = ( props ) => {
+  const { host,  versionInfo } = props
+  const [loading, setLoading] = useState(true);
+
+  const getData = async (version, module, type, key) => {
+    const value = await fetch(
+      `${host}/api/version_info?oldVersion=${version}&pageModule=${module}&type=${type}&appKey=${versionInfo.key}&platform=${Platform.OS.toUpperCase()}`
+    );
+    const data = await value.json();
+    return data;
+  };
+
+  const CodePush = async () => {
+    const UpperCaseType = versionInfo.isStaging ? "Staging" : "Release";
+    
+    // 获取是否DEV
+    const isDebug = await NativeModule.getAndroidDEV();
+  
+    if (isDebug) {
+      setLoading(false)
+      return;
+    }
+  
+    // 获取是否已经初始化到 cache 下
+    const isInited = await NativeModule.isInited();
+  
+  
+    // 是否完成文件夹的创建
+    if (!isInited) {
+      // cv 文件夹
+      await NativeModule.writeFileFoRC(JSON.stringify(versionInfo));
+    }
+  
+    // 遍历当前i模块是否是最新的版本 
+    const promiseAllVersionInfo = [];
+    const keys = versionInfo.isStaging ? "staging" : "release";
+    Object.keys(versionInfo[keys]).forEach((it) => {
+      promiseAllVersionInfo.push(
+        NativeModule.getCurrentVersion(
+          it,
+          keys
+        )
+      );
+    });
+  
+  
+    const promiseAllIsLoadUpdate = [];  
+    Promise.all(promiseAllVersionInfo).then(res => {
+      res.forEach((it) => {
+        promiseAllIsLoadUpdate.push(getData(it.version, it.module, UpperCaseType  , it.key, ));
+      });  
+      // 
+      hasNewVersion()
+    })
+  
+    const hasNewVersion = () => {
+        // 更新和download 指定的版本
+      Promise.all(promiseAllIsLoadUpdate).then((res) => {
+            // 看看返回的数据 如果需要更新 就更新 并且重新写入新的数据
+            const value = res
+              .filter((data) => data.data?.isNeedRefresh)
+              .map((r) => r.data);
+  
+            // 只有有一个人 isNeedRefresh = true 请弹窗 提示更新
+            if (res.some((it) => it.data.isNeedRefresh)) {
+              Alert.alert("有版本更新", "", [
+                {
+                  text: "更新",
+                  onPress: updateVersion(value),
+                },
+              ]);
+            }else{
+              setLoading(false)
+            }
+            
+        });
+    }
+  
+  
+  };
+
+
+  // 更新成功 写入 正确的 最新的版本信息
+  const updateVersion =  value => {
+    return () => {
+    const type = versionInfo.isStaging ? "staging" : "release";
+
+      const allDownloadTask = [];
+      value.forEach((it) => {
+        allDownloadTask.push(
+          NativeModule.downloadFiles(
+            `${host}${it.downloadPathL}`,
+            type,
+            it.module
+          )
+        );
+      });
+
+      // 有多少更新 就重写多少次
+      Promise.all(allDownloadTask).then(() => {
+        value.forEach((it) => {
+          NativeModule.setFileVersion(it.module, type , it.newVersion);
+        });
+
+        setTimeout(()=>{
+          setLoading(false)
+          ToastAndroid.show('更新成功 请重启应用', 1500)
+        },2000)
+      });
+    }
+  };
+
+  return {
+    CodePush,
+    loading
+  }
+}
+
+export default useServerHot
+```
+
+## 流程设计相关
+
+> 请见同级别目录的 的drawio
+
+## 重要细节
+
+> 实际上我们缓存到cache 目录 会存在一定的安全问题，和资源加载问题，目前还没有更好的低成本处理方案
 
 ```java
 
-            // loadScriptFromAssets FromAssets 不再适用
-                  ((CatalystInstanceImpl)instance).loadScriptFromAssets(context.getAssets(),filePath$Name ,false);
+// loadScriptFromAssets FromAssets 不再适用
+      ((CatalystInstanceImpl)instance).loadScriptFromAssets(context.getAssets(),filePath$Name ,false);
 
 
-                // 不要用这个 因为会导致 你的 图片资源路径丢失
+// 不要用这个 因为会导致 你的 图片资源路径丢失
 //                 ((CatalystInstanceImpl)instance).loadScriptFromFile(filePath$Name,filePath$Name ,false);
 
 // 下面这个是正确的解决办法
 //                  ((CatalystInstanceImpl)instance).loadSplitBundleFromFile( filePath$Name, filePath$Name);
-
 ```

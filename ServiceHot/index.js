@@ -126,7 +126,7 @@ router_api.get("/app_list", async (req, res) => {
 
 router_api.get("/module_list", async (req, res) => {
   const data = await promiseQuery(
-    `SELECT * from  MODULE_INFO WHERE ID = ${req.query.id}`
+    `SELECT * from  MODULE_INFO WHERE APP_INFO_ID = ${req.query.id}`
   );
   res.json({
     data: data,
@@ -218,26 +218,38 @@ router_api.get("/version_info", async (req, res) => {
     pageModule: "",
     type: "",
     appKey: "",
+    platform:"",
     ...req.query,
   };
-  // 如果当前版本和服务器上 最新版本不正确 请返回最新版本 -- start
-  // 1. 先找到app
+  // 查询到当前的APP
   const appInfo = await promiseQuery(
     `SELECT * FROM APP_INFO WHERE APP_KEY = '${params.appKey}'`
   );
 
-  const oldVersionStr = `${params.oldVersion}-${params.type}-${params.pageModule}.zip`;
+  // 查询到当前的模块 ( 指定平台  )
+  const moduleInfo = await promiseQuery(
+    `SELECT  *  FROM APP_INFO INNER JOIN MODULE_INFO ON APP_INFO.ID=MODULE_INFO.APP_INFO_ID WHERE APP_INFO_ID=${appInfo[0].ID} AND PLATFORM='${params.platform}' AND MODULE = '${params.pageModule}'`
+  )
+  
+  // 查询当前 module 下的 指定type 下的  active 的版本
+  const activeVersion = await promiseQuery(
+    `SELECT  *  FROM MODULE_INFO INNER JOIN VERSION_INFO ON MODULE_INFO.ID=VERSION_INFO.MODULE_ID  WHERE MODULE_ID=${moduleInfo[0].ID} AND TYPE='${params.type}' AND IS_ACTIVE=1`
+  )
 
-  // 2. 找到 当前模块 在 APP_INFO 中的最新版本
-  const currentVersion = await promiseQuery(
-    `SELECT * FROM VERSION_INFO WHERE APP_INFO_ID=${appInfo[0].ID} 
-      AND VERSION_INFO.VERSION = '${appInfo[0].CURRENT_VERSION}' 
-      AND VERSION_INFO.FILENAME ='${oldVersionStr}' AND VERSION_INFO.TYPE = '${params.type}'
-      `
-  );
 
-  // 3.如果当前模块 最新 VERSION 和APP内的最新VERSION 一致 则不需要更新
-  if (currentVersion.length) {
+  // 对比是否需要更新 当前版本
+  if(!activeVersion.length) {
+    res.json({ 
+      data: {
+        isNeedRefresh: false,
+      },
+      success: true,
+      message: "当前版本一致 不需要更新",
+    })
+    return
+  }
+
+  if  (activeVersion[0].VERSION === params.oldVersion  )  {
     res.json({
       data: {
         isNeedRefresh: false,
@@ -247,21 +259,13 @@ router_api.get("/version_info", async (req, res) => {
     });
     return;
   }
-  // 如果当前版本和服务器上 最新版本不正确 请返回最新版本-- end
-
-  // log(params);
-  log("params", params);
-  // 如果版本不正确 就返回对应的 文件
-  const findVersionInfo = await promiseQuery(
-    `SELECT * FROM VERSION_INFO WHERE APP_INFO_ID=${appInfo[0].ID} AND VERSION_INFO.VERSION = '${appInfo[0].CURRENT_VERSION}' AND VERSION_INFO.TYPE = '${params.type}'`
-  );
 
   res.json({
     data: {
-      newVersion: findVersionInfo[0].VERSION,
-      downloadPathL: findVersionInfo[0].FILE_PATH,
-      fileName: findVersionInfo[0].FILENAME,
-      type: findVersionInfo[0].TYPE,
+      newVersion: activeVersion[0].VERSION,
+      downloadPathL: activeVersion[0].FILE_PATH,
+      module: activeVersion[0].MODULE,
+      type: activeVersion[0].TYPE,
       isNeedRefresh: true,
     },
     success: true,

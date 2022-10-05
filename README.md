@@ -1581,32 +1581,13 @@ public class CatalystInstanceImpl implements CatalystInstance {
 
     2. 预先调研  是否可以载入 fileSystem 的包 - ✅
 
-    3. common开头独立执行嘛 - ✅
+    3. common开头独立执行嘛 - ✅4
 
     3. RN 下载 zip 并解包 - ✅
 
     ```
 
-  满足了上述条件，我们来看看 系统设计 图在这里
-  
-- App 载入， 看看 data 下是否有 bundle 如果没有则创建文件夹 且把 bundle bu包 cv 进去（注意要创建两个 staging/release)
-  
-- 从RN 读配置Version.json（注意段业务要写在common中）cv 到 data/bundle 中，同时让RN fetch API 如果版本不对 请把RN下的zip包下载，然后清楚版本不正确的 bu 文件，把zip 解压出来 （达到替换目的），重启App
-
-- 如果有这份文件 在bu bundle 加载的时候 直接返回其路径，具体是 staging/release 哪个文件夹下 就要看 前面第一步写的 version isStaging 信息啦
-
-  ```json
-  {
-    "key":"myrnApp",
-    "isStaging":false,
-    "versionInfo": {
-      "staging":"1.0.0", // 如果和远程 包 不一致  请更新 往小的改就是回退，往大的改就是更新
-      "release":"1.0.0",
-    }
-  }
-  ```
-
-   一个重要的问题 在rn 源码中 有这样的东西
+    [相关详细的设计](https://github.com/BM-laoli/Android-IOS-ReactNative/blob/main/doc/SERVER_HOT.md)
 
 # 重要的细节 （IOS）
 
@@ -1626,7 +1607,7 @@ public class CatalystInstanceImpl implements CatalystInstance {
 | 初步的拆包方案   |    ✅ 完成     |  /      |
 | 优化拆包方案 common + bu = runtime    |    ✅ 完成     |  /      |
 | 容器的缓存复用    |    ✅ 完成      |  /      |
-| 热更新的实现   |    /     |  /      |
+| 热更新的实现   |    ✅ 完成     |  /      |
 | WebView 的实现   |    /     |  /      |
 
 # 参考和感谢

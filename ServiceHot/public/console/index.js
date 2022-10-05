@@ -63,6 +63,8 @@ const VersionList = (props) => {
   const { versionList, setRouter, setActiveVersion } = props;
   const [type, setType] = useState("Staging");
 
+  console.log('versionList',versionList);
+
   return (
     <div className="list-container">
       <div className="list-item">
@@ -72,7 +74,7 @@ const VersionList = (props) => {
             setRouter("/versionTypeList");
           }}
         >
-          返回
+          返回x
         </button>
         <button
           className="item-btn"
@@ -100,15 +102,16 @@ const VersionList = (props) => {
               <div className="item-span">{item.VERSION}</div>
               <div className="item-span">{item.FILE_PATH}</div>
               <div className="item-span">{item.FILENAME}</div>
-              <div className="item-span">{item.FILENAME}</div>
+              <div className="item-span">{ Boolean(item.IS_ACTIVE) &&  "Active" }</div>
               <button
                 className="item-btn"
                 onClick={() => {
                   const oldID = versionList
                     .filter((it) => it.TYPE === type)
-                    .find((i) => Boolean(i.IS_ACTIVE));
-
-                  setActiveVersion({ old_id: oldID, id: item.ID });
+                    .find((i) => Boolean(i.IS_ACTIVE))?.ID;
+                    console.log('--->', oldID)
+                  setActiveVersion({ old_id: oldID , id: item.ID });
+                  
                 }}
               >
                 设置为当前版本
@@ -124,6 +127,13 @@ const AppList = (props) => {
   const { list, toTypeList } = props;
   return (
     <div className="list-container">
+      <div className="list-item" >
+        <div className="item-span">名称</div>
+        <div className="item-span">介绍</div>
+        <div className="item-span">KEY</div>
+        <div className="item-span">当前Native 版本</div>
+        <div className="item-span">操作</div>
+      </div>
       {list.map((item, index) => {
         return (
           <div className="list-item" key={index}>
@@ -268,13 +278,15 @@ const CreateVersionForm = (props) => {
     create(data);
   };
 
-  const onUpdate = (e) => {
-    const formData = new FormData();
-    const files = e.target.files[0];
-    formData.append("files", files);
+  const onUpdate =  async (e) => {
+    if( !e.target.files.length ) return;
 
-    const data = http.post(
-      "/update_bundle?version=v1.0.0&type=Staging",
+    const files = e.target.files[0];
+    const formData = new FormData();
+    formData.append("files", files);
+    const version = document.forms["CreateVersionForm"]["version"].value
+    const data = await http.post(
+      `/update_bundle?version=${version}&type=${preState.type}`,
       formData,
       {
         "Content-Type": "multipart/form-data;charset=utf-8",
@@ -283,13 +295,36 @@ const CreateVersionForm = (props) => {
 
     setState((old) => ({
       ...old,
-      file_name: data.data.filename,
-      file_path: data.data.path,
+      file_name: data.data.data.filename,
+      file_path: data.data.data.path,
     }));
   };
 
   return (
     <div>
+      <form
+        action=""
+        target="frameName"
+        name="CreateVersionForm"
+        // onSubmit={(e) => {
+          
+        // }}
+      >
+        <div class="form-example">
+          <label for="version">version: </label>
+          <input type="text" name="version" id="version" required />
+        </div>
+
+        <div class="form-example">
+          <label for="des">des: </label>
+          <input type="text" name="des" id="des" required />
+        </div>
+
+        {/* <div class="form-example">
+          <input type="submit" />
+        </div> */}
+      </form>
+
       <div class="form-example">
         <label for="type">isStaging?</label>
         <input
@@ -314,29 +349,7 @@ const CreateVersionForm = (props) => {
           multiple="multiple"
         ></input>
       </div>
-
-      <form
-        action=""
-        target="frameName"
-        name="CreateVersionForm"
-        onSubmit={(e) => {
-          createApp();
-        }}
-      >
-        <div class="form-example">
-          <label for="version">version: </label>
-          <input type="text" name="version" id="version" required />
-        </div>
-
-        <div class="form-example">
-          <label for="des">des: </label>
-          <input type="text" name="des" id="des" required />
-        </div>
-
-        <div class="form-example">
-          <input type="submit" />
-        </div>
-      </form>
+      <button onClick={createApp}>submit</button>
     </div>
   );
 };
@@ -423,22 +436,23 @@ const App = () => {
   // createApp
   const create = async (data) => {
     await http.post("/create_app", data);
-    alert("创建成功");
+    await await init();
   };
 
   const createModule = async (data) => {
     await http.post("/create_module", data);
-    alert("创建成功");
+    await loadModule()
   };
 
   const createVersion = async (data) => {
     await http.post("/create_version_info", data);
-    alert("创建成功");
+    await  loadVersion()
   };
 
   const setActiveVersion = async (data) => {
-    const value = await http.get(`/module_list?id=${appStatus.currentApp.ID}`);
-    alert("设置完成");
+    const { old_id, id } = data;
+    await http.put(`/update_active_bundle`,data);
+    await  loadVersion()
   };
 
   const loadModule = async (id) => {
@@ -460,13 +474,8 @@ const App = () => {
       state: value.data.data,
     });
   };
-  // onReload
-  const reload = async () => {
-    await init();
-    await loadModule();
-    await loadVersion();
-    alert("Reload 结束");
-  };
+
+
 
   return (
     <div className="app-container">
@@ -474,7 +483,6 @@ const App = () => {
         {router === "/home" && "APP列表"}
         {router === "/versionTypeList" && "APP所有模块"}
         {router === "/versionList" && "APP模块Version列表"}
-        <button onClick={reload}>reload</button>
       </div>
       <div className="app-center">
         {router === "/home" && (
