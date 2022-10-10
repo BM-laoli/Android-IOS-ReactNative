@@ -9,7 +9,7 @@ const RNToolsManager = {
     // 此处可以优化 把名字全部统一，只需要确定一个规则 path 为 [moduleName].[platform].bundle
     // 比如 common.ios.bundle, IO2.ios.bundle, common.android.bundle, IO2.android.bundle, 
     // 参数只需要 传递 IO2 就好了这个IOS2 应该和模块的 registerComponent name 保持一致！
-  if(Platform.OS === 'ios') {
+    if(Platform.OS === 'ios') {
       return NativeModules.RNToolsManager.changeActivity(`bundle/${value}.ios`, value); 
     }
     return NativeModules.RNToolsManager.changeActivity(value, null);

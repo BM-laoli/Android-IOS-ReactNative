@@ -2091,3 +2091,7 @@ changeActivity: (value) => {
 <https://www.uglydirtylittlestrawberry.co.uk/posts/react-native-ios-build-and-inject-bundle/>
 
 <https://www.jianshu.com/p/0e830adc4c90>
+
+<https://stackoverflow.com/questions/72543728/xcode-14-deprecates-bitcode-but-why/73219854#73219854>
+
+<https://www.jianshu.com/p/e09ca00d7aaa>

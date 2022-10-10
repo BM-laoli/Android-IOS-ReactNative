@@ -143,9 +143,10 @@
         
         RCTRootView *rootView =
           [[RCTRootView alloc] initWithBridge:self.bridge moduleName:bunldeName initialProperties:nil];
-        UIViewController *vc = [[UIViewController alloc] init];
-        vc.view = rootView;
-        [self presentViewController:vc animated:YES completion:nil];
+//        UIViewController *vc = [[UIViewController alloc] init];
+        [self setView: rootView];
+//        vc.view = rootView;
+//        [self presentViewController:vc animated:YES completion:nil];
     };
 }
 @end
