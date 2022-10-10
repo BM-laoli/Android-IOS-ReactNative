@@ -1,0 +1,810 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1CBF785028F3B58E007D4378 /* bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1CBF784F28F3B58E007D4378 /* bundle */; };
+		1CBF788828F3F33E007D4378 /* RNToolPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CBF788728F3F33E007D4378 /* RNToolPackage.m */; };
+		1CBF788D28F3F949007D4378 /* ReactController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CBF788C28F3F949007D4378 /* ReactController.m */; };
+		1CD2C66328F1B12700C26D7E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD2C66228F1B12700C26D7E /* AppDelegate.m */; };
+		1CD2C66928F1B12700C26D7E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD2C66828F1B12700C26D7E /* ViewController.m */; };
+		1CD2C66F28F1B12700C26D7E /* myrnapp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1CD2C66D28F1B12700C26D7E /* myrnapp.xcdatamodeld */; };
+		1CD2C67128F1B12800C26D7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CD2C67028F1B12800C26D7E /* Assets.xcassets */; };
+		1CD2C67428F1B12800C26D7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CD2C67228F1B12800C26D7E /* LaunchScreen.storyboard */; };
+		1CD2C67728F1B12800C26D7E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD2C67628F1B12800C26D7E /* main.m */; };
+		1CD2C68128F1B12900C26D7E /* myrnappTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD2C68028F1B12900C26D7E /* myrnappTests.m */; };
+		1CD2C68C28F1B12900C26D7E /* myrnappUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CD2C68B28F1B12900C26D7E /* myrnappUITests.m */; };
+		AB451EDF134F70B6EB21F7DD /* Pods_myrnapp_myrnappUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F485CD9A8CFD321994AACD4 /* Pods_myrnapp_myrnappUITests.framework */; };
+		B8240E70EFE2B24DAD44C817 /* Pods_myrnapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C58E749F6761CE93728222D /* Pods_myrnapp.framework */; };
+		DA0B8A90D88E7C4CCDAD6968 /* Pods_myrnappTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4770F9B3510C17AFEAD45DE5 /* Pods_myrnappTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1CD2C67D28F1B12900C26D7E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1CD2C65628F1B12700C26D7E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1CD2C65D28F1B12700C26D7E;
+			remoteInfo = myrnapp;
+		};
+		1CD2C68828F1B12900C26D7E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1CD2C65628F1B12700C26D7E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1CD2C65D28F1B12700C26D7E;
+			remoteInfo = myrnapp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0F485CD9A8CFD321994AACD4 /* Pods_myrnapp_myrnappUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myrnapp_myrnappUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		132C0882A5E84040DA8E3A87 /* Pods-myrnapp-myrnappUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myrnapp-myrnappUITests.release.xcconfig"; path = "Target Support Files/Pods-myrnapp-myrnappUITests/Pods-myrnapp-myrnappUITests.release.xcconfig"; sourceTree = "<group>"; };
+		1CBF784F28F3B58E007D4378 /* bundle */ = {isa = PBXFileReference; lastKnownFileType = folder; name = bundle; path = ../../bundle; sourceTree = "<group>"; };
+		1CBF788628F3F33E007D4378 /* RNToolPackage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNToolPackage.h; sourceTree = "<group>"; };
+		1CBF788728F3F33E007D4378 /* RNToolPackage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNToolPackage.m; sourceTree = "<group>"; };
+		1CBF788C28F3F949007D4378 /* ReactController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReactController.m; sourceTree = "<group>"; };
+		1CD2C65E28F1B12700C26D7E /* myrnapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myrnapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1CD2C66128F1B12700C26D7E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		1CD2C66228F1B12700C26D7E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1CD2C66728F1B12700C26D7E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		1CD2C66828F1B12700C26D7E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		1CD2C66E28F1B12700C26D7E /* myrnapp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = myrnapp.xcdatamodel; sourceTree = "<group>"; };
+		1CD2C67028F1B12800C26D7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1CD2C67328F1B12800C26D7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1CD2C67528F1B12800C26D7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1CD2C67628F1B12800C26D7E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1CD2C67C28F1B12900C26D7E /* myrnappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = myrnappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1CD2C68028F1B12900C26D7E /* myrnappTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = myrnappTests.m; sourceTree = "<group>"; };
+		1CD2C68228F1B12900C26D7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1CD2C68728F1B12900C26D7E /* myrnappUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = myrnappUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1CD2C68B28F1B12900C26D7E /* myrnappUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = myrnappUITests.m; sourceTree = "<group>"; };
+		1CD2C68D28F1B12900C26D7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C58E749F6761CE93728222D /* Pods_myrnapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myrnapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4770F9B3510C17AFEAD45DE5 /* Pods_myrnappTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myrnappTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F83FA5052C647209852A9A5 /* Pods-myrnapp-myrnappUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myrnapp-myrnappUITests.debug.xcconfig"; path = "Target Support Files/Pods-myrnapp-myrnappUITests/Pods-myrnapp-myrnappUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		BB0F5B9CA40E3969A8FEEBB9 /* Pods-myrnappTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myrnappTests.debug.xcconfig"; path = "Target Support Files/Pods-myrnappTests/Pods-myrnappTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BFC2C55BFB1399F78245B730 /* Pods-myrnappTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myrnappTests.release.xcconfig"; path = "Target Support Files/Pods-myrnappTests/Pods-myrnappTests.release.xcconfig"; sourceTree = "<group>"; };
+		D45CC5EDC5A6D31EFF739F46 /* Pods-myrnapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myrnapp.debug.xcconfig"; path = "Target Support Files/Pods-myrnapp/Pods-myrnapp.debug.xcconfig"; sourceTree = "<group>"; };
+		F530FE0145ABBD85300D1D9B /* Pods-myrnapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myrnapp.release.xcconfig"; path = "Target Support Files/Pods-myrnapp/Pods-myrnapp.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1CD2C65B28F1B12700C26D7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8240E70EFE2B24DAD44C817 /* Pods_myrnapp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1CD2C67928F1B12900C26D7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA0B8A90D88E7C4CCDAD6968 /* Pods_myrnappTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1CD2C68428F1B12900C26D7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB451EDF134F70B6EB21F7DD /* Pods_myrnapp_myrnappUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1CD2C65528F1B12700C26D7E = {
+			isa = PBXGroup;
+			children = (
+				1CD2C66028F1B12700C26D7E /* myrnapp */,
+				1CD2C67F28F1B12900C26D7E /* myrnappTests */,
+				1CD2C68A28F1B12900C26D7E /* myrnappUITests */,
+				1CD2C65F28F1B12700C26D7E /* Products */,
+				7306B77D88BD69229278F0AA /* Pods */,
+				7E5C2877E42392E0DA6706A7 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		1CD2C65F28F1B12700C26D7E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1CD2C65E28F1B12700C26D7E /* myrnapp.app */,
+				1CD2C67C28F1B12900C26D7E /* myrnappTests.xctest */,
+				1CD2C68728F1B12900C26D7E /* myrnappUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1CD2C66028F1B12700C26D7E /* myrnapp */ = {
+			isa = PBXGroup;
+			children = (
+				1CBF784F28F3B58E007D4378 /* bundle */,
+				1CD2C66128F1B12700C26D7E /* AppDelegate.h */,
+				1CD2C66228F1B12700C26D7E /* AppDelegate.m */,
+				1CD2C66728F1B12700C26D7E /* ViewController.h */,
+				1CD2C66828F1B12700C26D7E /* ViewController.m */,
+				1CD2C67028F1B12800C26D7E /* Assets.xcassets */,
+				1CD2C67228F1B12800C26D7E /* LaunchScreen.storyboard */,
+				1CD2C67528F1B12800C26D7E /* Info.plist */,
+				1CD2C67628F1B12800C26D7E /* main.m */,
+				1CD2C66D28F1B12700C26D7E /* myrnapp.xcdatamodeld */,
+				1CBF788628F3F33E007D4378 /* RNToolPackage.h */,
+				1CBF788728F3F33E007D4378 /* RNToolPackage.m */,
+				1CBF788C28F3F949007D4378 /* ReactController.m */,
+			);
+			path = myrnapp;
+			sourceTree = "<group>";
+		};
+		1CD2C67F28F1B12900C26D7E /* myrnappTests */ = {
+			isa = PBXGroup;
+			children = (
+				1CD2C68028F1B12900C26D7E /* myrnappTests.m */,
+				1CD2C68228F1B12900C26D7E /* Info.plist */,
+			);
+			path = myrnappTests;
+			sourceTree = "<group>";
+		};
+		1CD2C68A28F1B12900C26D7E /* myrnappUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1CD2C68B28F1B12900C26D7E /* myrnappUITests.m */,
+				1CD2C68D28F1B12900C26D7E /* Info.plist */,
+			);
+			path = myrnappUITests;
+			sourceTree = "<group>";
+		};
+		7306B77D88BD69229278F0AA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D45CC5EDC5A6D31EFF739F46 /* Pods-myrnapp.debug.xcconfig */,
+				F530FE0145ABBD85300D1D9B /* Pods-myrnapp.release.xcconfig */,
+				6F83FA5052C647209852A9A5 /* Pods-myrnapp-myrnappUITests.debug.xcconfig */,
+				132C0882A5E84040DA8E3A87 /* Pods-myrnapp-myrnappUITests.release.xcconfig */,
+				BB0F5B9CA40E3969A8FEEBB9 /* Pods-myrnappTests.debug.xcconfig */,
+				BFC2C55BFB1399F78245B730 /* Pods-myrnappTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		7E5C2877E42392E0DA6706A7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3C58E749F6761CE93728222D /* Pods_myrnapp.framework */,
+				0F485CD9A8CFD321994AACD4 /* Pods_myrnapp_myrnappUITests.framework */,
+				4770F9B3510C17AFEAD45DE5 /* Pods_myrnappTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1CD2C65D28F1B12700C26D7E /* myrnapp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1CD2C69028F1B12900C26D7E /* Build configuration list for PBXNativeTarget "myrnapp" */;
+			buildPhases = (
+				BC74054963984E5C919C1F37 /* [CP] Check Pods Manifest.lock */,
+				1CD2C65A28F1B12700C26D7E /* Sources */,
+				1CD2C65B28F1B12700C26D7E /* Frameworks */,
+				1CD2C65C28F1B12700C26D7E /* Resources */,
+				62ED89EF0248DEAD658D51AD /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = myrnapp;
+			productName = myrnapp;
+			productReference = 1CD2C65E28F1B12700C26D7E /* myrnapp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1CD2C67B28F1B12900C26D7E /* myrnappTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1CD2C69328F1B12900C26D7E /* Build configuration list for PBXNativeTarget "myrnappTests" */;
+			buildPhases = (
+				E13F1D3EEA865401E83A6D16 /* [CP] Check Pods Manifest.lock */,
+				1CD2C67828F1B12900C26D7E /* Sources */,
+				1CD2C67928F1B12900C26D7E /* Frameworks */,
+				1CD2C67A28F1B12900C26D7E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1CD2C67E28F1B12900C26D7E /* PBXTargetDependency */,
+			);
+			name = myrnappTests;
+			productName = myrnappTests;
+			productReference = 1CD2C67C28F1B12900C26D7E /* myrnappTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		1CD2C68628F1B12900C26D7E /* myrnappUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1CD2C69628F1B12900C26D7E /* Build configuration list for PBXNativeTarget "myrnappUITests" */;
+			buildPhases = (
+				68530AC8951B5DC723DF53F2 /* [CP] Check Pods Manifest.lock */,
+				1CD2C68328F1B12900C26D7E /* Sources */,
+				1CD2C68428F1B12900C26D7E /* Frameworks */,
+				1CD2C68528F1B12900C26D7E /* Resources */,
+				49E6AFFFEE573056E9CFDE1B /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1CD2C68928F1B12900C26D7E /* PBXTargetDependency */,
+			);
+			name = myrnappUITests;
+			productName = myrnappUITests;
+			productReference = 1CD2C68728F1B12900C26D7E /* myrnappUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1CD2C65628F1B12700C26D7E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					1CD2C65D28F1B12700C26D7E = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					1CD2C67B28F1B12900C26D7E = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 1CD2C65D28F1B12700C26D7E;
+					};
+					1CD2C68628F1B12900C26D7E = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 1CD2C65D28F1B12700C26D7E;
+					};
+				};
+			};
+			buildConfigurationList = 1CD2C65928F1B12700C26D7E /* Build configuration list for PBXProject "myrnapp" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1CD2C65528F1B12700C26D7E;
+			productRefGroup = 1CD2C65F28F1B12700C26D7E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1CD2C65D28F1B12700C26D7E /* myrnapp */,
+				1CD2C67B28F1B12900C26D7E /* myrnappTests */,
+				1CD2C68628F1B12900C26D7E /* myrnappUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1CD2C65C28F1B12700C26D7E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1CD2C67428F1B12800C26D7E /* LaunchScreen.storyboard in Resources */,
+				1CBF785028F3B58E007D4378 /* bundle in Resources */,
+				1CD2C67128F1B12800C26D7E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1CD2C67A28F1B12900C26D7E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1CD2C68528F1B12900C26D7E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		49E6AFFFEE573056E9CFDE1B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myrnapp-myrnappUITests/Pods-myrnapp-myrnappUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myrnapp-myrnappUITests/Pods-myrnapp-myrnappUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myrnapp-myrnappUITests/Pods-myrnapp-myrnappUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		62ED89EF0248DEAD658D51AD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myrnapp/Pods-myrnapp-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myrnapp/Pods-myrnapp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myrnapp/Pods-myrnapp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		68530AC8951B5DC723DF53F2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-myrnapp-myrnappUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BC74054963984E5C919C1F37 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-myrnapp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E13F1D3EEA865401E83A6D16 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-myrnappTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1CD2C65A28F1B12700C26D7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1CD2C67728F1B12800C26D7E /* main.m in Sources */,
+				1CD2C66928F1B12700C26D7E /* ViewController.m in Sources */,
+				1CBF788828F3F33E007D4378 /* RNToolPackage.m in Sources */,
+				1CD2C66328F1B12700C26D7E /* AppDelegate.m in Sources */,
+				1CD2C66F28F1B12700C26D7E /* myrnapp.xcdatamodeld in Sources */,
+				1CBF788D28F3F949007D4378 /* ReactController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1CD2C67828F1B12900C26D7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1CD2C68128F1B12900C26D7E /* myrnappTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1CD2C68328F1B12900C26D7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1CD2C68C28F1B12900C26D7E /* myrnappUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1CD2C67E28F1B12900C26D7E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1CD2C65D28F1B12700C26D7E /* myrnapp */;
+			targetProxy = 1CD2C67D28F1B12900C26D7E /* PBXContainerItemProxy */;
+		};
+		1CD2C68928F1B12900C26D7E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1CD2C65D28F1B12700C26D7E /* myrnapp */;
+			targetProxy = 1CD2C68828F1B12900C26D7E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1CD2C67228F1B12800C26D7E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1CD2C67328F1B12800C26D7E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1CD2C68E28F1B12900C26D7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1CD2C68F28F1B12900C26D7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1CD2C69128F1B12900C26D7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D45CC5EDC5A6D31EFF739F46 /* Pods-myrnapp.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = GXH82CG8H4;
+				INFOPLIST_FILE = myrnapp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(SDKROOT)/System/iOSSupport/usr/lib/swift",
+					"$(inherited)",
+				);
+				PRESERVE_DEAD_CODE_INITS_AND_TERMS = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joney.myrnapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1CD2C69228F1B12900C26D7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F530FE0145ABBD85300D1D9B /* Pods-myrnapp.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = GXH82CG8H4;
+				INFOPLIST_FILE = myrnapp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(SDKROOT)/System/iOSSupport/usr/lib/swift",
+					"$(inherited)",
+				);
+				PRESERVE_DEAD_CODE_INITS_AND_TERMS = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joney.myrnapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1CD2C69428F1B12900C26D7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB0F5B9CA40E3969A8FEEBB9 /* Pods-myrnappTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = GXH82CG8H4;
+				INFOPLIST_FILE = myrnappTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(SDKROOT)/System/iOSSupport/usr/lib/swift",
+					"$(inherited)",
+				);
+				PRESERVE_DEAD_CODE_INITS_AND_TERMS = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.li.myrnappTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/myrnapp.app/myrnapp";
+			};
+			name = Debug;
+		};
+		1CD2C69528F1B12900C26D7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BFC2C55BFB1399F78245B730 /* Pods-myrnappTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = GXH82CG8H4;
+				INFOPLIST_FILE = myrnappTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(SDKROOT)/System/iOSSupport/usr/lib/swift",
+					"$(inherited)",
+				);
+				PRESERVE_DEAD_CODE_INITS_AND_TERMS = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.li.myrnappTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/myrnapp.app/myrnapp";
+			};
+			name = Release;
+		};
+		1CD2C69728F1B12900C26D7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F83FA5052C647209852A9A5 /* Pods-myrnapp-myrnappUITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = GXH82CG8H4;
+				INFOPLIST_FILE = myrnappUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(SDKROOT)/System/iOSSupport/usr/lib/swift",
+					"$(inherited)",
+				);
+				PRESERVE_DEAD_CODE_INITS_AND_TERMS = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.li.myrnappUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = myrnapp;
+			};
+			name = Debug;
+		};
+		1CD2C69828F1B12900C26D7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 132C0882A5E84040DA8E3A87 /* Pods-myrnapp-myrnappUITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = GXH82CG8H4;
+				INFOPLIST_FILE = myrnappUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(SDKROOT)/System/iOSSupport/usr/lib/swift",
+					"$(inherited)",
+				);
+				PRESERVE_DEAD_CODE_INITS_AND_TERMS = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.li.myrnappUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = myrnapp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1CD2C65928F1B12700C26D7E /* Build configuration list for PBXProject "myrnapp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1CD2C68E28F1B12900C26D7E /* Debug */,
+				1CD2C68F28F1B12900C26D7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1CD2C69028F1B12900C26D7E /* Build configuration list for PBXNativeTarget "myrnapp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1CD2C69128F1B12900C26D7E /* Debug */,
+				1CD2C69228F1B12900C26D7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1CD2C69328F1B12900C26D7E /* Build configuration list for PBXNativeTarget "myrnappTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1CD2C69428F1B12900C26D7E /* Debug */,
+				1CD2C69528F1B12900C26D7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1CD2C69628F1B12900C26D7E /* Build configuration list for PBXNativeTarget "myrnappUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1CD2C69728F1B12900C26D7E /* Debug */,
+				1CD2C69828F1B12900C26D7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1CD2C66D28F1B12700C26D7E /* myrnapp.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1CD2C66E28F1B12700C26D7E /* myrnapp.xcdatamodel */,
+			);
+			currentVersion = 1CD2C66E28F1B12700C26D7E /* myrnapp.xcdatamodel */;
+			path = myrnapp.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 1CD2C65628F1B12700C26D7E /* Project object */;
+}

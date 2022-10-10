@@ -1,17 +1,17 @@
 //
-//  myapprnnTests.m
-//  myapprnnTests
+//  myrnappTests.m
+//  myrnappTests
 //
-//  Created by 李仕增 on 2022/10/7.
+//  Created by 李仕增 on 2022/10/8.
 //
 
 #import <XCTest/XCTest.h>
 
-@interface myapprnnTests : XCTestCase
+@interface myrnappTests : XCTestCase
 
 @end
 
-@implementation myapprnnTests
+@implementation myrnappTests
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.

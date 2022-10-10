@@ -1,0 +1,168 @@
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
+
+  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1]));
+
+  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2]));
+
+  var _inherits2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3]));
+
+  var _possibleConstructorReturn2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4]));
+
+  var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5]));
+
+  var _react = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6]));
+
+  var _reactNative = _$$_REQUIRE(_dependencyMap[7]);
+
+  var _native = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[8]));
+
+  var _jsxRuntime = _$$_REQUIRE(_dependencyMap[9]);
+
+  function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
+
+  function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+  var changeActivity = _native.default.changeActivity;
+
+  var RNHighScores = function (_React$Component) {
+    (0, _inherits2.default)(RNHighScores, _React$Component);
+
+    var _super = _createSuper(RNHighScores);
+
+    function RNHighScores() {
+      (0, _classCallCheck2.default)(this, RNHighScores);
+      return _super.apply(this, arguments);
+    }
+
+    (0, _createClass2.default)(RNHighScores, [{
+      key: "render",
+      value: function render() {
+        return (0, _jsxRuntime.jsxs)(_reactNative.View, {
+          style: styles.container,
+          children: [(0, _jsxRuntime.jsx)(_reactNative.Text, {
+            onPress: function onPress() {
+              changeActivity("IOS2");
+            },
+            style: styles.highScoresTitle,
+            children: "\u8FD4\u56DEIOS2"
+          }), (0, _jsxRuntime.jsx)(_reactNative.View, {
+            children: (0, _jsxRuntime.jsx)(_reactNative.Button, {
+              title: "IOS"
+            })
+          })]
+        });
+      }
+    }]);
+    return RNHighScores;
+  }(_react.default.Component);
+
+  var styles = _reactNative.StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#FFFFFF'
+    },
+    highScoresTitle: {
+      fontSize: 20,
+      textAlign: 'center',
+      margin: 10
+    },
+    scores: {
+      textAlign: 'center',
+      color: '#333333',
+      marginBottom: 5
+    }
+  });
+
+  _reactNative.AppRegistry.registerComponent('IOS', function () {
+    return RNHighScores;
+  });
+},40000000,[7,16,17,28,30,33,1,3,40000001,180]);
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0]);
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = undefined;
+
+  var _asyncToGenerator2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1]));
+
+  var _reactNative = _$$_REQUIRE(_dependencyMap[2]);
+
+  if (!_reactNative.NativeModules.RNToolsManager) {
+    throw new Error("native模块加载失败");
+  }
+
+  var RNToolsManager = {
+    changeActivity: function changeActivity(value) {
+      if (_reactNative.Platform.OS === 'ios') {
+        return _reactNative.NativeModules.RNToolsManager.changeActivity("bundle/" + value + ".ios", value);
+      }
+
+      return _reactNative.NativeModules.RNToolsManager.changeActivity(value, null);
+    },
+    writeFileFoRC: function writeFileFoRC(versionMapInfo) {
+      return _reactNative.NativeModules.RNToolsManager.writeFileFoRC(versionMapInfo);
+    },
+    cleanFileByPath: function cleanFileByPath() {
+      return _reactNative.NativeModules.RNToolsManager.cleanFileByPath();
+    },
+    downloadFiles: function downloadFiles(url, type, module) {
+      return _reactNative.NativeModules.RNToolsManager.downloadFiles(url, type, module);
+    },
+    touchZip: function touchZip() {
+      return _reactNative.NativeModules.RNToolsManager.touchZip();
+    },
+    getAndroidDEV: function () {
+      var _getAndroidDEV = (0, _asyncToGenerator2.default)(function* () {
+        return _reactNative.NativeModules.RNToolsManager.getAndroidDEV();
+      });
+
+      function getAndroidDEV() {
+        return _getAndroidDEV.apply(this, arguments);
+      }
+
+      return getAndroidDEV;
+    }(),
+    isInited: function () {
+      var _isInited = (0, _asyncToGenerator2.default)(function* () {
+        return _reactNative.NativeModules.RNToolsManager.isInited();
+      });
+
+      function isInited() {
+        return _isInited.apply(this, arguments);
+      }
+
+      return isInited;
+    }(),
+    getCurrentVersion: function () {
+      var _getCurrentVersion = (0, _asyncToGenerator2.default)(function* (module, type) {
+        return _reactNative.NativeModules.RNToolsManager.getCurrentVersion(module, type);
+      });
+
+      function getCurrentVersion(_x, _x2) {
+        return _getCurrentVersion.apply(this, arguments);
+      }
+
+      return getCurrentVersion;
+    }(),
+    setFileVersion: function () {
+      var _setFileVersion = (0, _asyncToGenerator2.default)(function* (module, type, newVersion) {
+        return _reactNative.NativeModules.RNToolsManager.setFileVersion(module, type, newVersion);
+      });
+
+      function setFileVersion(_x3, _x4, _x5) {
+        return _setFileVersion.apply(this, arguments);
+      }
+
+      return setFileVersion;
+    }()
+  };
+  var _default = RNToolsManager;
+  exports.default = _default;
+},40000001,[7,269,3]);
+__r(21);
+__r(40000000);

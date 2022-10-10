@@ -1,8 +1,8 @@
 //
 //  SceneDelegate.h
-//  myapprnn
+//  myrnapp
 //
-//  Created by 李仕增 on 2022/10/7.
+//  Created by 李仕增 on 2022/10/8.
 //
 
 #import <UIKit/UIKit.h>

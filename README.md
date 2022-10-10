@@ -1593,20 +1593,488 @@ public class CatalystInstanceImpl implements CatalystInstance {
 
 ## 按照官方的教程踩坑的地方
 
+1. 集成阶段
+
+- 安装pod 依赖
+
+```rb
+# Uncomment the next line to define a global platform for your project
+require_relative '../node_modules/react-native/scripts/react_native_pods'
+require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+
+install! 'cocoapods', :deterministic_uuids => false
+platform :ios, '12.4'
+
+target 'myrnapp' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  config = use_native_modules!
+  flags = get_default_flags()
+
+  pod 'RNDeviceInfo', path: '../node_modules/react-native-device-info'
+  
+  use_react_native!(
+    :path => config[:reactNativePath],
+    # Hermes is now enabled by default. Disable by setting this flag to false.
+    # Upcoming versions of React Native may rely on get_default_flags(), but
+    # we make it explicit here to aid in the React Native upgrade process.
+    :hermes_enabled => false,
+    :fabric_enabled => flags[:fabric_enabled],
+    # Enables Flipper.
+    #
+    # Note that if you have use_frameworks! enabled, Flipper will not work and
+    # you should disable the next line.
+    # :flipper_configuration => FlipperConfiguration.enabled,
+    # An absolute path to your application root.
+    :app_path => "#{Pod::Config.instance.installation_root}/.."
+  )
+
+  # Pods for myrnapp
+  target 'myrnappTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'myrnappUITests' do
+    # Pods for testing
+  end
+
+  post_install do |installer|
+    react_native_post_install(
+      installer,
+      # Set `mac_catalyst_enabled` to `true` in order to apply patches
+      # necessary for Mac Catalyst builds
+      :mac_catalyst_enabled => true
+    )
+    __apply_Xcode_12_5_M1_post_install_workaround(installer)
+  end
+end
+```
+
+- 如果你的项目中含有 SceneDelegate 请去掉它
+
+原理 -> <https://blog.csdn.net/c1o2c3o4/article/details/108711477?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-108711477-blog-104754971.t0_edu_mix&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-108711477-blog-104754971.t0_edu_mix&utm_relevant_index=1>
+
+删除方法 ->  <https://www.jianshu.com/p/6b3f40319877>
+
+删除main storyboard <https://blog.csdn.net/qq_31598345/article/details/119979791>
+
+- 我们不用官方的例子 只是按照它提供的思路 去自己写一个
+
+```Objective-C
+//
+//  ViewController.m
+//  myrnapp
+//
+//  Created by 李仕增 on 2022/10/8.
+//
+
+#import "ViewController.h"
+#import <React/RCTRootView.h>
+
+@interface ViewController ()
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+//    加一些oc 的code 确保项目上正常的状态
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor redColor];
+    view.frame = CGRectMake(100,100, 100, 100);
+    [self.view addSubview:view];
+
+    view.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openRNView)];
+    [view addGestureRecognizer:tap];
+
+    UIView *view2 = [[UIView alloc] init];
+    view2.backgroundColor = [UIColor greenColor];
+    view2.frame = CGRectMake(150,300, 100, 100);
+    [self.view addSubview:view2];
+    
+    view2.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openRNView2)];
+    [view2 addGestureRecognizer:tap2];
+    
+//    直接开始集成
+  
+}
+
+- (void) testClick {
+    NSLog(@"6666666");
+}
+
+- (void)openRNView {
+    NSLog(@"High Score Button Pressed");
+    NSURL *jsCodeLocation = [NSURL URLWithString:@"http://localhost:8082/IOS.bundle?platform=ios"];
+
+        RCTRootView *rootView =
+          [[RCTRootView alloc] initWithBundleURL: jsCodeLocation
+                                      moduleName: @"RNHighScores"
+                               initialProperties: nil
+                                   launchOptions: nil];
+        UIViewController *vc = [[UIViewController alloc] init];
+        vc.view = rootView;
+        [self presentViewController:vc animated:YES completion:nil];
+ }
+
+- (void)openRNView2 {
+    NSLog(@"High Score Button Pressed");
+    NSURL *jsCodeLocation = [NSURL URLWithString:@"http://localhost:8082/IOS2.bundle?platform=ios"];
+
+        RCTRootView *rootView =
+          [[RCTRootView alloc] initWithBundleURL: jsCodeLocation
+                                      moduleName: @"RNHighScores2"
+                               initialProperties: nil
+                                   launchOptions: nil];
+        UIViewController *vc = [[UIViewController alloc] init];
+        vc.view = rootView;
+        [self presentViewController:vc animated:YES completion:nil];
+ }
+
+@end
+
+```
+
+- 确保你的相关权限已经开放 比如网络
+
+  确保你的info.plist 包含下面的字段
+
+  ```xml
+  <key>NSAppTransportSecurity</key>
+
+ <dict>
+  <key>NSExceptionDomains</key>
+  <dict>
+   <key>localhost</key>
+   <dict>
+    <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+    <true/>
+   </dict>
+  </dict>
+ </dict>
+  ```
+
+2. build 阶段
+
+- 你可能会遇到的问题
+  你也许会越到当不限于下面的这些问题
+  
+  相关的问题都可以去react-native官方的github issue 里有，我最终采取静态连接的办法
+  
+  *关键代码*
+
+  ```rb
+  ++++
+  use_frameworks! :linkage => :static
+  # 使用静态库 连接 不要使用动态库 或者 默认的连接 ，会有问题
+  ++++
+  ```
+
+- 解析来 build 环节需要注意的地方
+
+  Native 的BUILD 现在解决了，那么RN的build 怎么办呢？
+  
+  首先是native 代码需要修改 资源路径 不要从远程加载 直接从本地载入
+
+  ```c++
+  - (void)openRNView2 {
+      NSLog(@"High Score Button Pressed");
+  //    NSURL *jsCodeLocation = [NSURL URLWithString:@"http://localhost:8082/IOS2.bundle?platform=ios"];
+
+      NSURL *jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"bundle/IOS2.ios" withExtension:@"bundle"];
+      
+  //        RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL: jsCodeLocation
+  //                                      moduleName: @"RNHighScores2"
+  //                                launchOptions: nil];
+      RCTRootView *rootView = [[RCTRootView alloc]
+                              initWithBundleURL:jsCodeLocation
+                              moduleName:@"RNHighScores2"
+                              initialProperties:nil
+                              launchOptions:nil ];
+      
+          UIViewController *vc = [[UIViewController alloc] init];
+          vc.view = rootView;
+          [self presentViewController:vc animated:YES completion:nil];
+  };
+  ```
+
+   然后关于js 和资源的build ，下面是它们的构建脚本
+
+   ```shell
+    yarn react-native bundle --entry-file ./IOS2.js --bundle-output ./bundle/IOS2.ios.bundle --platform ios --assets-dest ./bundle --dev false
+    ```
+
+    最后要注意的是 ==>  **请你直接把整个文件夹拖拽进入Xcode！中的projext 下**
+
+    **如果发现有问题 跑不通， 需要分析原因 给IOS debug 看看那个环节有问题**
+
+3. 关于native 包的问题
+  
+  实际上这个非常的简单，我在这个项目中 ，所有的native 包再 pod install 的时候都自动安装了，如果你需要手动包含，可以参考旧版本的做法. 在 PodFile 中手动+ （比如下面的例子）
+
+  ```rb
+  ++++
+   pod 'RNDeviceInfo', path: '../node_modules/react-native-device-info'
+  +++
+  ```
+
 ## 重点 拆包方案
+
+1. 参考
+
+首先我参考了一部分的材料 主要的材料是这两片文章
+[掘金文章 RN的分包实践](https://juejin.cn/post/6844903922205736973)
+[GitHub项目](https://github1s.com/smallnew/react-native-multibundler/blob/HEAD/ios/reactnative_multibundler/ScriptLoadUtil.m)
+
+2. 重要的原理
+
+我们先看看 RN 在IOS 中的加载过程 就能明白 我目前采用的方案的原理了
+
+-> 创建 RCTRootView，为 React Native 提供原生 UI 中的根视图。
+
+-> 创建 RCTBridge，提供 iOS 需要的桥接功能。
+
+-> 创建 RCTBatchedBridge，实际上是这个对象为 RCTBridge 提供方法，让其将这些方法暴露出去。
+[RCTCxxBridge start]，启动 JavaScript 解析进程。
+[RCTCxxBridge loadSource]，通过 RCTJavaScriptLoader 下载 bundle，并且执行。
+
+-> 建立 JavaScript 和 iOS 之间的 Module 映射。
+
+-> 将模块映射到对应的 RCTRootView 当中。
+
+可以看到 最重要的是 Bridge 所有的script 的加载都可以在这找到一些线索，通过debuger 我们可以找到一个关键的方法 executeSourceCode 这就是执行 js 代码的方法。如果要实现自己的分包我必须 重写这里面的逻辑 所以有了下面的代码
+
+如果是dev 模式的话，可以把这些code 去掉换成 http的方式，当然这些都是后话了
+
+3. 实践
+
+- 首先是重载 executeSourceCode 和定义 brige
+
+```h
+//  ViewController.h
+
+#import <UIKit/UIKit.h>
+#import <React/RCTBridge.h>
+
+// 保留出这个 方法
+@interface RCTBridge (PackageBundle)
+
+- (RCTBridge *)batchedBridge;
+- (void)executeSourceCode:(NSData *)sourceCode sync:(BOOL)sync;
+
+@end
+
+@interface ViewController : UIViewController
+
+@property (nonatomic, strong) RCTBridge *bridge;
+@end
+
+```
+
+- 其次我们要重新编写一下我们的js 的build 脚本，因为ios 和android 的打出来的包不一样！，😢  之前一只使用android 的 common 包 和 bu(注意我的bu包是 ios 和ios2.js) 包，一直报错 ，找好久才找到原因
+
+```json
+{
+  "build:common-ios": "react-native bundle --platform ios --dev false --entry-file ./common.js --bundle-output ./bundle/common.ios.bundle   --config ./metro.common.config.js  --minify false --reset-cache",
+    "build:ios1": "react-native bundle --entry-file ./IOS.js --bundle-output ./bundle/IOS.ios.bundle --platform ios --assets-dest ./bundle  --config ./metro.main.config.js --minify false --dev false",
+    "build:ios2": "react-native bundle --entry-file ./IOS2.js --bundle-output ./bundle/IOS2.ios.bundle --platform ios --assets-dest ./bundle  --config ./metro.main.config.js --minify false --dev false"
+}
+```
+
+**别忘记了！你在build 的时候要把bu的其实 id 搞进去！**
+
+```json
+{
+  "index": 10000000,
+  "Bu1": 20000000,
+  "Bu2": 30000000,
+  // 把下面的bu 加上！
+  "IOS": 40000000,
+  "IOS2": 50000000
+}
+
+```
+
+- 然后我们来测试一下 使用分包的模式先载入 common 再载入 bu包, 注意啊 我们不采取dev环境下的从 service 载入 bundle 我们从本地文件载入 ，因此有改动 需要先build 再去运行 查看效果
+
+```C++
+//  ViewController.m
+-(instancetype) init {
+    self = [super init];
+    [self initBridge];
+    return  self;
+};
+
+- (void) initBridge {
+    if(!self.bridge) {
+        NSURL *jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"bundle/common.ios" withExtension:@"bundle"];
+       // 初始化 bridge，并且加载主包
+        self.bridge = [[RCTBridge alloc] initWithBundleURL:jsCodeLocation moduleProvider:nil launchOptions:nil];
+    }
+  
+};
+
+// 在点击load 的时候 让 brige 再执行一次bu 的js 
+++++
+-(void) loadScript {
+    NSString * bundlePath = @"bundle/IOS2.ios";
+    NSString * bunldeName = @"IOS2";
+    NSURL  *jsCodeLocation = [[NSBundle mainBundle] URLForResource:bundlePath withExtension:@"bundle"];
+    
+    if(self.bridge) {
+        NSError *error = nil;
+        NSData *sourceBuz = [NSData dataWithContentsOfFile:jsCodeLocation.path
+                                                options:NSDataReadingMappedIfSafe
+                                                  error:&error];
+        
+        [self.bridge.batchedBridge executeSourceCode:sourceBuz sync:NO];
+        
+        RCTRootView *rootView =
+          [[RCTRootView alloc] initWithBridge:self.bridge moduleName:bunldeName initialProperties:nil];
+        UIViewController *vc = [[UIViewController alloc] init];
+        vc.view = rootView;
+        [self presentViewController:vc animated:YES completion:nil];
+    };
+}
+```
+
+可以看到 ，现在我们单独的一个bu 已经可以完全集成了，为了以后简化 函数调用我们把loadScript 改造成参数的方式
+
+```c++
+//  ViewController.h
+
+@interface ViewController : UIViewController
+@property (nonatomic, strong) RCTBridge *bridge;
+-(void) loadScript:(NSString *)bundlePath bunldeName: (NSString *)bunldeName;
+@end
+
+
+//  ViewController.m
+-(void) loadScript:(NSString *)bundlePath bunldeName: (NSString *)bunldeName {
+    
+    NSURL  *jsCodeLocation = [[NSBundle mainBundle] URLForResource:bundlePath withExtension:@"bundle"];
+    
+    if(self.bridge) {
+        NSError *error = nil;
+        NSData *sourceBuz = [NSData dataWithContentsOfFile:jsCodeLocation.path
+                                                options:NSDataReadingMappedIfSafe
+                                                  error:&error];
+        
+        [self.bridge.batchedBridge executeSourceCode:sourceBuz sync:NO];
+        
+        RCTRootView *rootView =
+          [[RCTRootView alloc] initWithBridge:self.bridge moduleName:bunldeName initialProperties:nil];
+        UIViewController *vc = [[UIViewController alloc] init];
+        vc.view = rootView;
+        [self presentViewController:vc animated:YES completion:nil];
+    };
+}
+```
+
+这就完了？当然没有啦，我们需要在RN中进行bu 的载入 和切换，我们需要一些桥接 的代码桥接到IOS中，
+这一点我之前专门有文章讲解 ，如果你不懂请千万 [](), 同时这里还会设计到一个IOS的 知识比如notifaction 和 GCD，看不懂的话也没有关系 什么不懂google 一下 自己实践code一下就明白了，我们直接放出代码
+
+注册RN 桥接模块，为了和Android 中保持一致，我们使用一样的名字 RNToolsManager，然后我们使用notifation 的方式 去直接调用View 中的code ，当然不要忘记了！一定要把这段代码加到主线程去 ，要不然会有问题
+
+```c
+// ViewController.m
+-(instancetype) init {
+    self = [super init];
+    [self initBridge];
+    [self addObservers];
+    return  self;
+};
+
+
+- (void)changeView:(NSNotification *)notif{
+
+    NSString *bundlePath = @"";
+    NSString *bunldeName = @"";
+    bundlePath = [notif.object valueForKey:@"bundlePath"];
+    bunldeName = [notif.object valueForKey:@"bunldeName"];
+    
+    //  OC 的代码 我是方便调试弄的 如果你不需要可以去掉然后 把     [self presentViewController:vc animated:YES completion:nil]; 也去掉，当然还是看你们的需求吧 
+    [self dismissViewControllerAnimated:YES completion:nil];
+
+    [self loadScript:bundlePath bunldeName:bunldeName];
+};
+
+// 监听通知
+- (void)addObservers {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeView:) name:@"changeBunle" object:nil];
+};
+
+// 监听通知
+- (void)removeObservers {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+};
+
+- (void)dealloc {
+    [self removeObservers];
+};
+
+//  RNToolPackage.m
+
+#import "RNToolPackage.h"
+
+@implementation RNToolPackage
+
+RCT_EXPORT_MODULE(RNToolsManager)
+
+// 最简单的一个方法 变更多个bundle
+RCT_REMAP_METHOD(changeActivity,
+                 changeActivityWithA:( NSString *)bundlePath bunldeName:( NSString*)bunldeName
+                 ){
+    
+    // 重新设置一个rootView 
+    dispatch_async(dispatch_get_main_queue(),^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"changeBunle" object:@{
+            @"bundlePath":bundlePath,
+            @"bunldeName":bunldeName,
+        }];
+    });
+    
+};
+
+@end
+
+```
+
+最后要说的，我们需要统一一下android ios rn 的module 跳转方法
+
+```js
+// ./common/native/index.js
+changeActivity: (value) => {
+    // 此处可以优化 把名字全部统一，只需要确定一个规则 path 为 [moduleName].[platform].bundle
+    // 比如 common.ios.bundle, IO2.ios.bundle, common.android.bundle, IO2.android.bundle, 
+    // 参数只需要 传递 IO2 就好了这个IOS2 应该和模块的 registerComponent name 保持一致！
+    if(Platform.OS === 'ios') {
+      return NativeModules.RNToolsManager.changeActivity(`bundle/${value}.ios`, value); 
+    }
+    return NativeModules.RNToolsManager.changeActivity(value, null);
+  },
+```
 
 # Todo
 
 | 项目      | Android | IOS     |
 | :---        |    :----:   |          ---: |
-| 依照官方进行集成      | ✅ 完成       |  /  |
-| dev是否正常运行   |      ✅ 完成   |  /      |
-| build 一下是否正常运行   |    ✅ 完成     |  /      |
-| Assets 资源加载逻辑   |     ✅ 完成    |  /      |
-| native版本的包管理   |    ✅ 完成     |  /      |
-| 初步的拆包方案   |    ✅ 完成     |  /      |
-| 优化拆包方案 common + bu = runtime    |    ✅ 完成     |  /      |
-| 容器的缓存复用    |    ✅ 完成      |  /      |
+| 依照官方进行集成      | ✅ 完成       |  ✅ 完成  |
+| dev是否正常运行   |      ✅ 完成   |  ✅ 完成     |
+| build 一下是否正常运行   |    ✅ 完成     |  ✅ 完成     |
+| Assets 资源加载逻辑   |     ✅ 完成    |  ✅ 完成      |
+| native版本的包管理   |    ✅ 完成     |  ✅ 完成      |
+| ------  |    ------      |  ------      |
+| 初步的拆包方案   |    ✅ 完成     |    ✅ 完成      |
+| 优化拆包方案 common + bu = runtime    |    ✅ 完成     |  ✅ 完成      |
+| 容器的缓存复用    |    ✅ 完成      |   ✅ 完成(bridge 复用)    |
+| ------  |    ------      |  ------      |
 | 热更新的实现   |    ✅ 完成     |  /      |
 | WebView 的实现   |    /     |  /      |
 
@@ -1615,3 +2083,11 @@ public class CatalystInstanceImpl implements CatalystInstance {
 [RN 的Android 端执行过程](https://fsilence.github.io/2018/01/09/react-native-load-jsbundle/)
 
 [一种RN的分包策略](https://cloud.tencent.com/developer/article/1005382)
+
+<https://stackoverflow.com/questions/42091721/how-to-get-offline-bundling-of-ios-in-react-native>
+
+<https://stackoverflow.com/questions/42091721/how-to-get-offline-bundling-of-ios-in-react-native>
+
+<https://www.uglydirtylittlestrawberry.co.uk/posts/react-native-ios-build-and-inject-bundle/>
+
+<https://www.jianshu.com/p/0e830adc4c90>
