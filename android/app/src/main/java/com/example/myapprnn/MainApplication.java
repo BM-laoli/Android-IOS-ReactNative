@@ -34,8 +34,6 @@ public class MainApplication extends Application   {
 
     }
 
-
-
     public static MainApplication getInstance(){
         return mApp;
     }

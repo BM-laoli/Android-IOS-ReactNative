@@ -103,13 +103,12 @@
     bundlePath = [notif.object valueForKey:@"bundlePath"];
     bunldeName = [notif.object valueForKey:@"bunldeName"];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
     
-    // 重制 原先的bridge 要不然会有问题
+// 重制 原先的bridge 要不然会有问题
 //    NSURL *jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"bundle/common.ios" withExtension:@"bundle"];
 //
 //    self.bridge = [[RCTBridge alloc] initWithBundleURL:jsCodeLocation moduleProvider:nil launchOptions:nil];
-  
     
     [self loadScript:bundlePath bunldeName:bunldeName];
 };
@@ -143,10 +142,22 @@
         
         RCTRootView *rootView =
           [[RCTRootView alloc] initWithBridge:self.bridge moduleName:bunldeName initialProperties:nil];
-//        UIViewController *vc = [[UIViewController alloc] init];
-        [self setView: rootView];
-//        vc.view = rootView;
-//        [self presentViewController:vc animated:YES completion:nil];
+        UIViewController *vc = [[UIViewController alloc] init];
+        
+//        [self setView: rootView];
+        // 第一次的时候没有 添加
+        if(self.vc1 == nil) {
+            vc.view = rootView;
+            [self presentViewController:vc animated:YES completion:nil];
+            self.vc1 = vc;
+            return;
+        }
+        
+        // 第二次的时候 从第一次上面再此添加
+        vc.view = rootView;
+        self.vc2 = vc;
+        [self.vc1 presentViewController: self.vc2 animated:YES completion:nil];
+        
     };
 }
 @end

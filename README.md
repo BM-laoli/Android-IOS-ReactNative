@@ -156,7 +156,6 @@ react-native bundle --platform android --dev false --entry-file index.js --bundl
   ```js
 import { StyleSheet, Text, View, AppRegistry } from "react-native";
 
-// 整个App 的骨架，基础包 更新要严格控制
 class BU1 extends React.Component {
   render() {
     return (
@@ -2075,7 +2074,7 @@ changeActivity: (value) => {
 | 优化拆包方案 common + bu = runtime    |    ✅ 完成     |  ✅ 完成      |
 | 容器的缓存复用    |    ✅ 完成      |   ✅ 完成(bridge 复用)    |
 | ------  |    ------      |  ------      |
-| 热更新的实现   |    ✅ 完成     |  /      |
+| 热更新的实现   |    ✅ 完成     |  ✅完成      |
 | WebView 的实现   |    /     |  /      |
 
 # 参考和感谢
@@ -2084,14 +2083,14 @@ changeActivity: (value) => {
 
 [一种RN的分包策略](https://cloud.tencent.com/developer/article/1005382)
 
-<https://stackoverflow.com/questions/42091721/how-to-get-offline-bundling-of-ios-in-react-native>
+[ReactNative JNI C++ 源代码](https://github1s.com/facebook/react-native/blob/HEAD/ReactAndroid/src/main/jni/CMakeLists.txt)
 
-<https://stackoverflow.com/questions/42091721/how-to-get-offline-bundling-of-ios-in-react-native>
+[RN 在IOS 中的build 方式](https://stackoverflow.com/questions/42091721/how-to-get-offline-bundling-of-ios-in-react-native)
 
-<https://www.uglydirtylittlestrawberry.co.uk/posts/react-native-ios-build-and-inject-bundle/>
+[RN的CI/CD到 IOS脚本分析](https://www.uglydirtylittlestrawberry.co.uk/posts/react-native-ios-build-and-inject-bundle/)
 
-<https://www.jianshu.com/p/0e830adc4c90>
+[RN集成到IOS- 1](https://www.jianshu.com/p/0e830adc4c90)
 
-<https://stackoverflow.com/questions/72543728/xcode-14-deprecates-bitcode-but-why/73219854#73219854>
+[RN集成到IOS- 2](https://www.jianshu.com/p/e09ca00d7aaa)
 
-<https://www.jianshu.com/p/e09ca00d7aaa>
+[为什么IOS要禁用 字节编译](https://stackoverflow.com/questions/72543728/xcode-14-deprecates-bitcode-but-why/73219854#73219854)

@@ -198,6 +198,4 @@ public class PreBaseInit extends AppCompatActivity implements DefaultHardwareBac
         return super.onKeyUp(keyCode, event);
     }
 
-
-
 }

@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "react-native start --port=8082 ",
-    "build:common": "react-native bundle --platform android --dev false --entry-file ./common.js --bundle-output ./android/app/src/main/assets/common.android.bundle --assets-dest ./android/app/src/main/res   --config ./metro.common.config.js  --minify false --reset-cache",
+    "build:common": "react-native bundle --platform android --dev false --entry-file ./common.js --bundle-output ./android/app/src/main/assets/common.android.bundle --assets-dest ./android/app/src/main/res   --config ./metro.common.config.js  --minify true --reset-cache",
     "build:index": "react-native bundle --platform android --dev false --entry-file ./index.js --bundle-output ./android/app/src/main/assets/index.android.bundle --assets-dest ./android/app/src/main/res  --config ./metro.main.config.js  --minify true --reset-cache",
     "build:bu1": "react-native bundle --platform android --dev false --entry-file ./Bu1.js --bundle-output ./android/app/src/main/assets/bu1.android.bundle --assets-dest ./android/app/src/main/res  --config ./metro.main.config.js  --minify true --reset-cache",
     "build:bu2": "react-native bundle --platform android --dev false --entry-file ./Bu2.js --bundle-output ./android/app/src/main/assets/bu2.android.bundle --assets-dest ./android/app/src/main/res  --config ./metro.main.config.js  --minify true --reset-cache",

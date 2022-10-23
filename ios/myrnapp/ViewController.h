@@ -18,6 +18,9 @@
 @interface ViewController : UIViewController
 
 @property (nonatomic, strong) RCTBridge *bridge;
+@property (nonatomic, strong) UIViewController *vc1;
+@property (nonatomic, strong) UIViewController *vc2;
 -(void) loadScript:(NSString *)bundlePath bunldeName: (NSString *)bunldeName;
+
 @end
 
